@@ -125,11 +125,11 @@ textarea.form-input {
     border-color: #C82543;
 }
 
-.input-error ~ .form-error {
+.input-error ~ .form-error, .alert-error {
     display: block;
 }
 
-.form-error {
+.form-error, .alert-error, .alert-succes {
     background: #f4d3d9;
     color: #C82543;
     font-size: 0.8em;
@@ -139,8 +139,12 @@ textarea.form-input {
     margin-top: 10px;
 }
 
+.alert-succes {
+    color: #080808;
+}
+
 @media screen and (max-width: 769px) {
-    .form-error {
+    .form-error, .alert-error, .alert-succes {
         width: 100%;
     }
 }

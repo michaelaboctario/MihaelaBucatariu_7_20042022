@@ -11,8 +11,10 @@
     "axios": "^0.27.0",
     "core-js": "^3.8.3",
     "url": "^0.11.0",
+    "vee-validate": "^4.5.11",
     "vue": "^3.2.13",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
