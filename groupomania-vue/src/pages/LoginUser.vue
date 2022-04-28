@@ -1,12 +1,11 @@
 <template>  
-  <h1 class="text-center">Groupomania</h1>
   <div class="container">
-
-      <div class="flex-container justify-center">
+      <div class="flex-container justify-center">    
           <div class="col-7">
               <!-- print form values -->
               <!-- <Form @submit="register" :validation-schema="schema" v-slot="{ values }">               
                   <pre>{{ values }}</pre> -->
+              <h1 class="text-center">Groupomania</h1>    
               <Form @submit="handleLogin" :validation-schema="schema">               
                   <h2 class="text-center">Login</h2>
 
@@ -74,7 +73,7 @@ export default {
 
       this.$store.dispatch("auth/login", this.form).then(
         () => {
-          //this.$router.push("/profile");
+          this.$router.push('/');
         },
         error => {
           this.loading = false;

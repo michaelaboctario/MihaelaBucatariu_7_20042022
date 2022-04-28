@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:3000/api/auth/';
 class AuthService {
   login(user) {
     return axios
-      .post(API_URL + 'signin', {
+      .post(API_URL + 'login', {
         username: user.username,
         password: user.password
       })

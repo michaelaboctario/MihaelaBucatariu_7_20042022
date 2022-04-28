@@ -1,12 +1,12 @@
 <template>  
-  <h1 class="text-center">Groupomania</h1>
+  
   <div class="container">
-
       <div class="flex-container justify-center">
           <div class="col-7">
               <!-- print form values -->
               <!-- <Form @submit="register" :validation-schema="schema" v-slot="{ values }">               
                   <pre>{{ values }}</pre> -->
+              <h1 class="text-center">Groupomania</h1>
               <Form @submit="register" :validation-schema="schema">               
                   <h2 class="text-center">Register</h2>
                   
