@@ -11,7 +11,9 @@ class AuthService {
         password: user.password
       })
       .then(response => {
-        if (response.data.accessToken) {
+        //console.log(response.data)
+        //console.log(JSON.stringify(response.data))
+        if (response.data.token) {
           localStorage.setItem('user', JSON.stringify(response.data));
         }
 
@@ -19,9 +21,9 @@ class AuthService {
       });
   }
 
-  logout() {
+  /* logout() {
     localStorage.removeItem('user');
-  }
+  } */
 
   register(user) {
     console.log(" register(user)")

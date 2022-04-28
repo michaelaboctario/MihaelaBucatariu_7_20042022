@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const authRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
+const postRoutes = require('./routes/post');
 
 // express application
 const app = express();
@@ -32,6 +33,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/posts', postRoutes);
 
 function initial() {
   Role.create({
