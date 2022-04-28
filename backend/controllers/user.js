@@ -9,6 +9,7 @@ exports.signup = (req, res) => {
         password: bcrypt.hashSync(req.body.password, 10),
         firstname: req.body.firstname,
         lastname: req.body.lastname,
+        username: req.body.username,
         roleId: 1,
     })
     .then(user => {      
@@ -20,7 +21,7 @@ exports.signup = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    User.findOne({ where: {email: req.body.email} })   
+    User.findOne({ where: {username: req.body.username} })   
     .then(user => {
         bcrypt.compare(req.body.password, user.password)
         .then(valid => {
