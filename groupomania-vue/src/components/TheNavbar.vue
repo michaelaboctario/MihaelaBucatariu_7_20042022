@@ -4,6 +4,16 @@
      <nav class="navbar">
       <ul>
         <li v-if="authUser"><router-link to="/">Home</router-link></li>
+        <li v-if="authUser">
+            <router-link to="/posts/create">
+              Créer post
+            </router-link> 
+            <!-- <router-link
+                :to="{name:'PostCreate', params: {idAuthUser: this.authUser.id}}"
+                class="btn-green btn-small"
+            >Créer post
+            </router-link> -->
+        </li>
         <li v-if="!authUser"><router-link to="/register">Register</router-link></li>
         <li v-if="!authUser"><router-link to="/login">Login</router-link></li>
       </ul>
@@ -12,26 +22,19 @@
 </template>
 
 <script>
-//import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
-  /* computed: {
-    ...mapGetters('auth', ['authUser'])
-  }, */
+ /*
+ mounted() {
+   console.log("mounted navbar")
+   console.log(this.$store)
+   console.log(this.$store.auth)
+   console.log(this.authUser)
+ },
+ */
   computed: {
-    authUser() {
-      console.log("authUser")
-      console.log(this.$store.state.auth.user)
-      return this.$store.state.auth.user
-      //loggedIn;
-    },
+    ...mapGetters('auth', ['authUser']),
   },
-  /*
-  data() {
-    return {
-      authUserTemp: true
-    }
-	}
-  */
 }
 </script>
 

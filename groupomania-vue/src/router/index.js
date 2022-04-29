@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store'
-
+import PostCreate from '@/pages/PostCreate.vue'
 import HomePage from '@/pages/HomePage.vue'
 import LoginUser from "@/pages/LoginUser.vue"
 import RegisterUser from "@/pages/RegisterUser.vue"
@@ -8,9 +8,10 @@ import NotFound from "@/pages/NotFound.vue"
 
 const routes = [
   {
-    path: '/',
-    name: 'HomePage',
-    component: HomePage
+    path: '/posts/create',
+    name: 'PostCreate',
+    component: PostCreate,
+    props: true
   },
   {
     path: '/register',
@@ -34,7 +35,12 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound
-  }
+  },
+  {
+    path: '/',
+    name: 'HomePage',
+    component: HomePage
+  },
 ]
 const router = createRouter({
   history: createWebHistory(),

@@ -57,5 +57,13 @@ export const auth = {
     registerFailure(state) {
       state.status.loggedIn = false;
     }
+  },
+  getters: {
+    authUser(state) {
+      return state.user?.userData;
+    },
+    tokenAuthUser(state) {
+      return state.user?.token;
+    }
   }
 };

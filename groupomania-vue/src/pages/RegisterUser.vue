@@ -110,16 +110,14 @@ export default {
   },
   methods: {
     register() {
-      // console.log("register")
-      // console.log(this.form)
-      this.message = "";
+      this.message = '';
       this.successful = false;
-      this.$store.dispatch("auth/register", this.form).then(
+      this.$store.dispatch('auth/register', this.form).then(
         data => {
           //console.log(data)
           this.message = data.message;
           this.successful = true;
-           //this.$router.push('/')
+          this.$router.push('/login');
         },
         error => {
           this.message =

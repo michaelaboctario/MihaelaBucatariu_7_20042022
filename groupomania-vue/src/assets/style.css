@@ -450,6 +450,75 @@ figure {
     }
 }
 
+.col-full {
+    flex-basis: 98%;
+    margin: 0 1%;
+}
+
+@media (max-width: 769px) {
+    .col-full {
+        flex-basis: 98%;
+        margin: 0 1%;
+    }
+}
+
+.push-top {
+    margin-top: 20px;
+}
+
+/* Cancel btn .btn-ghost */
+.btn:hover, .btn-blue:hover, .btn-blue-outlined:hover, .btn-ghost:hover {
+    transition: all 0.4s ease;
+}
+
+.btn-ghost {
+    flex-grow: 0;
+}
+
+.btn-ghost:hover:not(:disabled):not(.btn-disabled) {
+    color: white;
+    background-color: rgba(152, 152, 152, 0.31);
+}
+
+@media scrren and (max-width: 769px) {
+    .btn, .btn-blue, .btn-ghost {
+        padding: 10px 20px;
+    }
+}
+
+.btn:disabled, .btn-blue:disabled, .btn-ghost:disabled, .btn-disabled {
+    cursor: default;
+}
+
+.btn:disabled:hover, .btn-blue:disabled:hover, .btn-ghost:disabled:hover, .btn-disabled:hover {
+    cursor: default;
+    color: white;
+}
+
+.btn-ghost {
+    flex-grow: 0;
+}
+
+.btn-ghost:hover:not(:disabled):not(.btn-disabled) {
+    color: white;
+    background-color: rgba(152, 152, 152, 0.31);
+}
+
+@media screen and (max-width: 769px) {
+    .form-actions, .btn-group {
+        flex-wrap: wrap;
+    }
+
+    .form-actions > *:not(.btn-ghost), .btn-group > *:not(.btn-ghost) {
+        flex: 1 1;
+        margin-bottom: 5px;
+    }
+}
+
+.btn:disabled, .btn-blue:disabled, .btn-ghost:disabled, .btn-disabled, a > img:hover {
+    opacity: 0.8;
+}
+
 #app {
     background: #F5F8FE;
     min-height: 100vh;

@@ -69,8 +69,7 @@ export default {
   },
   methods: {
     handleLogin() {
-      this.loading = true;
-
+      this.loading = true
       this.$store.dispatch("auth/login", this.form).then(
         () => {
           this.$router.push('/');

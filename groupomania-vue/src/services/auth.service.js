@@ -21,12 +21,12 @@ class AuthService {
       });
   }
 
-  /* logout() {
+  logout() {
     localStorage.removeItem('user');
-  } */
+  } 
 
   register(user) {
-    console.log(" register(user)")
+    //console.log(" register(user)")
     return axios.post(API_URL + 'signup', {
       username: user.username,
       firstname: user.firstname,
