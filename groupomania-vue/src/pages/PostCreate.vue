@@ -29,7 +29,7 @@
       </div>
 
       <div class="btn-group">
-        <button class="btn btn-ghost" type="button" name="Cancel">Cancel</button>
+        <button class="btn btn-ghost" type="button" @click="cancelEdit" name="Cancel">Cancel</button>
         <button class="btn btn-blue" type="submit" name="Publier">
           Publier
         </button>
@@ -66,6 +66,9 @@ export default {
             userId: this.authUser.id
         }
         this.$store.dispatch('posts/createPost', post)
+        this.$router.push('/');
+    },
+    cancelEdit () {
         this.$router.push('/');
     }
   },
