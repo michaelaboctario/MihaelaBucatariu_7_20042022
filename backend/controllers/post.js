@@ -9,7 +9,8 @@ exports.createPost  = (req, res) => {
       posttitle : req.body.posttitle,           
       postcontent : req.body.postcontent,
       postcreator : req.body.postcreator, 
-      postImageUrl : ""
+      postImageUrl : "",
+      userId: req.body.userId
     })
     .then(() => res.status(201).json({message: 'Post enregistré !'})) 
     .catch(error => res.status(400).json({ message: error.message }));  
