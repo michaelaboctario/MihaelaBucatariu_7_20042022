@@ -1,7 +1,7 @@
 <template>
   <div class="col-full push-top">
     <h1>
-      Create new post
+      Création d'un post
     </h1>
 
     <Form @submit="save">
@@ -66,10 +66,10 @@ export default {
             userId: this.authUser.id
         }
         this.$store.dispatch('posts/createPost', post)
-        this.$router.push('/');
+        this.$router.push('/posts');
     },
     cancelEdit () {
-        this.$router.push('/');
+        this.$router.push('/posts');
     }
   },
   //mounted() {

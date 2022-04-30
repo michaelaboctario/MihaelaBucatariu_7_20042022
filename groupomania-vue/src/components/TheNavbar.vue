@@ -4,6 +4,7 @@
      <nav class="navbar">
       <ul>
         <li v-if="authUser"><router-link to="/">Home</router-link></li>
+        <li v-if="authUser"><router-link to="/posts">Liste de posts</router-link></li>
         <li v-if="authUser">
             <router-link to="/posts/create">
               Créer post

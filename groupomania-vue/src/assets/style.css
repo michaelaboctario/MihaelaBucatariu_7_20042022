@@ -30,6 +30,34 @@ img {
     max-width: 100%;
 }
 
+.text-faded {
+    color: rgba(84, 84, 84, 0.7);
+    width: 80px;
+    margin: auto;
+}
+
+.bloc-comment {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.text, p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+@media screen and (max-width: 769px) {
+    .text, p, .text-xsmall
+    {
+        font-size: 15px;
+    }
+}
+
+.text-xsmall {
+    font-size: 13px;
+}
+
+
 h1 {
     font-size: 32px;
 }
@@ -519,6 +547,7 @@ figure {
     opacity: 0.8;
 }
 
+/*
 #app {
     background: #F5F8FE;
     min-height: 100vh;
@@ -528,4 +557,79 @@ figure {
     text-align: left;
     color: #2c3e50;
     margin-top: 20px;
+}
+*/
+
+/* posts
+*/
+/*
+.post-list {
+    padding: 0;
+    background-color: white;
+}
+
+.post-list .post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0 5px 20px;
+    min-height: 45px;
+}
+
+.post-list .post:nth-child(odd) {
+    background: rgba(73, 89, 96, 0.06);
+    border-bottom-left-radius: 20px;
+}
+
+.post-list .post:last-child {
+    border-bottom-left-radius: 0;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+*/
+
+.post-list {
+    margin-top: 20px;
+}
+
+.post {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    padding: 6px 16px;
+    box-shadow: 2px 2px 1px rgba(136, 136, 136, 0.09);
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+/*
+*/
+
+.list-title {
+    /* background-color: #263959; */
+    background-color: #6d306d;
+    border-radius: 20%;
+    color: #f5f8fe;
+    font-weight: 100;
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    position: relative;
+    padding: 10px 30px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.list-title a {
+    color: white;
+}
+
+.list-title a:hover {
+    color: #89c6af;
 }

@@ -1,17 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store'
 import PostCreate from '@/pages/PostCreate.vue'
+import PostList from '@/pages/PostList.vue'
 import HomePage from '@/pages/HomePage.vue'
 import LoginUser from "@/pages/LoginUser.vue"
 import RegisterUser from "@/pages/RegisterUser.vue"
-import NotFound from "@/pages/NotFound.vue"
+import NotFound from '@/pages/NotFound.vue'
 
 const routes = [
   {
     path: '/posts/create',
     name: 'PostCreate',
     component: PostCreate,
-    props: true
+   
+  },
+  {
+    path: '/posts',
+    name: 'PostList',
+    component: PostList,
   },
   {
     path: '/register',
