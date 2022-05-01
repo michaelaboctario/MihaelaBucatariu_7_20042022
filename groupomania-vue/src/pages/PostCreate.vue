@@ -56,7 +56,7 @@ export default {
   },
   data () {
     return {
-      //successful: false,
+      successful: false,
       //message: '',
       title: '',
       text: ''
@@ -79,9 +79,15 @@ export default {
           postcreator: this.authUser.username, 
           userId: this.authUser.id
       }
-      this.$store.dispatch('posts/createPost', post)
-      //this.message = message
-      //this.$router.push('/posts');
+      this.$store.dispatch('posts/createPost', post).then(
+        () => {
+          this.successful = true;
+          this.$router.push('/posts');
+        },
+        () => {
+          this.successful = false;
+        }
+      );
     },
     cancelEdit () {
         this.$router.push('/posts');

@@ -1,57 +1,54 @@
 import PostService from '../services/post.service';
-const initialState = []
+const initialState = { 
+  items: [], 
+  loadingStatus: null,
+  message: ''
+}
 
 export const posts = {
   namespaced: true,
   state: initialState,
-  loadingStatus: null,
-  message: '',
 
   actions: {  
     createPost ({ commit }, post) {
-      //console.log("create post")
-      //console.log(post)
-      commit('setLoadingStatus', null)
+      commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
-      PostService.createPost(post).then(
+      return PostService.createPost(post).then(
         response => {
-          //console.log(response)
           commit('setPost', {post} )
-          //commit('setPost', response.data )
           commit('setLoadingStatus', 'success')
           commit('setMessage', response.message)
+          return Promise.resolve(post)
         },
         error => {
-          //console.log(error)
           commit('setLoadingStatus', 'failure')
           commit('setMessage', error.message)
-          //return Promise.reject(error)
+          return Promise.reject(error)
         }
       );
     },
     getAllPost ({ commit }) {
-      commit('setLoadingStatus', null)
+      commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return PostService.getAllPost().then(
         post => {
           commit('setPostItems', {post} )
           commit('setLoadingStatus', 'success')
           commit('setMessage', post.message)
-          //return Promise.resolve(post)
+          return Promise.resolve(post)
         },
         error => {
-          //console.log(error)
           commit('setPostItems', initialState )
           commit('setLoadingStatus', 'failure')
           commit('setMessage', error.message)
-          //return Promise.reject(error);
+          return Promise.reject(error);
         }
       );
     },
   },
   mutations: {
     setPost (state, { post }) {
-      state.push(post)
+      state.items.push(post)
     },
     setPostItems (state, { post }) {
       state.items = post

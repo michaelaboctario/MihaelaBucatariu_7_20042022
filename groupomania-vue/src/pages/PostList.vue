@@ -23,8 +23,14 @@
             De {{ post.postcreator }}
           </p>
       </div>
-      </template>     
+      </template>    
     </div>
+    <div
+        v-if="message"
+        :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+      >
+        {{ message }}
+      </div>  
   </div>
 </template>
 
@@ -34,10 +40,20 @@ import { mapState} from 'vuex'
 export default {
     computed: mapState({
         posts: state => state.posts.items,
-        postslength: state => state.posts.items.length
+        postslength: state => state.posts.items.length,
+        message: state => state.posts.message,
+        loadingStatus: state => state.posts.loadingStatus
     }), 
     created () {
-        this.$store.dispatch('posts/getAllPost')
+        this.$store.dispatch('posts/getAllPost').then(
+        () => {
+          this.successful = true;
+          //this.$router.push('/posts');
+        },
+        () => {
+          this.successful = false;
+        }
+      );
     }
 }
 </script>
