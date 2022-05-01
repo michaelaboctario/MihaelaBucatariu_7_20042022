@@ -4,47 +4,63 @@ const initialState = []
 export const posts = {
   namespaced: true,
   state: initialState,
+  loadingStatus: null,
+  message: '',
 
   actions: {  
     createPost ({ commit }, post) {
-      return PostService.createPost(post).then(
+      //console.log("create post")
+      //console.log(post)
+      commit('setLoadingStatus', null)
+      commit('setMessage', '')
+      PostService.createPost(post).then(
         response => {
+          //console.log(response)
           commit('setPost', {post} )
-          return Promise.resolve(response.data)
+          //commit('setPost', response.data )
+          commit('setLoadingStatus', 'success')
+          commit('setMessage', response.message)
         },
         error => {
-          console.log(error)
-          //commit('registerFailure');
-          return Promise.reject(error)
+          //console.log(error)
+          commit('setLoadingStatus', 'failure')
+          commit('setMessage', error.message)
+          //return Promise.reject(error)
         }
       );
     },
     getAllPost ({ commit }) {
+      commit('setLoadingStatus', null)
+      commit('setMessage', '')
       return PostService.getAllPost().then(
         post => {
-          //console.log("PostService.getAllPost")
-          //console.log(post)
           commit('setPostItems', {post} )
-          return Promise.resolve(post)
+          commit('setLoadingStatus', 'success')
+          commit('setMessage', post.message)
+          //return Promise.resolve(post)
         },
         error => {
           //console.log(error)
-          return Promise.reject(error);
+          commit('setPostItems', initialState )
+          commit('setLoadingStatus', 'failure')
+          commit('setMessage', error.message)
+          //return Promise.reject(error);
         }
       );
     },
   },
   mutations: {
     setPost (state, { post }) {
-      //console.log(state)
-      //console.log(post)
       state.push(post)
     },
     setPostItems (state, { post }) {
-      //console.log("setPostItems")
-      //console.log(post)
       state.items = post
-      //console.log(state)
     },
+    setLoadingStatus (state, status) {
+      state.loadingStatus = status
+    },
+    setMessage (state, message) {
+      state.message = message
+    }
   }
 }

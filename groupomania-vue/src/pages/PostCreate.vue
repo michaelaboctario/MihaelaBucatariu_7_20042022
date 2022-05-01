@@ -34,13 +34,19 @@
           Publier
         </button>
       </div>
+      <div
+        v-if="message"
+        :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+      >
+        {{ message }}
+      </div> 
     </Form>
   </div>
 </template>
 <script>
 
 import { Form, Field } from "vee-validate";
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
 
@@ -50,23 +56,32 @@ export default {
   },
   data () {
     return {
+      //successful: false,
+      //message: '',
       title: '',
       text: ''
     }
   },
   computed: {
     ...mapGetters('auth', ['authUser']),
+    ...mapState({
+        message: state => state.posts.message,
+        loadingStatus: state => state.posts.loadingStatus
+    }), 
   },
   methods: {
     save () {
-        const post = {
-            posttitle: this.title, 
-            postcontent: this.text, 
-            postcreator: this.authUser.username, 
-            userId: this.authUser.id
-        }
-        this.$store.dispatch('posts/createPost', post)
-        this.$router.push('/posts');
+      //this.message = '';
+      //this.successful = false;
+      const post = {
+          posttitle: this.title, 
+          postcontent: this.text, 
+          postcreator: this.authUser.username, 
+          userId: this.authUser.id
+      }
+      this.$store.dispatch('posts/createPost', post)
+      //this.message = message
+      //this.$router.push('/posts');
     },
     cancelEdit () {
         this.$router.push('/posts');

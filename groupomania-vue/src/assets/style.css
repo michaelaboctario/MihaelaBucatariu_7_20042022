@@ -613,9 +613,10 @@ figure {
 
 .list-title {
     /* background-color: #263959; */
-    background-color: #6d306d;
+    background-color: #f5f8fe;
     border-radius: 20%;
-    color: #f5f8fe;
+    text-decoration: underline;
+    color: #6d306d ;
     font-weight: 100;
     display: flex;
     width: 40%;

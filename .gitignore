@@ -53,5 +53,6 @@ backend/node_modules
 
 .DS_Store
 groupomania-vue/dist
+groupomania-vue/src/store/dist
 groupomania-vue/node_modules
 groupomania-vue/src/assets/alls
