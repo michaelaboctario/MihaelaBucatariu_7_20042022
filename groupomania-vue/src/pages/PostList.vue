@@ -20,8 +20,8 @@
         </div>
          <p class="text-faded text-xsmall bloc-comment">
             <!-- De {{ userById(post.userId).username }} -->
-            De {{ post.postcreator }}
-          </p>
+            de {{ post.postcreator }}, le {{ post.updatedAt }} 
+         </p>
       </div>
       </template>    
     </div>
