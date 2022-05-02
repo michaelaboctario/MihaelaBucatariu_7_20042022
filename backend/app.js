@@ -9,6 +9,8 @@ const postRoutes = require('./routes/post');
 const app = express();
 app.use(express.json());
 
+const {SYNC_DB}=process.env; 
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -18,15 +20,23 @@ app.use((req, res, next) => {
 
 // database
 const db = require('./models/index.js');
+const { exit } = require('process');
 const Role = db.role;
 // database
 
 // db.sequelize.sync();  // création des tables
 // force: true will drop the table if it already exists
-db.sequelize.sync({force: true}).then(() => {
-  console.log('Drop and Resync Database with { force: true }');
-  initial();
-})
+const forcesync = SYNC_DB==='SYNC';
+console.log(forcesync);
+//exit();
+db.sequelize.sync({force: forcesync}).then(() => {
+  if(forcesync) {
+    console.log("Drop and resync in progress")
+    initial();
+  }
+  else {
+    console.log('Database connected, drop and Resync Database with { force: true }');
+  }})
 .catch(error=>console.log(error.message));
 
 app.use('/images', express.static(path.join(__dirname, 'images')));

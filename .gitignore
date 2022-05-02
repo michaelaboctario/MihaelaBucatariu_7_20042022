@@ -50,6 +50,7 @@ backend/models/dist
 backend/controllers/dist
 backend/routes/dist
 backend/node_modules
+backend/.env
 
 .DS_Store
 groupomania-vue/dist

@@ -1,4 +1,5 @@
 const http = require('http');
+const dotenv = require('dotenv').config();
 const app = require('./app');
 
 // return a valid port from number or string

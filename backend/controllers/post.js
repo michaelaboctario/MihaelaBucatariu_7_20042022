@@ -22,8 +22,11 @@ exports.getOnePost = (req, res) => {
     .catch(error=> { res.status(404).json({ message: error.message });});
 };
 
+//[['name', 'DESC']]
 exports.getAllPosts = (req, res, next) => {
-  Post.findAll()  
+  Post.findAll({
+    order: [['updatedAt', 'DESC']],
+})  
     .then(posts => {
       res.status(200).json( posts ); 
     })
