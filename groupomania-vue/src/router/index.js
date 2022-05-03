@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store'
 import PostCreate from '@/pages/PostCreate.vue'
 import PostList from '@/pages/PostList.vue'
+import PostEdit from '@/pages/PostEdit.vue'
 import HomePage from '@/pages/HomePage.vue'
 import LoginUser from "@/pages/LoginUser.vue"
 import RegisterUser from "@/pages/RegisterUser.vue"
@@ -14,6 +15,12 @@ const routes = [
     component: PostCreate,
    
   },
+  {
+    //path: '/posts/:id',
+    path: '/posts/:id',
+    name: 'PostEdit',
+    component: PostEdit,
+  }, 
   {
     path: '/posts',
     name: 'PostList',

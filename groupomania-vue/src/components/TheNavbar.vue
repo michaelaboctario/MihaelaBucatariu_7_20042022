@@ -3,7 +3,14 @@
   <header class="header" id="header">
      <nav class="navbar">
       <ul>
-        <li v-if="authUser"><router-link to="/">Home</router-link></li>
+        <li>
+          <!-- <router-link :to="{name: 'HomePage'}" class="logo">
+            <img src="../assets/logos/icon.svg">
+          </router-link> -->
+          <router-link :to="{name: 'HomePage'}" >
+            <img src="../assets/logos/icon-left-font.png" class="logo-icon-left" alt="le logo de Groupomania">
+          </router-link>
+        </li>
         <li v-if="authUser"><router-link to="/posts">Liste de posts</router-link></li>
         <li v-if="authUser">
             <router-link to="/posts/create">

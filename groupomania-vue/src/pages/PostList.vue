@@ -2,6 +2,7 @@
   <div class="col-full">
     <div class="post-list">
       <div class="list-title">
+        <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
         <h1>Posts</h1>
       </div>
       <!-- <h2 class="list-title">{{ postslength }}</h2>  -->
@@ -11,7 +12,7 @@
         </div>
       </template>
       <template v-else>
-        <div v-for="post in posts" :key="post.id" class="post">
+        <div v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post" >
         <div>
           <h2>{{ post.posttitle }}</h2>
         </div>
@@ -54,7 +55,14 @@ export default {
           this.successful = false;
         }
       );
-    }
+    },
+    methods: {
+        clickPost(postid) {
+            //this.$router.push('/post');
+            console.log(postid)
+            this.$router.push({ name: 'PostEdit', params: { id: postid } })
+        }
+    },
 }
 </script>
 

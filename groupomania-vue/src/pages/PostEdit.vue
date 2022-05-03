@@ -1,10 +1,7 @@
 <template>
   <div class="col-full push-top">
-    <div class="list-title">
-        <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
-        <h1>Création d'un post</h1>
-      </div>
-
+    <h1>Modification post</h1>
+    <!-- <h2>{{ this.$route.params.id }}</h2> -->
     <Form @submit="save">
       <div class="input-group">
         <label for="post_title">Titre:</label>
@@ -31,8 +28,8 @@
 
       <div class="btn-group">
         <button class="btn btn-ghost" type="button" @click="cancelEdit" name="Cancel">Cancel</button>
-        <button class="btn btn-blue" type="submit" name="Publier">
-          Publier
+        <button class="btn btn-blue" type="submit" name="Save">
+          OK
         </button>
       </div>
       <div
@@ -66,8 +63,25 @@ export default {
     ...mapGetters('auth', ['authUser']),
     ...mapState({
         message: state => state.posts.message,
-        loadingStatus: state => state.posts.loadingStatus
+        loadingStatus: state => state.posts.loadingStatus,
     }), 
+    //postId(): this.$route.params.id,
+  },
+  mounted () {
+      console.log("created")
+      console.log(this.$route.params.id)
+      this.$store.dispatch('posts/getOnePost', this.$route.params.id).then(
+      (data) => {
+        console.log(data)
+        this.successful = true;
+        this.title = data.posttitle;
+        this.content = data.postcontent
+        //this.$router.push('/posts');
+      },
+      () => {
+        this.successful = false;
+      }
+    );
   },
   methods: {
     save () {
@@ -75,14 +89,13 @@ export default {
       const post = {
           posttitle: this.title, 
           postcontent: this.content, 
-          postcreator: this.authUser.username, 
-          userId: this.authUser.id
+          id: this.$route.params.id,
       }
-      this.$store.dispatch('posts/createPost', post).then(
+      this.$store.dispatch('posts/updatePost', {post}).then(
         () => {
           this.successful = true;
           this.$router.push('/posts');
-        },
+        }
       );
     },
     cancelEdit () {

@@ -31,13 +31,13 @@ module.exports = (sequelize, Sequelize) => {
             createdAt: {
                 type: Sequelize.DATE,                
                 get() {
-                        return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY h:mm:ss');
+                        return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY à h:mm:ss');
                     }
             },
             updatedAt: {
                 type: Sequelize.DATE,
                 get() {
-                    return moment(this.getDataValue('updatedAt')).format('DD/MM/YYYY h:mm:ss');
+                    return moment(this.getDataValue('updatedAt')).format('DD/MM/YYYY à h:mm:ss');
                 }
             }       
         });

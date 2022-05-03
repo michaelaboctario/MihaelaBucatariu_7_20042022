@@ -22,8 +22,7 @@ exports.getOnePost = (req, res) => {
     .catch(error=> { res.status(404).json({ message: error.message });});
 };
 
-//[['name', 'DESC']]
-exports.getAllPosts = (req, res, next) => {
+exports.getAllPosts = (req, res) => {
   Post.findAll({
     order: [['updatedAt', 'DESC']],
 })  
@@ -35,4 +34,25 @@ exports.getAllPosts = (req, res, next) => {
     });
 };
 
+exports.updatePost = (req, res) => {  
+  Post.update({
+      posttitle : req.body.posttitle,           
+      postcontent : req.body.postcontent,
+    },  
+    {
+      where: { id: req.params.id  }  
+    }) 
+  .then(() => res.status(200).json({ message: 'Post modifié !' }))
+  .catch(error => res.status(400).json({ message: error.message }));   
+};
 
+
+exports.deletePost = (req, res) => {
+  Post.findOne({ _id: req.params.id })
+  .then(post => {
+    Post.destroy({ where: { id: req.params.id } })  
+    .then(() => res.status(200).json({ message: 'Post supprimé !'}))
+    .catch(error => res.status(400).json({ error }));
+  })
+  .catch(error => res.status(500).json({ message: error.message }));
+}
