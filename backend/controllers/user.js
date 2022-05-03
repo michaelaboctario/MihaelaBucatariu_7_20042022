@@ -26,18 +26,18 @@ exports.login = (req, res) => {
         bcrypt.compare(req.body.password, user.password)
         .then(valid => {
             if (!valid) {
-                return res.status(401).json({ error : 'Mot de passe incorrect !' });   
+                return res.status(401).json({ message : 'Mot de passe incorrect !' });   
             }
             res.status(200).json({
                 userData: user,
                 token: jwt.sign(
-                    { userId: user._id },
-                    'RANDOM_TOKEN_SECRET',  
+                    { userId: user.id },
+                    process.env.RANDOM_SECRET_TOKEN,  
                     { expiresIn: '24h' }             
                 )
             });
         })
         .catch(error => res.status(500).json({ message: error.message }));
     })
-    .catch(error => res.status(500).json({ error: 'Utilisateur non trouvé' }))
+    .catch(error => res.status(500).json({ message: 'Utilisateur non trouvé' }))
 }; 
