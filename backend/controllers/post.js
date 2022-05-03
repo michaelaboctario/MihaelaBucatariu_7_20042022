@@ -2,6 +2,7 @@
 const { user } = require('../models');
 const db = require("../models");
 const Post = db.post;
+const User = db.user;
 
 exports.createPost  = (req, res) => {   
   console.log(req.body);
@@ -25,6 +26,10 @@ exports.getOnePost = (req, res) => {
 exports.getAllPosts = (req, res) => {
   Post.findAll({
     order: [['updatedAt', 'DESC']],
+    include: {
+      model: User,
+      attributes: ['firstname', 'lastname', 'username'],
+    }
 })  
     .then(posts => {
       res.status(200).json( posts ); 
