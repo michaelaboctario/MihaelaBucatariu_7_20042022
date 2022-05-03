@@ -5,6 +5,7 @@ groupomania-vue/src/assets/alls
 groupomania-vue/src/store/dist
 groupomania-vue/src/router/dist
 groupomania-vue/src/services/dist
+groupomania-vue/dist/
 groupomania-vue/src/store/products.js
 
 backend/dist

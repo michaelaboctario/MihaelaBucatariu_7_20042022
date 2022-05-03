@@ -1,10 +1,11 @@
 import axios from 'axios';
+import authHeader from './auth-header';
 const API_URL = 'http://localhost:3000/api/posts/';
 
 class PostService {
   createPost(post) {
     return axios
-      .post(API_URL, post)
+      .post(API_URL, { headers: authHeader() }, post)
       .then(response => response.data);
   }
   getAllPost() {
