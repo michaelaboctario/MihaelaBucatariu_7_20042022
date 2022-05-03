@@ -3,7 +3,7 @@
     <div class="list-title">
         <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
         <h1>Création d'un post</h1>
-      </div>
+    </div>
 
     <Form @submit="save">
       <div class="input-group">

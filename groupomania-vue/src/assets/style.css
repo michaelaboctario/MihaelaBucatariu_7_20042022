@@ -8,6 +8,24 @@ body {
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "Raleway";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("Raleway"), url("../../public/fonts/Raleway/Raleway-Regular.woff2") format("woff2"), url("../../public/fonts/Raleway/Raleway-Regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Raleway";
+    font-weight: 700;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("Raleway"), url("../../public/fonts/Raleway/Raleway-700.woff2") format("woff2"), url("../../public/fonts/Raleway/Raleway-700.woff") format("woff");
+  }
+
 @media screen and (min-width: 1024px) {
     html {
         font-size: 16px;
@@ -177,7 +195,7 @@ form {
 
 .form-input::placeholder {
     font-size: inherit;
-    font-weight: 300;
+    font-weight: 400;
     color: #878787;
 }
 
@@ -382,7 +400,7 @@ button {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', 'Open Sans', sans-serif;
     color: #545454;
     font-size: 16px;
     line-height: 1.5;
@@ -684,10 +702,11 @@ figure {
 .list-title {
     text-decoration: underline;
     color: #8f1f28 ;
-    font-weight: 100;
+    font-weight: 400;
     display: flex;
     width: 68%;
     justify-content: center;
+    align-items: center;
     position: relative;
     padding: 10px 30px;
     margin: auto;
