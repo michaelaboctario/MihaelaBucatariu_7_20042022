@@ -74,8 +74,8 @@ export default {
       (data) => {
         console.log(data)
         this.successful = true;
-        this.title = data.posttitle;
-        this.content = data.postcontent
+        this.title = data.postTitle;
+        this.content = data.postContent
         //this.$router.push('/posts');
       },
       () => {
@@ -87,8 +87,8 @@ export default {
     save () {
       this.successful = false;
       const post = {
-          posttitle: this.title, 
-          postcontent: this.content, 
+          postTitle: this.title, 
+          postContent: this.content, 
           id: this.$route.params.id,
       }
       this.$store.dispatch('posts/updatePost', {post}).then(

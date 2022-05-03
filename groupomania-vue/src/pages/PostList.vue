@@ -14,14 +14,14 @@
       <template v-else>
         <div v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post" >
         <div>
-          <h2>{{ post.posttitle }}</h2>
+          <h2>{{ post.postTitle }}</h2>
         </div>
         <div>
-          <p>{{ post.postcontent }}</p>
+          <p>{{ post.postContent }}</p>
         </div>
          <p class="text-faded text-xsmall bloc-comment">
             <!-- De {{ userById(post.userId).username }} -->
-            de {{ post.postcreator }}, le {{ post.updatedAt }} 
+            de {{ post.postCreator }}, le {{ post.updatedAt }} 
          </p>
       </div>
       </template>    

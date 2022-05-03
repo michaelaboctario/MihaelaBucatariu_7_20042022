@@ -7,9 +7,9 @@ const User = db.user;
 exports.createPost  = (req, res) => {   
   console.log(req.body);
   Post.create({
-      posttitle : req.body.posttitle,           
-      postcontent : req.body.postcontent,
-      postcreator : req.body.postcreator, 
+      postTitle : req.body.postTitle,           
+      postContent : req.body.postContent,
+      postCreator : req.body.postCreator, 
       postImageUrl : "",
       userId: req.body.userId
     })
@@ -41,8 +41,8 @@ exports.getAllPosts = (req, res) => {
 
 exports.updatePost = (req, res) => {  
   Post.update({
-      posttitle : req.body.posttitle,           
-      postcontent : req.body.postcontent,
+      postTitle : req.body.postTitle,           
+      postContent : req.body.postContent,
     },  
     {
       where: { id: req.params.id  }  

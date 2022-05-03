@@ -73,9 +73,9 @@ export default {
     save () {
       this.successful = false;
       const post = {
-          posttitle: this.title, 
-          postcontent: this.content, 
-          postcreator: this.authUser.username, 
+          postTitle: this.title, 
+          postContent: this.content, 
+          postCreator: this.authUser.username, 
           userId: this.authUser.id
       }
       this.$store.dispatch('posts/createPost', post).then(

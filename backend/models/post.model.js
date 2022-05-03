@@ -9,22 +9,22 @@ module.exports = (sequelize, Sequelize) => {
                 autoIncrement: true,    
                 primaryKey: true
             },
-            posttitle: 
+            postTitle: 
             { 
                 type: Sequelize.STRING, 
                 allowNull: false 
             },
-            postcontent: 
+            postContent: 
             { 
                 type: Sequelize.TEXT, 
                 allowNull: false 
             },
-            postcreator:                  
+            postCreator:                  
             { 
                 type: Sequelize.STRING, 
                 allowNull: false,
             },
-            postimageurl: 
+            postImageUrl: 
             { 
                 type: Sequelize.STRING,
             },
