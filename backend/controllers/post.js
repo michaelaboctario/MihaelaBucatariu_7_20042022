@@ -5,7 +5,6 @@ const Post = db.post;
 const User = db.user;
 
 exports.createPost  = (req, res) => {   
-  console.log(req.body);
   if (req.body.userId === req.auth.userId) {
     Post.create({
         postTitle : req.body.postTitle,           
@@ -24,8 +23,8 @@ exports.createPost  = (req, res) => {
   
 exports.getOnePost = (req, res) => {
     Post.findByPk(req.params.id)
-    .then(post => { res.status(200).json(post);})
-    .catch(error=> { res.status(404).json({ message: error.message });});
+    .then(post => { res.status(200).json(post)})
+    .catch(error=> { res.status(404).json({ message: error.message })});
 };
 
 exports.getAllPosts = (req, res) => {
