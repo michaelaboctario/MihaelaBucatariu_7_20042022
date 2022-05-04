@@ -22,7 +22,11 @@ exports.createPost  = (req, res) => {
 };
   
 exports.getOnePost = (req, res) => {
-    Post.findByPk(req.params.id)
+    Post.findByPk(req.params.id, 
+      { include: {
+        model: User,
+        attributes: ['firstname', 'lastname', 'username'],
+      }})   
     .then(post => { res.status(200).json(post)})
     .catch(error=> { res.status(404).json({ message: error.message })});
 };
@@ -33,8 +37,7 @@ exports.getAllPosts = (req, res) => {
     include: {
       model: User,
       attributes: ['firstname', 'lastname', 'username'],
-    }
-})  
+  }})  
     .then(posts => {
       res.status(200).json( posts ); 
     })

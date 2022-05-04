@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const messageCtrl = require('../controllers/message');
+const commentCtrl = require('../controllers/comment');
 const auth = require('../middleware/auth');
 
-router.post('/', auth, messageCtrl.createMessage);
+router.post('/', auth, commentCtrl.createComment);
 //router.delete('/:id', auth, postCtrl.deletePost);
-router.get('/', auth, messageCtrl.getAllMessages);
+router.get('/', auth, commentCtrl.getAllComments);
 
 module.exports = router;  

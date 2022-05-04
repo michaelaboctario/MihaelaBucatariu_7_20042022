@@ -4,7 +4,7 @@ const path = require('path');
 const authRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
 const postRoutes = require('./routes/post');
-const messageRoutes = require('./routes/message');
+const commentRoutes = require('./routes/comment');
 
 // express application
 const app = express();
@@ -38,14 +38,14 @@ db.sequelize.sync({force: forcesync}).then(() => {
   else {
     console.log('Database connected, drop and Resync Database with { force: true }');
   }})
-.catch(error=>console.log(error.message));
+.catch(error=>console.log(error.comment));
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/posts', postRoutes);
-app.use('/api/post/:id/messages', messageRoutes);
+app.use('/api/post/:id/comments', commentRoutes);
 
 function initial() {
   Role.create({
