@@ -25,11 +25,15 @@ db.sequelize = sequelize;
 db.user = require('../models/user.model.js')(sequelize, Sequelize);
 db.role = require('../models/role.model.js')(sequelize, Sequelize);
 db.post = require('../models/post.model.js')(sequelize, Sequelize);
+db.message = require('../models/message.model.js')(sequelize, Sequelize);
 
 db.role.hasMany(db.user);
 db.user.belongsTo(db.role);
 
 db.user.hasMany(db.post);
 db.post.belongsTo(db.user);
+
+db.post.hasMany(db.message);
+db.message.belongsTo(db.post);
 
 module.exports = db;
