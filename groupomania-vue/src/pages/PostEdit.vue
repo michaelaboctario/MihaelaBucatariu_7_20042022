@@ -71,7 +71,7 @@ export default {
       console.log("created")
       console.log(this.$route.params.id)
       this.$store.dispatch('posts/getOnePost', this.$route.params.id).then(
-      (data) => {
+      data => {
         console.log(data)
         this.successful = true;
         this.title = data.postTitle;

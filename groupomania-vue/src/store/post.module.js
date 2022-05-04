@@ -1,6 +1,7 @@
 import PostService from '../services/post.service';
 const initialState = { 
   items: [], 
+  currentItem: null,
   loadingStatus: null,
   message: ''
 }
@@ -10,12 +11,14 @@ export const posts = {
   state: initialState,
 
   actions: {  
-    createPost ({ commit }, post) {
+    createPost ({ commit }, {post}) {
+      console.log("createPost befor commit")
+      console.log(post)
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return PostService.createPost(post).then(
         response => {
-          commit('setPost', {post} )
+          commit('setPost', {post})
           commit('setLoadingStatus', 'success')
           commit('setMessage', response.message)
           return Promise.resolve(post)
@@ -38,7 +41,7 @@ export const posts = {
           return Promise.resolve(post)
         },
         error => {
-          commit('setPostItems', {posts: initialState.items} )
+          commit('setPostItems', {items: initialState.items} )
           commit('setLoadingStatus', 'failure')
           commit('setMessage', error.message)
           return Promise.reject(error);
@@ -49,12 +52,13 @@ export const posts = {
       console.log("getOnePost")
       //console.log(id)
       commit('setLoadingStatus', 'loading')
+      commit('setCurrentItem', {post: null})
       commit('setMessage', '')
       return PostService.getOnePost(id).then(
         post => {
-          commit('setPost', {post})
+          commit('setCurrentItem', {post})
           commit('setLoadingStatus', 'success')
-          commit('setMessage', post.message)
+          // ça n'existe pas de message de reponse 
           return Promise.resolve(post)
         },
         error => {
@@ -71,10 +75,10 @@ export const posts = {
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return PostService.updatePost(post).then(
-        () => {
-          commit('updatePost', {post} )
+        response => {
+          commit('updatePost', {post})
           commit('setLoadingStatus', 'success')
-          commit('setMessage', post.message)
+          commit('setMessage', response.message)
           return Promise.resolve(post)
         },
         error => {
@@ -86,16 +90,21 @@ export const posts = {
     },
   },
   mutations: {
-    setPost (state, { post }) {
+    setPost (state, {post}) {
+      console.log("setpost", post);
       state.items.push(post)
     },
-    updatePost (state, { post }) {
+    setCurrentItem (state, {post}) {
+      console.log("setcurrentitem", post);
+      state.currentItem = post;
+    },
+    updatePost (state, {post}) {
       console.log("updatePost")
       console.log(state)
       console.log(post)
       state.items = state.items.map(elem => elem.id === post.id ? post : elem)
     },
-    setPostItems (state, { post }) {
+    setPostItems (state, {post}) {
       state.items = post
     },
     setLoadingStatus (state, status) {

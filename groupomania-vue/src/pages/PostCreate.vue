@@ -78,7 +78,7 @@ export default {
           postCreator: this.authUser.username, 
           userId: this.authUser.id
       }
-      this.$store.dispatch('posts/createPost', post).then(
+      this.$store.dispatch('posts/createPost', {post}).then(
         () => {
           this.successful = true;
           this.$router.push('/posts');
