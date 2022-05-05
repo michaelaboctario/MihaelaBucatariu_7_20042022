@@ -4,7 +4,7 @@ const path = require('path');
 const authRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
 const postRoutes = require('./routes/post');
-const commentRoutes = require('./routes/comment');
+//const commentRoutes = require('./routes/comment');
 
 // express application
 const app = express();
@@ -45,7 +45,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/posts', postRoutes);
-app.use('/api/post/:id/comments', commentRoutes);
+// app.use('/api/posts', commentRoutes);
 
 function initial() {
   Role.create({

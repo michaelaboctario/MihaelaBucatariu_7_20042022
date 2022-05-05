@@ -5,7 +5,7 @@ exports.createComment  = (req, res) => {
   if (req.body.userId === req.auth.userId) {
     Comment.create({ 
         commentContent : req.body.commentContent,
-        postId : req.params.postId, 
+        postId : req.params.postid, 
       })
       .then(() => res.status(201).json({comment: 'Comment enregistré !'})) 
       .catch(error => res.status(400).json({ comment: error.comment })
