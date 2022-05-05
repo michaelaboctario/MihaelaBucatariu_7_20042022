@@ -1,7 +1,7 @@
 import PostService from '../services/post.service';
 const initialState = { 
-  items: [], 
-  currentItem: null,
+  items: [],  //liste de posts
+  currentItem: null,  //currentPost
   loadingStatus: null,
   message: ''
 }

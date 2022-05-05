@@ -243,11 +243,25 @@ form {
     }
 }
 
+/*
 textarea.form-input {
     padding-top: 7px;
     padding-right: 2px;
     padding-bottom: 0px;
     min-height: 110px;
+}
+*/
+
+.post-content, .comment-content {
+    padding-top: 7px;
+    padding-right: 2px;
+    padding-bottom: 0px;
+    min-height: 110px;
+}
+
+.comment-content {
+   width: 100%;
+   min-height: 60px;
 }
 
 .input-error {
@@ -278,15 +292,22 @@ textarea.form-input {
     }
 }
 
+.comment-group {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   width: 40%;
+}
+
 .input-group {
     margin-bottom: 12px;
     width: 100%;
-    display: inline-block;
+    display: block;
 }
 
 .form-label, .input-group > label {
     margin-bottom: 5px;
-    display: inline-block;
+    display: block;
     color: #767676;
 }
 
