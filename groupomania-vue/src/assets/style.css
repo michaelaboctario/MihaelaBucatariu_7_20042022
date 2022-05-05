@@ -301,7 +301,7 @@ button {
 
 .btn, .btn-blue {
     padding: 15px 30px;
-    border-radius: 5px;
+    border-radius: 20px;
     border: none;
     display: inline-block;
     outline: 0;
@@ -323,12 +323,12 @@ button {
 
 .btn-blue {
     color: white;
-    background: #263959;
+    background: #8f1f28;
 }
 
 .btn-blue:hover:not(:disabled):not(.btn-disabled) {
     color: white;
-    background: #1d2b43;
+    background: #8f1f28;
 }
 
 button {
@@ -582,11 +582,12 @@ figure {
 
 .btn-ghost {
     flex-grow: 0;
+    color: #8f1f28;
 }
 
 .btn-ghost:hover:not(:disabled):not(.btn-disabled) {
     color: white;
-    background-color: rgba(152, 152, 152, 0.31);
+    background-color: rgb(245 134 134 / 30%);
 }
 
 @media scrren and (max-width: 769px) {
@@ -606,22 +607,6 @@ figure {
 
 .btn-ghost {
     flex-grow: 0;
-}
-
-.btn-ghost:hover:not(:disabled):not(.btn-disabled) {
-    color: white;
-    background-color: rgba(152, 152, 152, 0.31);
-}
-
-@media screen and (max-width: 769px) {
-    .form-actions, .btn-group {
-        flex-wrap: wrap;
-    }
-
-    .form-actions > *:not(.btn-ghost), .btn-group > *:not(.btn-ghost) {
-        flex: 1 1;
-        margin-bottom: 5px;
-    }
 }
 
 .btn:disabled, .btn-blue:disabled, .btn-ghost:disabled, .btn-disabled, a > img:hover {
@@ -684,7 +669,7 @@ figure {
     justify-content: space-between;
     background-color: white;
     padding: 6px 16px;
-    box-shadow: 2px 2px 1px rgba(136, 136, 136, 0.09);
+    box-shadow: 3px 3px 1px rgb(245 134 134 / 30%);
     margin-bottom: 20px;
     border-radius: 30px;
     transition: all 0.1s ease-in-out;
@@ -693,7 +678,7 @@ figure {
 
 .post:hover {
     transform: scale(1.02);
-    box-shadow: 1px 1px 20px rgba(120, 120, 120, 0.3);
+    box-shadow: 1px 1px 20px rgb(245 134 134 / 30%);
 }
 
 /*
