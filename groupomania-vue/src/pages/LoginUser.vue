@@ -38,11 +38,11 @@
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
-import * as yup from "yup";
+import { Form, Field, ErrorMessage } from 'vee-validate';
+import * as yup from 'yup';
 
 export default {
-  name: "LoginUser",
+  name: 'LoginUser',
   components: {
     Form,
     Field,
@@ -70,7 +70,7 @@ export default {
   methods: {
     handleLogin() {
       this.loading = true
-      this.$store.dispatch("auth/login", this.form).then(
+      this.$store.dispatch('auth/login', this.form).then(
         () => {
           this.$router.push('/');
         },

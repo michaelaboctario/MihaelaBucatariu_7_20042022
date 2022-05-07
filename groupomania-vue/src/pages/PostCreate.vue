@@ -4,62 +4,36 @@
         <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
         <h1>Création d'un post</h1>
     </div>
-
-    <Form @submit="save">
-      <div class="input-group">
-        <label for="post_title">Titre:</label>
-        <Field
-          v-model="title"
-          type="text"
-          id="post_title"
-          class="form-input"
-          name="title"
-        />
-      </div>
-
-      <div class="input-group">
-        <label for="post_content">Contenu:</label>
-        <textarea
-          v-model="content"
-          id="thread_content"
-          class="form-input"
-          name="content"
-          rows="8"
-          cols="140"
-        ></textarea>
-      </div>
-
-      <div class="btn-group">
-        <button class="btn btn-ghost" type="button" @click="cancelEdit" name="Cancel">Cancel</button>
-        <button class="btn btn-blue" type="submit" name="Publier">
-          Publier
-        </button>
-      </div>
-      <div
-        v-if="message"
-        :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
-      >
-        {{ message }}
-      </div> 
-    </Form>
+<!--     <PostItem :isReadOnly="false" @publish.once="save"></PostItem> -->
+    <PostItem
+        v-model:title="title"
+        v-model:content="content" 
+        :isReadOnly="false" 
+        @publish.once="save"
+        @cancel-edit.once="cancelEdit">
+    </PostItem>
+    <div
+      v-if="message"
+      :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+    >
+      {{ message }}
+    </div> 
   </div>
 </template>
 <script>
 
-import { Form, Field } from "vee-validate";
 import { mapGetters, mapState } from 'vuex';
+import PostItem from '../components/PostItem.vue';
 
 export default {
-
   components: {
-    Form,
-    Field,
-  },
+    PostItem,
+},
   data () {
     return {
       successful: false,
       title: '',
-      content: ''
+      content: '',
     }
   },
   computed: {
@@ -70,14 +44,16 @@ export default {
     }), 
   },
   methods: {
-    save () {
+    save ({title, content}) {
       this.successful = false;
+      console.log('newPost', title, content)
       const post = {
-          postTitle: this.title, 
-          postContent: this.content, 
+          postTitle: title, 
+          postContent: content, 
           postCreator: this.authUser.username, 
           userId: this.authUser.id
       }
+      console.log('post', post)
       this.$store.dispatch('posts/createPost', {post}).then(
         () => {
           this.successful = true;
@@ -86,6 +62,7 @@ export default {
       );
     },
     cancelEdit () {
+        console.log('cancel')
         this.$router.push('/posts');
     }
   },

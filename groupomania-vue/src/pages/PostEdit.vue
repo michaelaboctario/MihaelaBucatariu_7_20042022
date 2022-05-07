@@ -10,55 +10,14 @@
   <div class="col-full push-top">
     <h1>Modification post</h1>
     <!-- <h2>{{ this.$route.params.id }}</h2> -->
-    <Form @submit="save">
-      <div class="input-group">
-        <label for="post_title">Titre:</label>
-        <Field
-          v-model="title"
-          type="text"
-          id="post_title"
-          class="form-input"
-          name="title"
-          :readonly="!isHisOwnPost"
-        />
-      </div>
-
-      <div class="input-group">
-        <label for="post_content">Contenu:</label>
-        <textarea
-          v-model="content"
-          id="post_content"
-          class="form-input post-content"
-          name="content"
-          rows="4"
-          cols="120"
-          :readonly="!isHisOwnPost"
-        ></textarea>
-      </div>
-
-      <template v-if="isHisOwnPost">
-        <div class="btn-group">
-          <button class="btn btn-ghost" type="button" @click="cancelEdit" name="Cancel">Cancel</button>
-          <button class="btn btn-blue" type="submit" name="Save">
-            OK
-          </button>
-        </div>
-        <div
-            v-if="message"
-            :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
-          >
-            {{ message }}
-        </div> 
-      </template>
-      <template v-if="!isHisOwnPost">
-        <div class="btn-group">
-        <button class="btn btn-blue" type="button" name="Comment">
-          Commenter
-        </button>
-      </div>
-      </template>
-    </Form>
-    <template v-if="!isHisOwnPost">
+    <PostItem
+        v-model:title="title"
+        v-model:content="content" 
+        :isReadOnly="false" 
+        @publish.once="save"
+        @cancel-edit.once="cancelEdit">
+    </PostItem>
+<!--     <template v-if="!isHisOwnPost">
     <Form @submit="publish">
       <div class="comment-group">
           <div class="input-group">
@@ -79,7 +38,13 @@
         </div>
       </div>
     </Form>
-    </template>     
+    </template>  -->    
+    <CommentItem
+        v-model:content="comment" 
+        :isReadOnly="false" 
+        @publishComment.once="publishComment"
+        @cancel-edit.once="cancelEdit">
+    </CommentItem>
     <div>
       Response
     </div>  
@@ -93,20 +58,20 @@
 </template>
 <script>
 
-import { Form, Field } from "vee-validate";
 import { mapGetters, mapState } from 'vuex';
+import PostItem from '../components/PostItem.vue';
+import CommentItem from '../components/CommentItem.vue';
 
 export default {
-
   components: {
-    Form,
-    Field,
+    PostItem,
+    CommentItem,
   },
   data () {
     return {
       successful: false,
       title: '',
-      content: '',
+      content: '', 
       comment: '',
       userId: ''
     }
@@ -125,12 +90,12 @@ export default {
     postAuthor () {return this.currentItem ? `${this.currentItem.user.firstname} ${this.currentItem.user.lastname}` : ''  }
     //postId() this.$route.params.id,
   },
-  mounted () {
+  created () {
       console.log("created")
       console.log(this.$route.params.id)
       this.$store.dispatch('posts/getOnePost', this.$route.params.id).then(
       data => {
-        console.log(data)
+        console.log("posts/getOnePost", data)
         this.successful = true;
         this.title = data.postTitle;
         this.content = data.postContent;
@@ -162,15 +127,14 @@ export default {
         this.$router.push('/posts');
     },
     // for  comment form
-    publish () {
+    publishComment () {
       this.successful = false;
-     
       const comment = { 
           commentContent: this.comment, 
           //postId: this.$route.params.id,
           userId: this.authUser.id,
       }
-      console.log("publish", comment);
+      console.log('publishComment', comment);
       this.$store.dispatch('comments/createComment', {comment, postId: this.$route.params.id}).then(
         () => {
           this.successful = true;

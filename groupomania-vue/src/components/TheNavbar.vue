@@ -24,6 +24,11 @@
         </li>
         <li v-if="!authUser"><router-link to="/register">Register</router-link></li>
         <li v-if="!authUser"><router-link to="/login">Login</router-link></li>
+        <li  v-if="authUser">
+          <a @click="logout">
+            Logout
+          </a>
+        </li>
       </ul>
     </nav>
   </header>
@@ -32,16 +37,15 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
- /*
- mounted() {
-   console.log("mounted navbar")
-   console.log(this.$store)
-   console.log(this.$store.auth)
-   console.log(this.authUser)
- },
- */
   computed: {
     ...mapGetters('auth', ['authUser']),
+  },
+  methods: {
+    logout() {
+      console.log("logout");
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
   },
 }
 </script>
