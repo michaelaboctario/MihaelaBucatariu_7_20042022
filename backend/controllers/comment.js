@@ -1,10 +1,12 @@
 const db = require("../models");
 const Comment = db.comment;
+const User = db.user;
 
 exports.createComment  = (req, res) => {   
   if (req.body.userId === req.auth.userId) {
     Comment.create({ 
-        commentContent : req.body.commentContent,
+        commentContent: req.body.commentContent,
+        userId: req.body.userId,
         postId : req.params.postid, 
       })
       .then(() => res.status(201).json({comment: 'Comment enregistré !'})) 
@@ -18,8 +20,12 @@ exports.createComment  = (req, res) => {
 exports.getAllComments = (req, res) => {
   Comment.findAll({
     order: [['updatedAt', 'DESC']],
+    include: {
+      model: User,
+      attributes: ['firstname', 'lastname', 'username'],
+    },
     where: {
-      postId: req.params.postId
+      postId: req.params.postid
   }})  
   .then(comments => {
     res.status(200).json( comments ); 
