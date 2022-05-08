@@ -23,11 +23,15 @@
           cols="140"
           @input="$emit('update:content', $event.target.value)"
           :readonly="isReadOnly"
-        ></textarea>
+        >
+        </textarea>
       </div>
 
       <div class="btn-group">
         <button class="btn btn-ghost" type="button" @click="$emit('cancelEdit')" name="Cancel">Cancel</button>
+        <button class="btn btn-ghost" type="button"  @click="$emit('comment')" name="Commenter">
+          Commenter
+        </button>
         <button class="btn btn-blue" type="submit" name="Publier">
           Publier
         </button>
@@ -37,8 +41,10 @@
 <script>
 
 export default {
-  props: ['title', 'content', 'isReadOnly'],
-  emits: ['update:title', 'update:content', 'publish', 'cancelEdit'],
+  props: {'title': String, 
+          'content': String,
+          'isReadOnly': Boolean},
+  emits: ['update:title', 'update:content', 'publish', 'comment', 'cancelEdit'],
   name: 'PostItem'
 }
 </script>

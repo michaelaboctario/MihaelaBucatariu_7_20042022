@@ -35,7 +35,7 @@ export const comments = {
       commit('setMessage', '')
       return CommentService.getAllComment({postId}).then(
         comment => {
-          commit('setItems', {comment})
+          commit('setCommentItems', {comment})
           commit('setLoadingStatus', 'success')
           commit('setMessage', comment.message)
           return Promise.resolve(comment)

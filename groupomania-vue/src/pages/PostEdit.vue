@@ -16,33 +16,12 @@
         :isReadOnly="false" 
         @publish.once="save"
         @cancel-edit.once="cancelEdit">
-    </PostItem>
-<!--     <template v-if="!isHisOwnPost">
-    <Form @submit="publish">
-      <div class="comment-group">
-          <div class="input-group">
-            <label for="comment-content">Commenter:</label>
-            <textarea
-              v-model="comment"
-              id="comment_content"
-              class="form-input comment-content"
-              name="comment"
-              rows="4"
-              cols="120"       
-          ></textarea>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-blue" type="submit" name="Publier">
-            Publier
-          </button>
-        </div>
-      </div>
-    </Form>
-    </template>  -->    
+    </PostItem> 
+    <CommentList :comments="allComments"></CommentList>
     <CommentItem
-        v-model:content="comment" 
+        v-model:comment="comment" 
         :isReadOnly="false" 
-        @publishComment.once="publishComment"
+        @publishComment="publishComment"
         @cancel-edit.once="cancelEdit">
     </CommentItem>
     <div>
@@ -61,19 +40,22 @@
 import { mapGetters, mapState } from 'vuex';
 import PostItem from '../components/PostItem.vue';
 import CommentItem from '../components/CommentItem.vue';
+import CommentList from '@/components/CommentList.vue';
 
 export default {
   components: {
     PostItem,
     CommentItem,
+    CommentList,
   },
   data () {
     return {
       successful: false,
       title: '',
-      content: '', 
-      comment: '',
-      userId: ''
+      content: 'test', 
+      comment: 'vvv',
+      userId: '', 
+      allComments: []
     }
   },
   computed: {
@@ -106,6 +88,7 @@ export default {
         this.successful = false;
       }
     );
+     this.getAllComment();
   },
   methods: {
     save () {
@@ -134,11 +117,26 @@ export default {
           //postId: this.$route.params.id,
           userId: this.authUser.id,
       }
-      console.log('publishComment', comment);
+      console.log('publishComment', comment)
+      this.comment=''
       this.$store.dispatch('comments/createComment', {comment, postId: this.$route.params.id}).then(
         () => {
-          this.successful = true;
-          this.$router.push('/posts');
+          this.successful = true
+          this.getAllComment()
+          //this.$router.push('/posts');
+        }
+      );
+    },
+    getAllComment () {
+        //getAllComment ({ commit }, {postId}) {
+        this.$store.dispatch('comments/getAllComment', {postId: this.$route.params.id}).then(
+        (comments) => {
+          this.successful = true
+          this.allComments = comments
+          //this.$router.push('/posts');
+        },
+        () => {
+          this.successful = false;
         }
       );
     },
