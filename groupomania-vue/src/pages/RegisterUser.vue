@@ -8,7 +8,7 @@
                   <pre>{{ values }}</pre> -->
               <h1 class="text-center">Groupomania</h1>
               <Form @submit="register" :validation-schema="schema">               
-                  <h2 class="text-center">Register</h2>
+                  <h2 class="text-center">Enregistrement nouveau utilisateur</h2>
                   
                   <div class="input-group">
                       <label for="firstname">Prénom</label>
@@ -41,7 +41,7 @@
                   </div>
                   
                   <div class="form-actions">
-                      <button type="submit" class="btn-blue btn-block">Register</button>
+                      <button type="submit" class="btn-blue btn-block">S'enregistrer</button>
                   </div>
 
                   <div

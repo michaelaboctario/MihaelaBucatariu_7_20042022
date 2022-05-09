@@ -1,38 +1,41 @@
 <template>
-  <div class="col-full">
-    <div class="post-list">
-      <div class="list-title">
-        <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
-        <h1>Posts</h1>
-      </div>
+<main class="col-full"> 
+  <section class="post-list">
+    <div class="list-title">
+      <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
+      <h1>Groupomania - Le réseau social, tous les messages</h1>
+    </div>
       <!-- <h2 class="list-title">{{ postslength }}</h2>  -->
-      <template v-if="!posts || !posts.length">
-        <div >
-            <h2>Il n'y a aucun post</h2>
-        </div>
-      </template>
-      <template v-else>
-        <div v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post" >
+    <template v-if="!posts || !posts.length">
+      <article >
+          <h2>Il n'y a aucun post</h2>
+      </article>
+    </template>
+    <template v-else>
+      <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post" >
         <div>
           <h2>{{ post.postTitle }}</h2>
         </div>
         <div>
           <p>{{ post.postContent }}</p>
         </div>
-         <p class="text-faded text-xsmall bloc-comment">
+          <p class="text-faded text-xsmall bloc-comment">
             <!-- De {{ userById(post.userId).username }} -->
             de {{ post.postCreator }}, le {{ post.updatedAt }} 
-         </p>
-      </div>
-      </template>    
-    </div>
+          </p>
+      </article>
+    </template>    
+  </section>
+  <section class="col-full">  
     <div
         v-if="message"
         :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
       >
         {{ message }}
       </div>  
-  </div>
+  </section>
+</main>
+  
 </template>
 
 <script>

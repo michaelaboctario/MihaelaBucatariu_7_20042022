@@ -5,19 +5,6 @@ const initialState = user
   ? { status: { loggedIn: true }, user }
   : { status: { loggedIn: false }, user: null };
 
-  /*
-const instance = axios.create({
-  baseURL: 'http://localhost:3000/api/'
-});
-console.log("user", user)
-if(user && user.token) {
-  instance.defaults.headers.common['Authorization'] = user.token
-  console.log("instance", instance.defaults.headers.common.Authorization)
-} else  {
-  instance.defaults.headers.common.Authorization = ""
-}
-*/
-
 export const auth = {
   namespaced: true,
   state: initialState,

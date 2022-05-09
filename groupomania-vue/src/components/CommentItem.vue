@@ -1,4 +1,5 @@
 <template>
+  <article>
     <h2>Entrer commentaire </h2>
     <form @submit.prevent="$emit('publishComment', {content})">
       <div class="comment-group">
@@ -37,6 +38,7 @@
         </div>
       </div>
     </form>
+  </article>
 </template>
 <script>
 

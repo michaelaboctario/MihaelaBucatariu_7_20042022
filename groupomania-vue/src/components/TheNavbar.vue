@@ -11,22 +11,13 @@
             <img src="../assets/logos/icon-left-font.png" class="logo-icon-left" alt="le logo de Groupomania">
           </router-link>
         </li>
-        <li v-if="authUser"><router-link to="/posts">Liste de posts</router-link></li>
-        <li v-if="authUser">
-            <router-link to="/posts/create">
-              Créer post
-            </router-link> 
-            <!-- <router-link
-                :to="{name:'PostCreate', params: {idAuthUser: this.authUser.id}}"
-                class="btn-green btn-small"
-            >Créer post
-            </router-link> -->
-        </li>
-        <li v-if="!authUser"><router-link to="/register">Register</router-link></li>
-        <li v-if="!authUser"><router-link to="/login">Login</router-link></li>
+        <li v-if="authUser"><router-link to="/posts">Tous les messages</router-link></li>
+        <li v-if="authUser"><router-link to="/posts/create">Nouveau message</router-link></li>        
+        <li v-if="!authUser"><router-link to="/register">Enregistrement</router-link></li>
+        <li v-if="!authUser"><router-link to="/login">Connexion</router-link></li>
         <li  v-if="authUser">
           <a @click="logout">
-            Logout
+            Déconnexion
           </a>
         </li>
       </ul>

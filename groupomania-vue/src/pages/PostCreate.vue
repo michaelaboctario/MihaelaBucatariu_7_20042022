@@ -1,9 +1,9 @@
 <template>
-  <div class="col-full push-top">
-    <div class="list-title">
-        <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
-        <h1>Création d'un post</h1>
-    </div>
+  <main class="col-full push-top">
+    <section class="list-title">
+        <img src="../assets/logos/icon.png" alt="le logo de Groupomania" class="logo-icon">
+        <h1>Nouveau message</h1>
+    </section>
 <!--     <PostItem :isReadOnly="false" @publish.once="save"></PostItem> -->
     <PostItem
         v-model:title="title"
@@ -12,18 +12,18 @@
         @publish.once="save"
         @cancel-edit.once="cancelEdit">
     </PostItem>
-    <div
+    <section
       v-if="message"
       :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
     >
       {{ message }}
-    </div> 
-  </div>
+    </section> 
+  </main>
 </template>
 <script>
 
 import { mapGetters, mapState } from 'vuex';
-import PostItem from '../components/PostItem.vue';
+import PostItem from '@/components/PostItem.vue';
 
 export default {
   components: {

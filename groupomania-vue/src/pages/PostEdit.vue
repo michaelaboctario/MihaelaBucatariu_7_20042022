@@ -1,45 +1,47 @@
 <template>
-  <div class="col-full push-top">
-    <p class="text-faded text-xsmall bloc-comment">
-      Utilisateur connecté {{ connectedUser }} 
-    </p>
-    <p class="text-faded text-xsmall bloc-comment">
-      Post de {{ postAuthor }} 
-    </p>
-  </div>
-  <div class="col-full push-top">
-    <h1>Modification post</h1>
-    <!-- <h2>{{ this.$route.params.id }}</h2> -->
-    <PostItem
-        v-model:title="title"
-        v-model:content="content" 
-        :isReadOnly="false" 
-        @publish.once="save"
-        @cancel-edit.once="cancelEdit">
-    </PostItem> 
-    <CommentList :comments="allComments"></CommentList>
-    <CommentItem
-        v-model:comment="comment" 
-        :isReadOnly="false" 
-        @publishComment="publishComment"
-        @cancel-edit.once="cancelEdit">
-    </CommentItem>
-    <div>
-      Response
-    </div>  
-    <div
-      v-if="messageComments"
-      :class="loadingCommentsStatus !== 'failure' ? 'alert-success' : 'alert-error'"
-    >
-      {{ messageComments }}
-    </div> 
-  </div>
+  <main class="col-full push-top">
+    <section>
+      <p class="text-faded text-xsmall bloc-comment">
+        Utilisateur connecté {{ connectedUser }} 
+      </p>
+      <p class="text-faded text-xsmall bloc-comment">
+        Post de {{ postAuthor }} 
+      </p>
+    </section>
+    <section>
+      <h1>Modification du message</h1>
+      <!-- <h2>{{ this.$route.params.id }}</h2> -->
+      <PostItem
+          v-model:title="title"
+          v-model:content="content" 
+          :isReadOnly="false" 
+          @publish.once="save"
+          @cancel-edit.once="cancelEdit">
+      </PostItem> 
+      <CommentList :comments="allComments"></CommentList>
+      <CommentItem
+          v-model:comment="comment" 
+          :isReadOnly="false" 
+          @publishComment="publishComment"
+          @cancel-edit.once="cancelEdit">
+      </CommentItem>
+      <div>
+        Response
+      </div>  
+      <section
+        v-if="messageComments"
+        :class="loadingCommentsStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+      >
+        {{ messageComments }}
+      </section> 
+    </section>
+  </main>
 </template>
 <script>
 
 import { mapGetters, mapState } from 'vuex';
 import PostItem from '../components/PostItem.vue';
-import CommentItem from '../components/CommentItem.vue';
+import CommentItem from '@/components/CommentItem.vue';
 import CommentList from '@/components/CommentList.vue';
 
 export default {
@@ -52,8 +54,8 @@ export default {
     return {
       successful: false,
       title: '',
-      content: 'test', 
-      comment: 'vvv',
+      content: '', 
+      comment: '',
       userId: '', 
       allComments: []
     }
