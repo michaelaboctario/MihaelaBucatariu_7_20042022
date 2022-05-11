@@ -1,14 +1,12 @@
 <template>  
   
   <div class="container">
-      <div class="flex-container justify-center">
+      <HeaderItem title="Enregistrement nouveau utilisateur"/>
+      <div class="flex-container ">
           <div class="col-7">
-              <!-- print form values -->
-              <!-- <Form @submit="register" :validation-schema="schema" v-slot="{ values }">               
-                  <pre>{{ values }}</pre> -->
-              <h1 class="text-center">Groupomania</h1>
+              <!-- <h1 class="text-center">Groupomania</h1> -->
               <Form @submit="register" :validation-schema="schema">               
-                  <h2 class="text-center">Enregistrement nouveau utilisateur</h2>
+                  <!-- <h2 class="text-center">Enregistrement nouveau utilisateur</h2> -->
                   
                   <div class="input-group">
                       <label for="firstname">Prénom</label>
@@ -59,6 +57,7 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import HeaderItem from "@/components/HeaderItem.vue";
 
 export default {
   name: "RegisterUser",
@@ -66,7 +65,8 @@ export default {
     Form,
     Field,
     ErrorMessage,
-  },
+    HeaderItem
+},
   data () {
     const schema = yup.object().shape({
       username: yup

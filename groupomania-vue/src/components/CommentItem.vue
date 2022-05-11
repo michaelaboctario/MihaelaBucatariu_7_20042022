@@ -1,14 +1,14 @@
 <template>
-  <article>
+  <article class="comment-card__item">
     <h2>Entrer commentaire </h2>
     <form @submit.prevent="$emit('publishComment', {content})">
-      <div class="comment-group">
-          <div class="input-group">
-            <label for="comment_content">Commenter:</label>
+      <div class="comment__item-group">
+          <div class="comment__input-group">
+            <label for="comment-form__input-comment">Commenter:</label>
               <textarea
                 :value="comment"
-                id="comment_content"
-                class="form-input comment-content"
+                id="comment-form__input-comment"
+                class="comment-form__input-comment"
                 name="comment"
                 rows="8"
                 cols="140"
@@ -17,22 +17,9 @@
               >
               </textarea>
           </div>
-<!-- Commenter avec input au lieu de textarea -->
-<!--
-          <label for="comment-content">Commenter2:</label>
-          <input
-                :value="comment"
-                type="text"
-                id="comment_content2"
-                class="form-input"
-                name="comment"
-                @input="$emit('update:comment', $event.target.value)"
-                :readonly="isReadOnly"
-            />
-        </div> -->
-        <div class="btn-group">
-          <button class="btn btn-ghost" type="button" @click="$emit('cancelEdit')" name="Cancel">Cancel</button>
-          <button class="btn btn-blue" type="submit" name="Publier">
+        <div class="comment-card__btn-group">
+          <button class="comment-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Cancel</button>
+          <button class="comment-card__btn-publish" type="submit" name="Publier">
             Publier
           </button>
         </div>

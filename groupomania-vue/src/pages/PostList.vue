@@ -1,32 +1,24 @@
 <template>
-<main class="col-full"> 
-  <section class="post-list">
-    <div class="list-title">
-      <img src="../assets/logos/icon.png" alt="le logo de groupomania" class="logo-icon">
-      <h1>Groupomania - Le réseau social, tous les messages</h1>
-    </div>
-      <!-- <h2 class="list-title">{{ postslength }}</h2>  -->
+<main class="post-card__container"> 
+  <HeaderItem />
+  <section class="post-card__group">
     <template v-if="!posts || !posts.length">
       <article >
-          <h2>Il n'y a aucun post</h2>
+          <h3 class="post-card__message">Il n'y a aucun post</h3>
       </article>
     </template>
     <template v-else>
-      <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post" >
-        <div>
-          <h2>{{ post.postTitle }}</h2>
-        </div>
-        <div>
-          <p>{{ post.postContent }}</p>
-        </div>
-          <p class="text-faded text-xsmall bloc-comment">
+      <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post-item" >
+          <h3 class="post-item__title">{{ post.postTitle }}</h3>
+          <p class="post-item__content">{{ post.postContent }}</p>
+          <p class="post-item__author">
             <!-- De {{ userById(post.userId).username }} -->
             de {{ post.postCreator }}, le {{ post.updatedAt }} 
           </p>
       </article>
     </template>    
   </section>
-  <section class="col-full">  
+  <section class="post-card__error-message">  
     <div
         v-if="message"
         :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
@@ -41,7 +33,11 @@
 <script>
 
 import { mapState} from 'vuex'
+import HeaderItem from '@/components/HeaderItem.vue'
 export default {
+    components: {
+    HeaderItem
+},
     computed: mapState({
         posts: state => state.posts.items,
         postslength: state => state.posts.items.length,
@@ -68,7 +64,6 @@ export default {
     },
 }
 </script>
-
 <style scoped>
 
 </style>

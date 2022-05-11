@@ -8,7 +8,7 @@
             <img src="../assets/logos/icon.svg">
           </router-link> -->
           <router-link :to="{name: 'HomePage'}" >
-            <img src="../assets/logos/icon-left-font.png" class="logo-icon-left" alt="le logo de Groupomania">
+            <img src="../assets/logos/icon-left-font.png" class="nav-bar__logo-icon-left" alt="le logo de Groupomania">
           </router-link>
         </li>
         <li v-if="authUser"><router-link to="/posts">Tous les messages</router-link></li>

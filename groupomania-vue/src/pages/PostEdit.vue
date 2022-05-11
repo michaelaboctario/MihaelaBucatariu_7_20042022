@@ -1,14 +1,14 @@
 <template>
-  <main class="col-full push-top">
-    <section>
-      <p class="text-faded text-xsmall bloc-comment">
+  <main class="post-card__container">
+    <section class="post-card__info">
+      <p class="post-card__user">
         Utilisateur connecté {{ connectedUser }} 
       </p>
-      <p class="text-faded text-xsmall bloc-comment">
-        Post de {{ postAuthor }} 
+      <p class="post-card__author">
+        Message de {{ postAuthor }} 
       </p>
     </section>
-    <section>
+    <section  class="post-card__update">
       <h1>Modification du message</h1>
       <!-- <h2>{{ this.$route.params.id }}</h2> -->
       <PostItem

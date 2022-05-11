@@ -1,17 +1,16 @@
 <template>
-  <main class="col-full push-top">
-    <section class="list-title">
-        <img src="../assets/logos/icon.png" alt="le logo de Groupomania" class="logo-icon">
-        <h1>Nouveau message</h1>
-    </section>
+  <main class="post-card__container">
+    <HeaderItem />
 <!--     <PostItem :isReadOnly="false" @publish.once="save"></PostItem> -->
-    <PostItem
-        v-model:title="title"
-        v-model:content="content" 
-        :isReadOnly="false" 
-        @publish.once="save"
-        @cancel-edit.once="cancelEdit">
-    </PostItem>
+    <section class="post-card__group">
+      <PostItem
+          v-model:title="title"
+          v-model:content="content" 
+          :isReadOnly="false" 
+          @publish.once="save"
+          @cancel-edit.once="cancelEdit">
+      </PostItem>
+    </section>
     <section
       v-if="message"
       :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
@@ -24,10 +23,12 @@
 
 import { mapGetters, mapState } from 'vuex';
 import PostItem from '@/components/PostItem.vue';
+import HeaderItem from '../components/HeaderItem.vue';
 
 export default {
   components: {
     PostItem,
+    HeaderItem
 },
   data () {
     return {
