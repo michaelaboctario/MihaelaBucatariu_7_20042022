@@ -1,9 +1,11 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const authRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
 const postRoutes = require('./routes/post');
+const {adminUser, moderatorUser, firstUser} = require('./config/user.config');
 //const commentRoutes = require('./routes/comment');
 
 // express application
@@ -23,6 +25,7 @@ app.use((req, res, next) => {
 const db = require('./models/index.js');
 const { exit } = require('process');
 const Role = db.role;
+const User = db.user;
 // database
 
 // db.sequelize.sync();  // création des tables
@@ -62,6 +65,9 @@ function initial() {
     id: 3,
     name: "admin"
   });
-}
 
+  User.create(Object.assign({...adminUser}, {password: bcrypt.hashSync(adminUser.password, 10)}));
+  User.create(Object.assign({...moderatorUser}, {password: bcrypt.hashSync(moderatorUser.password, 10)}));
+  User.create(Object.assign({...firstUser}, {password: bcrypt.hashSync(firstUser.password, 10)}));
+}
 module.exports = app;

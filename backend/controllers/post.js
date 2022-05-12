@@ -13,7 +13,7 @@ exports.createPost  = (req, res) => {
         postImageUrl : "",
         userId: req.body.userId
       })
-      .then(() => res.status(201).json({message: 'Post enregistré !'})) 
+      .then(() => res.status(201).json({message: 'Message enregistré !'})) 
       .catch(error => res.status(400).json({ message: error.message })
   )}
   else {
@@ -46,24 +46,10 @@ exports.getAllPosts = (req, res) => {
     });
 };
 
-// exports.updatePost = (req, res) => {  
-//   //if (req.body.userId && req.body.userId !== .userId) {
-//   //  res.status(401).json({ message: 'Modification non autorisée !' });
-//   Post.update({
-//       postTitle : req.body.postTitle,           
-//       postContent : req.body.postContent,
-//     },  
-//     {
-//       where: { id: req.params.id  }  
-//     }) 
-//   .then(() => res.status(200).json({ message: 'Post modifié !' }))
-//   .catch(error => res.status(400).json({ message: error.message }));   
-// };
-
 exports.updatePost = (req, res) => {
   Post.findByPk(req.params.id).then(post => {
     if (!post) {
-      return res.status(404).json({ message: 'Post non trouvée !' });
+      return res.status(404).json({ message: 'Message non trouvée !' });
     }
     else if (req.body.userId && req.body.userId !== post.userId) {
       res.status(401).json({ message: 'Modification non autorisée !' });
@@ -77,19 +63,26 @@ exports.updatePost = (req, res) => {
         {
           where: { id: req.params.id  }  
         }) 
-      .then(() => res.status(200).json({ message: 'Post modifié !' }))
+      .then(() => res.status(200).json({ message: 'Message modifié !' }))
       .catch(error => res.status(400).json({ message: error.message })); 
     };   
   })
 };
 
-// a verifier
 exports.deletePost = (req, res) => {
-  Post.findOne({ _id: req.params.id })
+  Post.findByPk(req.params.id)
   .then(post => {
-    Post.destroy({ where: { id: req.params.id } })  
-    .then(() => res.status(200).json({ message: 'Post supprimé !'}))
-    .catch(error => res.status(400).json({ error }));
+    if (!post) {
+      return res.status(404).json({ message: 'Message non trouvée !' });
+    }
+    else if (req.body.userId && (req.body.userId !== 1 || req.body.userId !== 2 || req.body.userId !== post.userId)) {
+      res.status(401).json({ message: 'Suppression non autorisée !' });
+    }
+    else {
+      Post.destroy({ where: { id: req.params.id } })  
+            .then(() => res.status(200).json({ message: 'Message supprimé !'}))
+            .catch(error => res.status(400).json({ error }));
+    };   
   })
   .catch(error => res.status(500).json({ message: error.message }));
 }

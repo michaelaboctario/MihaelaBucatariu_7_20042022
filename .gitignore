@@ -13,12 +13,14 @@ backend/middleware/dist/
 backend/controllers/dist
 backend/models/dist
 backend/routes/dist
+backend/config/dist
 
 # local env files
 .env.local
 .env.*.local
 backend/.env
 backend/config/db.config.js
+backend/config/user.config.js
 
 # Log files
 npm-debug.log*

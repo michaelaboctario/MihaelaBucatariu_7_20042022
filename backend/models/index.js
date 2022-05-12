@@ -30,13 +30,13 @@ db.comment = require('../models/comment.model.js')(sequelize, Sequelize);
 db.role.hasMany(db.user);
 db.user.belongsTo(db.role);
 
-db.user.hasMany(db.post);
+db.user.hasMany(db.post, {onDelete: 'CASCADE'});
 db.post.belongsTo(db.user);
 
-db.post.hasMany(db.comment);
+db.post.hasMany(db.comment, {onDelete: 'CASCADE'});
 db.comment.belongsTo(db.post);
 
-db.user.hasMany(db.comment);
+db.user.hasMany(db.comment, {onDelete: 'CASCADE'});
 db.comment.belongsTo(db.user);
 
 module.exports = db;
