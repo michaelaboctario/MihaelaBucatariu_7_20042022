@@ -14,21 +14,22 @@
       <PostItem
           v-model:title="title"
           v-model:content="content" 
+          :isEditingPost="isEditingPost" 
           :isReadOnly="false" 
           @publish.once="save"
+          @toggleCreatingComment="toggleCreatingComment"
           @deletePost.once="deletePost"
-          @cancel-edit.once="cancelEdit">
+          @cancel-edit="cancelEdit">
       </PostItem> 
       <CommentList :comments="allComments"></CommentList>
-      <CommentItem
+          
+      <CommentItem v-if="isCreatingComment"
           v-model:comment="comment" 
           :isReadOnly="false" 
+          :isCreatingComment="isCreatingComment" 
           @publishComment="publishComment"
-          @cancel-edit.once="cancelEdit">
+          @cancel-creating-comment="cancelCreatingComment">
       </CommentItem>
-      <div>
-        Response
-      </div>  
       <section
         v-if="messageComments"
         :class="loadingCommentsStatus !== 'failure' ? 'alert-success' : 'alert-error'"
@@ -53,6 +54,8 @@ export default {
   },
   data () {
     return {
+      isEditingPost: false,
+      isCreatingComment: false,
       successful: false,
       title: '',
       content: '', 
@@ -62,7 +65,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', ['authUser']),
+    ...mapGetters('auth', ['authUser', 'isAdminUser', 'isModeratorUser']),
     ...mapState({
         message: state => state.posts.message,
         loadingStatus: state => state.posts.loadingStatus,
@@ -72,30 +75,44 @@ export default {
     }),
     isHisOwnPost() { return this.authUser.id === this.userId },
     connectedUser() {return `${this.authUser.firstname} ${this.authUser.lastname}`},
-    postAuthor () {return this.currentItem ? `${this.currentItem.user.firstname} ${this.currentItem.user.lastname}` : ''  }
+    postAuthor () {return this.currentItem ? `${this.currentItem.user.firstname} ${this.currentItem.user.lastname}` : ''  },
+    canUpdatePost() { return this.authUser.id === this.userId},
+    canDeletePost() { return this.isAdminUser || this.isModeratorUser || this.canUpdatePost},
     //postId() this.$route.params.id,
   },
-  created () {
+  mounted() {
       console.log("created")
       console.log(this.$route.params.id)
       this.$store.dispatch('posts/getOnePost', this.$route.params.id).then(
       data => {
         console.log("posts/getOnePost", data)
-        this.successful = true;
-        this.title = data.postTitle;
-        this.content = data.postContent;
-        this.userId = data.userId;
+        this.successful = true
+        this.title = data.postTitle
+        this.content = data.postContent
+        this.userId = data.userId
+        this.isEditingPost = this.canUpdatePost
         //this.$router.push('/posts');
       },
       () => {
-        this.successful = false;
+        this.successful = false
       }
     );
-     this.getAllComment();
+     this.getAllComment()
   },
   methods: {
+    toggleCreatingComment () { 
+      this.isCreatingComment = !this.isCreatingComment
+      if(this.isCreatingComment)
+      {
+        this.isEditingPost = false
+      }
+      else if(this.canUpdatePost)
+      {
+        this.isEditingPost = !this.isEditingPost
+      }
+    },
     save () {
-      this.successful = false;
+      this.successful = false
       const post = {
           postTitle: this.title, 
           postContent: this.content,
@@ -121,6 +138,10 @@ export default {
     },
     cancelEdit () {
         this.$router.push('/posts');
+        //this.isEditingPost = false
+    },
+    cancelCreatingComment () {
+        this.toggleCreatingComment();
     },
     // for  comment form
     publishComment () {
@@ -136,6 +157,7 @@ export default {
         () => {
           this.successful = true
           this.getAllComment()
+          this.toggleCreatingComment()
           //this.$router.push('/posts');
         }
       );

@@ -65,6 +65,12 @@ export const auth = {
     },
     tokenAuthUser(state) {
       return state.user?.token;
-    }
+    },
+    isAdminUser(state) {
+      return state.user?.userData.userId===1;
+    },
+    isModeratorUser(state) {
+      return state.user?.userData.userId===2;
+    },
   }
 };

@@ -10,7 +10,7 @@
             class="post-item__title"
             name="title"
             @input="$emit('update:title', $event.target.value)"
-            :readonly="isReadOnly"
+            :readonly="!isEditingPost"
           />
         </div>
         <div class="post-item__group">
@@ -23,15 +23,21 @@
             rows="8"
             cols="140"
             @input="$emit('update:content', $event.target.value)"
-            :readonly="isReadOnly"
+            :readonly="!isEditingPost"
           >
           </textarea>
         </div>
         <div class="post-card__btn-group">
-          <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
-          <button v-if="canDelete" class="post-card__btn-cancel" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
-          <button class="post-card__btn-comment" type="button"  @click="$emit('comment')" name="Commenter">Commenter</button>
-          <button class="post-card__btn-publish" type="submit" name="Publier">Publier</button>
+          <template v-if="isEditingPost">
+            <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
+            <button v-if="canDelete" class="post-card__btn-cancel" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
+            <button class="post-card__btn-comment" type="button"  @click="$emit('toggleCreatingComment')" name="Commenter">Commenter</button>
+            <button class="post-card__btn-publish" type="submit" name="Publier">Publier</button> 
+          </template>
+          <!-- <template v-else >
+            <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
+            <button class="post-card__btn-comment" type="button"  @click="$emit('toggleEditingPost')" name="Modifier">Modifier</button>           
+          </template> -->
         </div>
       </form>
   </article>
@@ -42,12 +48,16 @@ export default {
   props: {'title': String, 
           'content': String,
           'isReadOnly': Boolean,
+          'isEditingPost': {
+              type: Boolean,
+              default: true
+          },
           'canDelete': {
               type: Boolean,
               default: true
           },
           'hasHover': Boolean},
-  emits: ['update:title', 'update:content', 'publish', 'comment', 'deletePost', 'cancelEdit'],
+  emits: ['update:title', 'update:content', 'publish', 'comment', 'toggleCreatingComment', 'deletePost', 'cancelEdit'],
   name: 'PostItem'
 }
 </script>
