@@ -12,7 +12,10 @@ module.exports = (sequelize, Sequelize) => {
         commentContent: 
         { 
             type: Sequelize.TEXT, 
-            allowNull: false 
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }, 
         },
         createdAt: {
             type: Sequelize.DATE,                

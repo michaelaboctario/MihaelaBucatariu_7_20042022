@@ -12,17 +12,26 @@ module.exports = (sequelize, Sequelize) => {
             postTitle: 
             { 
                 type: Sequelize.STRING, 
-                allowNull: false 
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                },  
             },
             postContent: 
             { 
                 type: Sequelize.TEXT, 
-                allowNull: false 
+                allowNull: false,
+                validate: {
+                    notEmpty: true
+                },  
             },
             postCreator:                  
             { 
                 type: Sequelize.STRING, 
                 allowNull: false,
+                validate: {
+                    notEmpty: true
+                }, 
             },
             postImageUrl: 
             { 
