@@ -68,6 +68,26 @@ export const posts = {
         }
       );
     },
+    deletePost ({ commit }, id) {
+      console.log("getOnePost")
+      //console.log(id)
+      commit('setLoadingStatus', 'loading')
+      commit('setCurrentItem', {post: null})
+      commit('setMessage', '')
+      return PostService.deletePost(id).then(
+        (data) => {
+          commit('setLoadingStatus', 'success')
+          commit('setMessage', data.message)
+          // ça n'existe pas de message de reponse 
+          return Promise.resolve(data.message)
+        },
+        error => {
+          commit('setLoadingStatus', 'failure')
+          commit('setMessage', error.message)
+          return Promise.reject(error);
+        }
+      );
+    },
     updatePost ({ commit }, {post}) {
       console.log("updatePost befor commit")
       console.log(post)

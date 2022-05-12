@@ -4,11 +4,11 @@
   <section class="post-card__group">
     <template v-if="!posts || !posts.length">
       <article >
-          <h3 class="post-card__message">Il n'y a aucun post</h3>
+          <h3 class="post-card__message">Il n'y a aucun message</h3>
       </article>
     </template>
     <template v-else>
-      <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post-item" >
+      <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post-item visualHover" >
           <h3 class="post-item__title">{{ post.postTitle }}</h3>
           <p class="post-item__content">{{ post.postContent }}</p>
           <p class="post-item__author">

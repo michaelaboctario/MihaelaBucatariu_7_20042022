@@ -27,6 +27,13 @@ class PostService {
       .put(API_URL+`${post.id}`, post, { headers: authHeader() })
       .then(response => response.data);
   }
+  deletePost(id) {
+    const url = `${API_URL}${id}`;
+    console.log("deletePost", url)
+    return axios
+      .delete(`${API_URL}${id}`, { headers: authHeader() })
+      .then(response => response.data);
+  }
 }
 
 export default new PostService();

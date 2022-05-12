@@ -1,5 +1,5 @@
 <template>
-  <article class="post-item">
+  <article class="post-item" v-bind:class="{visualHover: hasHover}">
       <form @submit.prevent="$emit('publish', {title, content})">
         <div class="post-item__group">
           <label for="post-item__title">Titre:</label>
@@ -29,12 +29,9 @@
         </div>
         <div class="post-card__btn-group">
           <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
-           <button class="post-card__btn-comment" type="button"  @click="$emit('comment')" name="Commenter">
-            Commenter
-          </button>
-          <button class="post-card__btn-publish" type="submit" name="Publier">
-            Publier
-          </button>
+          <button v-if="canDelete" class="post-card__btn-cancel" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
+          <button class="post-card__btn-comment" type="button"  @click="$emit('comment')" name="Commenter">Commenter</button>
+          <button class="post-card__btn-publish" type="submit" name="Publier">Publier</button>
         </div>
       </form>
   </article>
@@ -44,8 +41,13 @@
 export default {
   props: {'title': String, 
           'content': String,
-          'isReadOnly': Boolean},
-  emits: ['update:title', 'update:content', 'publish', 'comment', 'cancelEdit'],
+          'isReadOnly': Boolean,
+          'canDelete': {
+              type: Boolean,
+              default: true
+          },
+          'hasHover': Boolean},
+  emits: ['update:title', 'update:content', 'publish', 'comment', 'deletePost', 'cancelEdit'],
   name: 'PostItem'
 }
 </script>

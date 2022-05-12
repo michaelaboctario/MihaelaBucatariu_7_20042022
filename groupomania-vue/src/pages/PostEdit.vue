@@ -1,13 +1,13 @@
 <template>
   <main class="post-card__container">
-    <section class="post-card__info">
+    <!-- <section class="post-card__info">
       <p class="post-card__user">
         Utilisateur connecté {{ connectedUser }} 
       </p>
       <p class="post-card__author">
         Message de {{ postAuthor }} 
       </p>
-    </section>
+    </section> -->
     <section  class="post-card__update">
       <h1>Modification du message</h1>
       <!-- <h2>{{ this.$route.params.id }}</h2> -->
@@ -16,6 +16,7 @@
           v-model:content="content" 
           :isReadOnly="false" 
           @publish.once="save"
+          @deletePost.once="deletePost"
           @cancel-edit.once="cancelEdit">
       </PostItem> 
       <CommentList :comments="allComments"></CommentList>
@@ -103,6 +104,16 @@ export default {
       }
       this.$store.dispatch('posts/updatePost', {post}).then(
         () => {
+          this.successful = true;
+          this.$router.push('/posts');
+        }
+      );
+    },
+    deletePost () {
+      this.successful = false;
+      this.$store.dispatch('posts/deletePost',  this.$route.params.id).then(
+        (data) => {
+          console.log("posts/deletePost", data)
           this.successful = true;
           this.$router.push('/posts');
         }

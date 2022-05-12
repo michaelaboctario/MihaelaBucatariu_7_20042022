@@ -1,14 +1,13 @@
 <template>
-  <article class="comment-card__item">
-    <h2>Entrer commentaire </h2>
+  <article class="comment-item">
+    <h2>Entrer un commentaire </h2>
     <form @submit.prevent="$emit('publishComment', {content})">
-      <div class="comment__item-group">
-          <div class="comment__input-group">
-            <label for="comment-form__input-comment">Commenter:</label>
+        <div class="comment-item__group">
+            <label for="comment-item__content">Commenter:</label>
               <textarea
                 :value="comment"
-                id="comment-form__input-comment"
-                class="comment-form__input-comment"
+                id="comment-item__content"
+                class="comment-item__content"
                 name="comment"
                 rows="8"
                 cols="140"
@@ -16,14 +15,13 @@
                 :readonly="isReadOnly"
               >
               </textarea>
-          </div>
+        </div>
         <div class="comment-card__btn-group">
-          <button class="comment-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Cancel</button>
+          <button class="comment-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
           <button class="comment-card__btn-publish" type="submit" name="Publier">
             Publier
           </button>
-        </div>
-      </div>
+        </div>   
     </form>
   </article>
 </template>
