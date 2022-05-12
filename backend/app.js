@@ -53,17 +53,15 @@ app.use('/api/posts', postRoutes);
 function initial() {
   Role.create({
     id: 1,
-    name: "user"
+    name: "admin"
   });
- 
   Role.create({
     id: 2,
     name: "moderator"
   });
- 
   Role.create({
     id: 3,
-    name: "admin"
+    name: "user"
   });
 
   User.create(Object.assign({...adminUser}, {password: bcrypt.hashSync(adminUser.password, 10)}));
