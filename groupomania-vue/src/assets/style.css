@@ -688,9 +688,10 @@ figure {
     cursor: pointer;
 }
 
-.post-item:hover.visualHover {
+.post-item:hover.visual-hover,
+.user-list-item:hover.visual-hover {
     transform: scale(1.02);
-    box-shadow: 1px 1px 20px rgb(245 134 134 / 30%);
+    box-shadow: 1px 1px 20px rgba(58, 17, 17, 0.3);
 }
 
 /*
@@ -734,7 +735,8 @@ figure {
     color: rgba(252, 223, 223, 0.3);
 }
 
-.comment-list-item {
+.comment-list-item,
+.user-list-item {
     background: #fbf0f0;
     display: block;
     border-radius: 16px;
@@ -742,5 +744,5 @@ figure {
     margin-top: 10px;
     width: 80%;
     margin-bottom: 20px; 
-    margin-left: auto;
+    /* margin-left: auto; */
 }

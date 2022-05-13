@@ -11,8 +11,9 @@
             <img src="../assets/logos/icon-left-font.png" class="nav-bar__logo-icon-left" alt="le logo de Groupomania">
           </router-link>
         </li>
-        <li v-if="authUser"><router-link to="/posts">Tous les messages</router-link></li>
-        <li v-if="authUser"><router-link to="/posts/create">Nouveau message</router-link></li>        
+        <li v-if="authUser"><router-link to="/posts">Messages</router-link></li>
+        <li v-if="authUser"><router-link to="/posts/create">Publier</router-link></li>     
+        <li v-if="authUser"><router-link to="/users">Utilisateurs</router-link></li>      
         <li v-if="!authUser"><router-link to="/register">Enregistrement</router-link></li>
         <li v-if="!authUser"><router-link to="/login">Connexion</router-link></li>
         <li  v-if="authUser">

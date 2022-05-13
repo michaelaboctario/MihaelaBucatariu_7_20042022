@@ -1,31 +1,31 @@
 <template>
-<main class="post-card__container"> 
   <HeaderItem />
-  <section class="post-card__group">
-    <template v-if="!posts || !posts.length">
-      <article >
-          <h3 class="post-card__message">Il n'y a aucun message</h3>
-      </article>
-    </template>
-    <template v-else>
-      <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post-item visualHover" >
-          <h3 class="post-item__title">{{ post.postTitle }}</h3>
-          <p class="post-item__content">{{ post.postContent }}</p>
-          <p class="post-item__author">
-            <!-- De {{ userById(post.userId).username }} -->
-            de {{ post.postCreator }}, le {{ post.updatedAt }} 
-          </p>
-      </article>
-    </template>    
-  </section>
-  <section class="post-card__error-message">  
-    <div
-        v-if="message"
-        :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
-      >
-        {{ message }}
-      </div>  
-  </section>
+  <main class="post-card__container"> 
+    <section class="post-card__group">
+      <template v-if="!posts || !posts.length">
+        <article >
+            <h3 class="post-card__message">Il n'y a aucun message</h3>
+        </article>
+      </template>
+      <template v-else>
+        <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post-item visual-hover" >
+            <h3 class="post-item__title">{{ post.postTitle }}</h3>
+            <p class="post-item__content">{{ post.postContent }}</p>
+            <p class="post-item__author">
+              <!-- De {{ userById(post.userId).username }} -->
+              de {{ post.postCreator }}, le {{ post.updatedAt }} 
+            </p>
+        </article>
+      </template>    
+    </section>
+    <section class="post-card__error-message">  
+      <div
+          v-if="message"
+          :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+        >
+          {{ message }}
+        </div>  
+    </section>
 </main>
   <FooterItem />
 </template>

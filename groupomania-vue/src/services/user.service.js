@@ -1,32 +1,29 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:3000/api/posts/';
+const API_URL = 'http://localhost:3000/api/users/';
 import authHeader from './auth-header';
-class PostService {
-  createPost(post) {
-    return axios
-      .post(API_URL, post, { headers: authHeader() })
-      .then(response => response.data);
-  }
-  getAllPost() {
+
+class UserService {
+  getAllUser() {
     return axios
       .get(API_URL, { headers: authHeader() })
       .then(response => response.data);
   }
-  getOnePost(id) {
+  getOneUser(id) {
     return axios
       .get(`${API_URL}${id}`, { headers: authHeader() })
       .then(response => response.data);
   }
-  updatePost(post) {
+  updateUser(user) {
     return axios
-      .put(`${API_URL}${post.id}`, post, { headers: authHeader() })
+      .put(`${API_URL}${user.id}`, user, { headers: authHeader() })
       .then(response => response.data);
   }
-  deletePost(id) {
+  deleteUser(id) {
     return axios
       .delete(`${API_URL}${id}`, { headers: authHeader() })
       .then(response => response.data);
-  }
+  } 
 }
 
-export default new PostService();
+export default new UserService();
+

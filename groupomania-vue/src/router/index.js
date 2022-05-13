@@ -4,8 +4,9 @@ import PostCreate from '@/pages/PostCreate.vue'
 import PostList from '@/pages/PostList.vue'
 import PostEdit from '@/pages/PostEdit.vue'
 import HomePage from '@/pages/HomePage.vue'
-import LoginUser from "@/pages/LoginUser.vue"
-import RegisterUser from "@/pages/RegisterUser.vue"
+import LoginUser from '@/pages/LoginUser.vue'
+import RegisterUser from '@/pages/RegisterUser.vue'
+import UserList from '@/pages/UserList.vue'
 import NotFound from '@/pages/NotFound.vue'
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: '/posts',
     name: 'PostList',
     component: PostList,
+  },
+  {
+    path: '/users',
+    name: 'UserList',
+    component: UserList
   },
   {
     path: '/register',
