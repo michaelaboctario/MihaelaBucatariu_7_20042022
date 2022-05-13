@@ -2,6 +2,7 @@
 node_modules
 /dist
 groupomania-vue/src/assets/alls
+groupomania-vue/src/dist
 groupomania-vue/src/store/dist
 groupomania-vue/src/router/dist
 groupomania-vue/src/services/dist

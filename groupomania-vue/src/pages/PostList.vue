@@ -27,16 +27,19 @@
       </div>  
   </section>
 </main>
-  
+  <FooterItem />
 </template>
 
 <script>
 
 import { mapState} from 'vuex'
 import HeaderItem from '@/components/HeaderItem.vue'
+import FooterItem from '@/components/FooterItem.vue'
+
 export default {
     components: {
-    HeaderItem
+    HeaderItem,
+    FooterItem
 },
     computed: mapState({
         posts: state => state.posts.items,
