@@ -1,16 +1,7 @@
 <template>
+  <HeaderItem title="Modification du message" />
   <main class="post-card__container">
-    <!-- <section class="post-card__info">
-      <p class="post-card__user">
-        Utilisateur connecté {{ connectedUser }} 
-      </p>
-      <p class="post-card__author">
-        Message de {{ postAuthor }} 
-      </p>
-    </section> -->
-    <section  class="post-card__update">
-      <h1>Modification du message</h1>
-      <!-- <h2>{{ this.$route.params.id }}</h2> -->
+    <section>
       <PostItem
           v-model:title="title"
           v-model:content="content" 
@@ -42,12 +33,14 @@
 <script>
 
 import { mapGetters, mapState } from 'vuex';
-import PostItem from '../components/PostItem.vue';
+import HeaderItem from '@/components/HeaderItem.vue';
+import PostItem from '@/components/PostItem.vue';
 import CommentItem from '@/components/CommentItem.vue';
 import CommentList from '@/components/CommentList.vue';
 
 export default {
   components: {
+    HeaderItem,
     PostItem,
     CommentItem,
     CommentList,

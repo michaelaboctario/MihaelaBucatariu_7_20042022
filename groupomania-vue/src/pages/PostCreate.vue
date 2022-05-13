@@ -1,8 +1,8 @@
 <template>
+  <HeaderItem />
   <main class="post-card__container">
-    <HeaderItem />
 <!--     <PostItem :isReadOnly="false" @publish.once="save"></PostItem> -->
-    <section class="post-card__group">
+    <section>
       <PostItem
           v-model:title="title"
           v-model:content="content" 

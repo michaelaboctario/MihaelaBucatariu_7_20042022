@@ -60,7 +60,6 @@ img {
 }
 
 .nav-bar__logo-icon-left {
-    float: left;
     height: 80px;
     width: 200px;
     object-fit: cover;
@@ -90,7 +89,6 @@ img {
 .post-card__logo-icon {
     height: 100px;
     width: 100px;
-    margin-right: 20px;
     object-fit: cover;
 }
 
@@ -101,14 +99,17 @@ img {
     }
 }
 
-.post-item__author {
+.post-item__author,
+.comment-list-item__author {
     color: rgba(84, 84, 84, 0.781);
-    width: 300px;
+    width: 200px;
+    max-width: 240px;
     margin-left: auto;
     padding-right: 20px;
     font-size: 16px;
 }
 
+/*
 .text-faded {
     color: rgba(84, 84, 84, 0.7);
     width: 80px;
@@ -120,6 +121,7 @@ img {
     width: 300px;
     margin-right: 10px;
 }
+*/
 
 .text,
 p {
@@ -175,11 +177,6 @@ textarea:read-only {
     color: #b1999d;
     pointer-events: none;
 }
-
-/* textarea {
-    padding : 10px;
-}
- */
 
 form {
     margin: 0;
@@ -305,14 +302,14 @@ form {
         width: 100%;
     }
 }
-
+/*
 .comment-group {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     width: 40%;
 }
-
+*/
 .input-group,
 .post-item__group {
     margin-bottom: 12px;
@@ -342,13 +339,8 @@ form {
 
 input[type="submit"],
 button {
-    -webkit-appearance: none;
     font-size: 18px;
     cursor: pointer;
-}
-
-button {
-    -webkit-appearance: none;
 }
 
 button a {
@@ -358,50 +350,42 @@ button a {
 button {
     border: none;
     background: transparent;
-    appearance: none;
 }
 
-.btn,
 .btn-default {
     padding: 15px 30px;
     border-radius: 20px;
     border: none;
     display: inline-block;
     outline: 0;
+    color: white;
+    background: #8f1f28;
 }
 
-.btn:hover,
 .btn-default:hover {
     transition: all 0.4s ease;
 }
 
 @media screen and (max-width: 768px) {
-    .btn,
     .btn-default {
         padding: 10px 20px;
     }
+}
+
+.btn-default:hover {
+    color: white;
+    background: #8f1f28;
 }
 
 .btn-block {
     width: 100%;
 }
 
-.btn-default {
-    color: white;
-    background: #8f1f28;
-}
-
-.btn-default:hover:not(:disabled):not(.btn-disabled) {
-    color: white;
-    background: #8f1f28;
-}
-
 button {
     outline: 0;
 }
 
-.form-actions,
-.btn-group {
+.form-actions {
     display: flex;
     justify-content: flex-end;
     flex-basis: 100%;
@@ -409,19 +393,13 @@ button {
     margin-bottom: 10px;
 }
 
-.form-actions>*:not(:last-child),
-.btn-group>*:not(:last-child) {
+.form-actions>*:not(:last-child) {
     margin-right: 10px;
 }
 
 @media screen and (max-width: 768px) {
-    .form-actions,
-    .btn-group {
+    .form-actions {
         flex-wrap: wrap;
-    }
-    .form-actions>.btn-group {
-        flex: 1 1;
-        margin-bottom: 5px;
     }
 }
 
@@ -649,63 +627,45 @@ figure {
     }
 }
 
-.push-top {
-    margin-top: 20px;
-}
-
-
-/* Cancel btn .btn-normal */
-
-.btn:hover,
 .btn-default:hover,
-.btn-default-outlined:hover,
 .btn-normal:hover {
     transition: all 0.4s ease;
 }
 
 .btn-normal {
-    flex-grow: 0;
+    background: white;
     color: #8f1f28;
 }
 
-.btn-normal:hover:not(:disabled):not(.btn-disabled) {
+.btn-default, 
+.btn-normal {
+    padding: 15px 30px;
+    border-radius: 20px;
+    border: none;
+    display: inline-block;
+    outline: 0;
+}
+
+.btn-default {
+    color: white;
+    background: #8f1f28;
+}
+
+.btn-normal:hover {
     color: white;
     background-color: rgb(245 134 134 / 30%);
 }
 
-@media scrren and (max-width: 768px) {
-    .btn,
+.btn-default:hover {
+    color: white;
+    background-color: rgba(73, 9, 9, 0.3);
+}
+
+@media screen and (max-width: 768px) {
     .btn-default,
     .btn-normal {
         padding: 10px 20px;
     }
-}
-
-.btn:disabled,
-.btn-default:disabled,
-.btn-normal:disabled,
-.btn-disabled {
-    cursor: default;
-}
-
-.btn:disabled:hover,
-.btn-default:disabled:hover,
-.btn-normal:disabled:hover,
-.btn-disabled:hover {
-    cursor: default;
-    color: white;
-}
-
-.btn-normal {
-    flex-grow: 0;
-}
-
-.btn:disabled,
-.btn-default:disabled,
-.btn-normal:disabled,
-.btn-disabled,
-a>img:hover {
-    opacity: 0.8;
 }
 
 .post-list {
@@ -762,11 +722,25 @@ a>img:hover {
 .comment-item__content {
     margin: 0;
     padding: 10px 20px;
-    text-align: left;
     margin-bottom: 20px;
 }
 
+.post-item__title,
+.post-item__content {
+    text-align: left;
+}
 .post-card__group-headings
 .post-card__group-headings h1:hover {
-    color: rgb(245 134 134 / 30%);
+    color: rgba(252, 223, 223, 0.3);
+}
+
+.comment-list-item {
+    background: #fbf0f0;
+    display: block;
+    border-radius: 16px;
+    padding: 6px 20px;
+    margin-top: 10px;
+    width: 80%;
+    margin-bottom: 20px; 
+    margin-left: auto;
 }
