@@ -22,7 +22,7 @@
                 </div>
                 
                 <div class="form-actions">
-                    <button type="submit" class="btn-blue btn-block">Se connecter</button>
+                    <button type="submit" class="btn-default btn-block">Se connecter</button>
                 </div>
 
                 <div

@@ -39,7 +39,7 @@
                   </div>
                   
                   <div class="form-actions">
-                      <button type="submit" class="btn-blue btn-block">S'enregistrer</button>
+                      <button type="submit" class="btn-default btn-block">S'enregistrer</button>
                   </div>
 
                   <div

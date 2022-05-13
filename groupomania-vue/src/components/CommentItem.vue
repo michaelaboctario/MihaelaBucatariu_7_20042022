@@ -15,9 +15,9 @@
                 >
                 </textarea>
           </div>
-          <div class="comment-card__btn-group">
-            <button class="comment-card__btn-cancel" type="button" @click="$emit('cancelCreatingComment')" name="Cancel">Abandonner</button>
-            <button class="comment-card__btn-publish" type="submit" name="Publier">
+          <div class="form-actions">
+            <button class="btn-normal" type="button" @click="$emit('cancelCreatingComment')" name="Cancel">Abandonner</button>
+            <button class="btn-default" type="submit" name="Publier">
               Publier
             </button>
           </div>   

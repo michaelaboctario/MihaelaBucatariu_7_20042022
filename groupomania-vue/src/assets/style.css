@@ -164,18 +164,22 @@ ul {
     padding: 0;
 }
 
-input {
+input, 
+textarea {
     box-shadow: none;
     display: block;
 }
 
-/*
-textarea {
-    box-shadow: none;
-    display: block;
+input:read-only, 
+textarea:read-only {
+    color: #b1999d;
+    pointer-events: none;
+}
+
+/* textarea {
     padding : 10px;
 }
-*/
+ */
 
 form {
     margin: 0;
@@ -358,7 +362,7 @@ button {
 }
 
 .btn,
-.btn-blue {
+.btn-default {
     padding: 15px 30px;
     border-radius: 20px;
     border: none;
@@ -367,13 +371,13 @@ button {
 }
 
 .btn:hover,
-.btn-blue:hover {
+.btn-default:hover {
     transition: all 0.4s ease;
 }
 
 @media screen and (max-width: 768px) {
     .btn,
-    .btn-blue {
+    .btn-default {
         padding: 10px 20px;
     }
 }
@@ -382,12 +386,12 @@ button {
     width: 100%;
 }
 
-.btn-blue {
+.btn-default {
     color: white;
     background: #8f1f28;
 }
 
-.btn-blue:hover:not(:disabled):not(.btn-disabled) {
+.btn-default:hover:not(:disabled):not(.btn-disabled) {
     color: white;
     background: #8f1f28;
 }
@@ -650,55 +654,55 @@ figure {
 }
 
 
-/* Cancel btn .btn-ghost */
+/* Cancel btn .btn-normal */
 
 .btn:hover,
-.btn-blue:hover,
-.btn-blue-outlined:hover,
-.btn-ghost:hover {
+.btn-default:hover,
+.btn-default-outlined:hover,
+.btn-normal:hover {
     transition: all 0.4s ease;
 }
 
-.btn-ghost {
+.btn-normal {
     flex-grow: 0;
     color: #8f1f28;
 }
 
-.btn-ghost:hover:not(:disabled):not(.btn-disabled) {
+.btn-normal:hover:not(:disabled):not(.btn-disabled) {
     color: white;
     background-color: rgb(245 134 134 / 30%);
 }
 
 @media scrren and (max-width: 768px) {
     .btn,
-    .btn-blue,
-    .btn-ghost {
+    .btn-default,
+    .btn-normal {
         padding: 10px 20px;
     }
 }
 
 .btn:disabled,
-.btn-blue:disabled,
-.btn-ghost:disabled,
+.btn-default:disabled,
+.btn-normal:disabled,
 .btn-disabled {
     cursor: default;
 }
 
 .btn:disabled:hover,
-.btn-blue:disabled:hover,
-.btn-ghost:disabled:hover,
+.btn-default:disabled:hover,
+.btn-normal:disabled:hover,
 .btn-disabled:hover {
     cursor: default;
     color: white;
 }
 
-.btn-ghost {
+.btn-normal {
     flex-grow: 0;
 }
 
 .btn:disabled,
-.btn-blue:disabled,
-.btn-ghost:disabled,
+.btn-default:disabled,
+.btn-normal:disabled,
 .btn-disabled,
 a>img:hover {
     opacity: 0.8;

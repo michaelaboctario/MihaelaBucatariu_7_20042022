@@ -27,12 +27,12 @@
           >
           </textarea>
         </div>
-        <div class="post-card__btn-group">
+        <div class="form-actions">
           <template v-if="isEditingPost">
-            <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
-            <button v-if="canDelete" class="post-card__btn-cancel" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
-            <button class="post-card__btn-comment" type="button"  @click="$emit('toggleCreatingComment')" name="Commenter">Commenter</button>
-            <button class="post-card__btn-publish" type="submit" name="Publier">Publier</button> 
+            <button class="btn-normal" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
+            <button v-if="canDelete" class="btn-normal" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
+            <button class="btn-normal" type="button"  @click="$emit('toggleCreatingComment')" name="Commenter">Commenter</button>
+            <button class="btn-default" type="submit" name="Publier">Publier</button> 
           </template>
           <!-- <template v-else >
             <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
