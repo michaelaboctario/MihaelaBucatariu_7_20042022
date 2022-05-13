@@ -6,7 +6,6 @@ const commentCtrl = require('../controllers/comment');
 const auth = require('../middleware/auth');
 //const multer = require('../middleware/multer-config');
 
-
 router.post('/', auth, postCtrl.createPost);
 router.get('/:id', auth, postCtrl.getOnePost);
 router.put('/:id', auth, postCtrl.updatePost);

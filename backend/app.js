@@ -2,11 +2,9 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bcrypt = require('bcrypt');
-const authRoutes = require('./routes/user');
-const adminRoutes = require('./routes/admin');
+const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 const {adminUser, moderatorUser, firstUser} = require('./config/user.config');
-//const commentRoutes = require('./routes/comment');
 
 // express application
 const app = express();
@@ -26,13 +24,12 @@ const db = require('./models/index.js');
 const { exit } = require('process');
 const Role = db.role;
 const User = db.user;
-// database
 
 // db.sequelize.sync();  // création des tables
 // force: true will drop the table if it already exists
 const forcesync = SYNC_DB==='SYNC';
 console.log(forcesync);
-//exit();
+
 db.sequelize.sync({force: forcesync}).then(() => {
   if(forcesync) {
     console.log("Drop and resync in progress")
@@ -45,10 +42,8 @@ db.sequelize.sync({force: forcesync}).then(() => {
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
-// app.use('/api/posts', commentRoutes);
 
 function initial() {
   Role.create({

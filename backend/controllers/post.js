@@ -1,4 +1,3 @@
-//const fs = require('fs');
 const { user } = require('../models');
 const db = require("../models");
 const Post = db.post;
