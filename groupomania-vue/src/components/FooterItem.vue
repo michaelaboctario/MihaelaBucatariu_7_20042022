@@ -3,22 +3,26 @@
         <div>
             <ul class="footer-links">
                 <li class="footer-links-item">
-                    <a href="https://www.facebook.com/" title="Suivez-nous sur Facebook">
+                    <a href="https://www.facebook.com/" title="Suivez-nous sur Facebook" rel="external" target="_blank" 
+                        aria-label="le compte Facebook de Groupomania">
                         <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'facebook' }" class="footer-fa-icon"/>
                     </a>
                 </li>
                 <li class="footer-links-item">
-                    <a href="https://www.instagram.com/" title="Suivez-nous sur Instagram">
+                    <a href="https://www.instagram.com/" title="Suivez-nous sur Instagram" rel="external" target="_blank" 
+                        aria-label="le compte Instagram de Groupomania">
                         <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'instagram' }" class="footer-fa-icon"/>
                     </a>
                 </li>
                 <li class="footer-links-item">
-                    <a href="https://twitter.com/" title="Suivez-nous sur Twitter">
+                    <a href="https://twitter.com/" title="Suivez-nous sur Twitter" rel="external" target="_blank" 
+                        aria-label="le compte Twitter de Groupomania" >
                         <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'twitter' }" class="footer-fa-icon"/>
                     </a>
                 </li>
                 <li class="footer-links-item">
-                    <a href="mailto:groupomania-support@gmail.com" title="Nous contactez">
+                    <a href="mailto:groupomania-support@gmail.com" title="Nous contactez" rel="external" target="_blank" 
+                        aria-label="le contact par email de Groupomania">
                         <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'envelope' }" class="footer-fa-icon"/>
                     </a>
                 </li>

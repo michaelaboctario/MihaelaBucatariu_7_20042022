@@ -19,17 +19,20 @@
       {{ message }}
     </section> 
   </main>
+  <FooterItem />
 </template>
 <script>
 
 import { mapGetters, mapState } from 'vuex';
 import PostItem from '@/components/PostItem.vue';
-import HeaderItem from '../components/HeaderItem.vue';
+import HeaderItem from '@/components/HeaderItem.vue';
+import FooterItem from '@/components/FooterItem.vue';
 
 export default {
   components: {
     PostItem,
-    HeaderItem
+    HeaderItem,
+    FooterItem,
 },
   data () {
     return {
