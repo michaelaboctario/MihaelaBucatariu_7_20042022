@@ -78,12 +78,14 @@ export default {
         .string()
         .required('L\'addresse email est obligatoire !')
         .email('L\'addresse email est invalide!')
-        .max(50, 'Elle doit contenir maximum 50 caractères!'),
+        .max(40, 'Elle doit contenir maximum 40 caractères!')
+        .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, 'Doit être une addresse email valide'),
       password: yup
         .string()
         .required('Le mot de passe est obligatoire!')
         .min(8, 'Il doit contenir minimum 8 caractères!')
-        .max(40, 'Il doit contenir maximum 40 caractères!'),
+        .max(40, 'Il doit contenir maximum 40 caractères!')
+        .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/, 'Il doit avoir au moins : 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre et 1 symbol.'),
       firstname: yup
         .string()
         .required('Le nom de l\'utilisateur est obligatoire!')
