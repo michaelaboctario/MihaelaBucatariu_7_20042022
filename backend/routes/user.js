@@ -3,7 +3,11 @@ const router = express.Router();
 const userCtrl = require('../controllers/user');
 const auth = require('../middleware/auth');
 
-router.post('/signup', userCtrl.signup);    
+// validaters
+const validateEmail = require('../middleware/validate-email');
+const validatePassword = require('../middleware/validate-password');
+
+router.post('/signup',  validateEmail, validatePassword, userCtrl.signup);    
 router.post('/login', userCtrl.login);
 router.get('/', auth, userCtrl.getAllUser);
 
