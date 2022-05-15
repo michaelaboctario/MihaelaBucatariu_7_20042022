@@ -59,19 +59,6 @@ img {
     color: #ff460c;
 }
 
-.nav-bar__logo-icon-left {
-    height: 80px;
-    width: 200px;
-    object-fit: cover;
-}
-
-@media screen and (max-width: 768px) {
-    .nav-bar__logo-icon-left {
-        height: 60px;
-        width: 160px;
-    }
-}
-
 .logo-full {
     height: 560px;
     width: 560px;
@@ -256,15 +243,6 @@ form {
     resize: none;
 }
 
-/*
-.post-content,
-.comment-content {
-    padding-top: 7px;
-    padding-right: 2px;
-    padding-bottom: 0px;
-    min-height: 110px;
-}
-*/
 .comment-content {
     width: 100%;
     min-height: 60px;

@@ -4,7 +4,7 @@
     <section class="post-card__group">
       <template v-if="!posts || !posts.length">
         <article >
-          <h3 class="post-card__message">Il n&rsquo;y a aucun message</h3>
+            <h3 class="post-card__message">Il n&rsquo;y a aucun message</h3>
         </article>
       </template>
       <template v-else>
