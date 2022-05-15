@@ -1,11 +1,13 @@
 <template>  
-   <HeaderItem />
-   <main class="post-card__container"> 
-      <div class="flex-container">
-         <img src="../assets/logos/icon.png" class="logo-full" alt="le logo de Groupomania">
-      </div>
-   </main>
-   <FooterItem />
+   <div>
+      <HeaderItem />
+      <main class="post-card__container"> 
+         <div class="flex-container">
+            <img src="../assets/logos/icon.png" class="logo-full" alt="le logo de Groupomania">
+         </div>
+      </main>
+      <FooterItem />
+   </div>
 </template>
 
 <script>

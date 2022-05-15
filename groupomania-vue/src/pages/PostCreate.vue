@@ -1,7 +1,7 @@
 <template>
-  <HeaderItem />
+  <div>
+ <HeaderItem />
   <main class="post-card__container">
-<!--     <PostItem :isReadOnly="false" @publish.once="save"></PostItem> -->
     <section>
       <PostItem
           v-model:title="title"
@@ -20,6 +20,7 @@
     </section> 
   </main>
   <FooterItem />
+  </div>
 </template>
 <script>
 

@@ -1,35 +1,37 @@
 <template>
+<div>
   <HeaderItem title="Modification du message" />
-  <main class="post-card__container">
-    <section>
-      <PostItem
-          v-model:title="title"
-          v-model:content="content" 
-          :isEditingPost="isEditingPost" 
-          :isReadOnly="false" 
-          @publish.once="save"
-          @toggleCreatingComment="toggleCreatingComment"
-          @deletePost.once="deletePost"
-          @cancel-edit="cancelEdit">
-      </PostItem> 
-      <CommentList :comments="allComments"></CommentList>
-          
-      <CommentItem v-if="isCreatingComment"
-          v-model:comment="comment" 
-          :isReadOnly="false" 
-          :isCreatingComment="isCreatingComment" 
-          @publishComment="publishComment"
-          @cancel-creating-comment="cancelCreatingComment">
-      </CommentItem>
-      <section
-        v-if="messageComments"
-        :class="loadingCommentsStatus !== 'failure' ? 'alert-success' : 'alert-error'"
-      >
-        {{ messageComments }}
-      </section> 
-    </section>
-  </main>
-  <FooterItem />
+    <main class="post-card__container">
+      <section>
+        <PostItem
+            v-model:title="title"
+            v-model:content="content" 
+            :isEditingPost="isEditingPost" 
+            :isReadOnly="false" 
+            @publish.once="save"
+            @toggleCreatingComment="toggleCreatingComment"
+            @deletePost.once="deletePost"
+            @cancel-edit="cancelEdit">
+        </PostItem> 
+        <CommentList :comments="allComments"></CommentList>
+            
+        <CommentItem v-if="isCreatingComment"
+            v-model:comment="comment" 
+            :isReadOnly="false" 
+            :isCreatingComment="isCreatingComment" 
+            @publishComment="publishComment"
+            @cancel-creating-comment="cancelCreatingComment">
+        </CommentItem>
+        <section
+          v-if="messageComments"
+          :class="loadingCommentsStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+        >
+          {{ messageComments }}
+        </section> 
+      </section>
+    </main>
+    <FooterItem />
+  </div> 
 </template>
 <script>
 
