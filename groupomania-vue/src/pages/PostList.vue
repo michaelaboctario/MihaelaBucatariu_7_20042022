@@ -1,7 +1,7 @@
 <template>
-<div>
-   <HeaderItem />
+<div class="flex-container">
     <main class="post-card__container"> 
+      <SectionTitle />
       <section class="post-card__group">
         <template v-if="!posts || !posts.length">
           <article >
@@ -35,12 +35,12 @@
 <script>
 
 import { mapState} from 'vuex'
-import HeaderItem from '@/components/HeaderItem.vue'
+import SectionTitle from '@/components/SectionTitle.vue'
 import FooterItem from '@/components/FooterItem.vue'
 
 export default {
     components: {
-    HeaderItem,
+    SectionTitle,
     FooterItem
 },
     computed: mapState({

@@ -1,8 +1,7 @@
 <template>
-
-<div>
-    <HeaderItem />
+<div class="flex-container">
     <main class="user-list__container">
+        <SectionTitle />
         <section class="user-list__group">        
             <article v-for="user in users" :key="user.id" class="user-list-item visual-hover">
                 <!-- <p class="user-list__image"><img :src="user.imageUrl" alt="image de profil de l'utilisateur"></p> -->
@@ -12,18 +11,17 @@
     </main>
     <FooterItem />
 </div>
-
 </template>
 
 <script>
 
-import HeaderItem from '@/components/HeaderItem.vue'
+import SectionTitle from '@/components/SectionTitle.vue'
 import FooterItem from '@/components/FooterItem.vue'
 import { mapState } from 'vuex';
 
 export default {
     components: {
-        HeaderItem,
+        SectionTitle,
         FooterItem
     },
     computed: mapState({
@@ -53,6 +51,7 @@ export default {
 
 .user-list__container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
     padding: 10px 40px;

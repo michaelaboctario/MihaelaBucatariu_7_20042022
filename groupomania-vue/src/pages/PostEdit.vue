@@ -1,7 +1,7 @@
 <template>
-<div>
-  <HeaderItem title="Modification du message" />
+<div class="flex-container">
     <main class="post-card__container">
+      <SectionTitle title="Modification du message" />
       <section>
         <PostItem
             v-model:title="title"
@@ -36,7 +36,7 @@
 <script>
 
 import { mapGetters, mapState } from 'vuex';
-import HeaderItem from '@/components/HeaderItem.vue';
+import SectionTitle from '@/components/SectionTitle.vue';
 import PostItem from '@/components/PostItem.vue';
 import CommentItem from '@/components/CommentItem.vue';
 import CommentList from '@/components/CommentList.vue';
@@ -44,7 +44,7 @@ import FooterItem from '@/components/FooterItem.vue';
 
 export default {
   components: {
-    HeaderItem,
+    SectionTitle,
     FooterItem,
     PostItem,
     CommentItem,

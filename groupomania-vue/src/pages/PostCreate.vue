@@ -1,38 +1,38 @@
 <template>
-  <div>
- <HeaderItem />
+<div class="flex-container">
   <main class="post-card__container">
-    <section>
-      <PostItem
-          v-model:title="title"
-          v-model:content="content" 
-          :isReadOnly="false" 
-          :canDelete="false" 
-          @publish.once="save"
-          @cancel-edit.once="cancelEdit">
-      </PostItem>
-    </section>
-    <section
-      v-if="message"
-      :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
-    >
-      {{ message }}
-    </section> 
+      <SectionTitle />
+      <section>
+        <PostItem
+            v-model:title="title"
+            v-model:content="content" 
+            :isReadOnly="false" 
+            :canDelete="false" 
+            @publish.once="save"
+            @cancel-edit.once="cancelEdit">
+        </PostItem>
+      </section>
+      <section
+        v-if="message"
+        :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+      >
+        {{ message }}
+      </section> 
   </main>
   <FooterItem />
-  </div>
+</div>
 </template>
 <script>
 
 import { mapGetters, mapState } from 'vuex';
 import PostItem from '@/components/PostItem.vue';
-import HeaderItem from '@/components/HeaderItem.vue';
+import SectionTitle from '@/components/SectionTitle.vue';
 import FooterItem from '@/components/FooterItem.vue';
 
 export default {
   components: {
     PostItem,
-    HeaderItem,
+    SectionTitle,
     FooterItem,
 },
   data () {

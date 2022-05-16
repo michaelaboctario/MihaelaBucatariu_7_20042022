@@ -1,7 +1,7 @@
 <template>  
   
   <div class="container">
-      <HeaderItem title="Enregistrement nouveau utilisateur"/>
+      <SectionTitle title="Enregistrement nouveau utilisateur"/>
       <div class="flex-container ">
           <div class="col-7">
               <!-- <h1 class="text-center">Groupomania</h1> -->
@@ -57,7 +57,7 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import HeaderItem from "@/components/HeaderItem.vue";
+import SectionTitle from "@/components/SectionTitle.vue";
 
 export default {
   name: "RegisterUser",
@@ -65,7 +65,7 @@ export default {
     Form,
     Field,
     ErrorMessage,
-    HeaderItem
+    SectionTitle
 },
   data () {
     const schema = yup.object().shape({

@@ -1,6 +1,6 @@
 <template>  
   <div class="container">
-   <HeaderItem title="Connexion utilisateur"/>
+   <SectionTitle title="Connexion utilisateur"/>
     <div class="flex-container">    
         <div class="col-7">
             <!-- print form values -->
@@ -40,7 +40,7 @@
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
-import HeaderItem from '@/components/HeaderItem.vue';
+import SectionTitle from '@/components/SectionTitle.vue';
 
 export default {
   name: 'LoginUser',
@@ -48,7 +48,7 @@ export default {
     Form,
     Field,
     ErrorMessage,
-    HeaderItem
+    SectionTitle
 },
   data () {
     const schema = yup.object().shape({

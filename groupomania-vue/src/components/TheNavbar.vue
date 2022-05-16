@@ -3,7 +3,14 @@
   <header class="header" id="header">
      <nav class="navbar" :class="{ responsive: isResponsive }" id="navbar">
       <ul>    
-        <li class="active"><router-link to="/" >Accueil</router-link></li>
+        <!-- <li class="active"><router-link to="/" >Accueil</router-link></li> -->
+        <li>
+          <router-link :to="{name: 'HomePage'}" >
+            <div class="img__logo-icon-left">
+              <img src="../assets/logos/icon-left-font.png" class="nav-bar__logo-icon-left" alt="le logo de Groupomania">
+            </div>
+          </router-link>
+        </li>
         <li v-if="authUser"><router-link to="/posts">Messages</router-link></li>
         <li v-if="authUser"><router-link to="/posts/create">Publier</router-link></li>     
         <li v-if="authUser"><router-link to="/users">Utilisateurs</router-link></li>      
@@ -15,9 +22,11 @@
           </a>
         </li>
         <li class="li-fa-icon">
-          <a href="#" @click="toggleResponsive" class="nav-fa-icon">
-           <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'bars' }" />
-          </a>
+          <div class="link__nav-fa-icon">
+              <a href="#" @click.prevent="toggleResponsive" class="nav-fa-icon">
+                <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'bars' }" />
+              </a>
+          </div>
         </li>
       </ul>
     </nav>
@@ -44,7 +53,6 @@ export default {
     toggleResponsive() {
       console.log("toggle responsive");
       this.isResponsive = !this.isResponsive;
-      return false;   //return false from onclick event handler to prevent the link being followed and scrolling up to the top of the page.
     },
   },
 }
@@ -59,20 +67,24 @@ export default {
 .navbar li {
   float: left;
   display: block;
-  padding: 14px 16px;
+  padding-left: 20px;
+  height: 80px;
+  /* width: 200px; */
 }
 
 .navbar a {
   color: #f2f2f2;
   text-align: center;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 24px;
+  line-height: 80px; 
 }
 
 .nav-fa-icon {
   text-align: center;
-  padding: 14px 16px;
   font-size: 17px;
+  float: right;
+  padding: 0 20px;
 }
 
 .navbar li:hover {
@@ -87,6 +99,33 @@ export default {
 
 .navbar li.li-fa-icon {
   display: none;
+}
+
+.img__logo-icon-left, .link__nav-fa-icon {
+  float: clear;
+}
+
+.nav-bar__logo-icon-left {
+    /* float: left; */
+    display: block;
+    height: 80px;
+    width: 200px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-bar__logo-icon-left {
+        height: 60px;
+        width: 140px;
+        float: left;
+    }
+    .navbar li {
+      height: 60px;
+     /*  width: 140px; */
+    }
+    .navbar a {
+      line-height: 60px;
+    }
 }
 
 @media screen and (max-width: 768px) {
