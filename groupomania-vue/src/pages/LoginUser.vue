@@ -1,40 +1,41 @@
 <template>  
-  <div class="container">
-   <SectionTitle title="Connexion utilisateur"/>
-    <div class="flex-container">    
-        <div class="col-7">
-            <!-- print form values -->
-            <!-- <Form @submit="register" :validation-schema="schema" v-slot="{ values }">               
-                <pre>{{ values }}</pre> -->
-            <!-- <h1 class="text-center">Groupomania</h1>     -->
-            <Form @submit="handleLogin" :validation-schema="schema">               
-                <!-- <h2 class="text-center">Connexion</h2> -->
-                <div class="input-group">
-                    <label for="username">Nom d'utilisateur</label>
-                    <Field v-model="form.username" id="username" name="username" type="text" class="form-input" />
-                    <ErrorMessage name="username" class="form-error" />
-                </div>
+  <div class="flex-container">
+    <main class="post-card__container">     
+    <SectionTitle title="Connexion utilisateur"/>
 
-                <div class="input-group">
-                    <label for="password">Mot de passe</label>
-                    <Field v-model="form.password" id="password" name="password" type="password" class="form-input" />
-                    <ErrorMessage name="password" class="form-error" />
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-default btn-block">Se connecter</button>
-                </div>
+        <!--  <div class="col-three"> -->
+          <!-- print form values -->
+          <!-- <Form @submit="register" :validation-schema="schema" v-slot="{ values }">               
+              <pre>{{ values }}</pre> -->
+          <!-- <h1 class="text-center">Groupomania</h1>     -->
+        <Form @submit="handleLogin" :validation-schema="schema">               
+            <!-- <h2 class="text-center">Connexion</h2> -->
+            <div class="input-group">
+                <label for="username">Nom d'utilisateur</label>
+                <Field v-model="form.username" id="username" name="username" type="text" class="form-input" />
+                <ErrorMessage name="username" class="form-error" />
+            </div>
 
-                <div
-                  v-if="message"
-                  :class="successful ? 'alert-success' : 'alert-error'"
-                >
-                  {{ message }}
-                </div>  
-            </Form>
-        </div>
-    </div>
-  </div>
+            <div class="input-group">
+                <label for="password">Mot de passe</label>
+                <Field v-model="form.password" id="password" name="password" type="password" class="form-input" />
+                <ErrorMessage name="password" class="form-error" />
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-default btn-block">Se connecter</button>
+            </div>
+
+            <div
+              v-if="message"
+              :class="successful ? 'alert-success' : 'alert-error'"
+            >
+              {{ message }}
+            </div>  
+        </Form>
+      </main>
+   </div>
+  <!-- </div> -->
 </template>
 
 <script>

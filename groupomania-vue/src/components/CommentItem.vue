@@ -1,6 +1,6 @@
   <template>
     <article class="comment-item">
-      <form @submit.prevent="$emit('publishComment', {content})">
+      <form class="comment-item__form" @submit.prevent="$emit('publishComment', {content})">
           <div class="comment-item__group">
               <label for="comment-item__content">Commenter:</label>
                 <textarea

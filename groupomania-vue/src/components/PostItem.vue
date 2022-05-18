@@ -1,6 +1,6 @@
 <template>
   <article class="post-item" v-bind:class="{visualHover: hasHover}">
-      <form @submit.prevent="$emit('publish', {title, content})">
+      <form class="post-item__form" @submit.prevent="$emit('publish', {title, content})">
         <div class="post-item__group">
           <label for="post-item__title">Titre:</label>
           <input

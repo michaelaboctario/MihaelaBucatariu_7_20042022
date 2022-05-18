@@ -6,6 +6,7 @@ import PostEdit from '@/pages/PostEdit.vue'
 import HomePage from '@/pages/HomePage.vue'
 import LoginUser from '@/pages/LoginUser.vue'
 import RegisterUser from '@/pages/RegisterUser.vue'
+import UserProfile from '@/pages/UserProfile.vue'
 import UserList from '@/pages/UserList.vue'
 import NotFound from '@/pages/NotFound.vue'
 
@@ -36,6 +37,11 @@ const routes = [
     path: '/register',
     name: 'RegisterUser',
     component: RegisterUser,
+  },
+  {
+    path: '/profile',
+    name: 'UserProfile',
+    component: UserProfile,
   },
   {
     path: '/login',

@@ -3,7 +3,7 @@
   <div class="container">
       <SectionTitle title="Enregistrement nouveau utilisateur"/>
       <div class="flex-container ">
-          <div class="col-7">
+          <!-- <div class="col-three"> -->
               <!-- <h1 class="text-center">Groupomania</h1> -->
               <Form @submit="register" :validation-schema="schema">               
                   <!-- <h2 class="text-center">Enregistrement nouveau utilisateur</h2> -->
@@ -49,7 +49,7 @@
                     {{ message }}
                   </div>  
               </Form>
-          </div>
+          <!-- </div> -->
       </div>
   </div>
 </template>

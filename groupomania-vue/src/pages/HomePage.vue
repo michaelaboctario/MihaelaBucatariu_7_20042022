@@ -2,9 +2,7 @@
    <div class="flex-container">
       <SectionTitle />
       <main class="post-card__container"> 
-         <div class="flex-container">
-            <img src="../assets/logos/icon.png" class="logo-full" alt="le logo de Groupomania">
-         </div>
+         <img src="../assets/logos/icon.png" class="logo-full" alt="le logo de Groupomania">
       </main>
       <FooterItem />
    </div>

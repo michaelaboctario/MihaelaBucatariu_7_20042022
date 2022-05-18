@@ -13,7 +13,8 @@
         </li>
         <li v-if="authUser"><router-link to="/posts">Messages</router-link></li>
         <li v-if="authUser"><router-link to="/posts/create">Publier</router-link></li>     
-        <li v-if="authUser"><router-link to="/users">Utilisateurs</router-link></li>      
+        <li v-if="authUser"><router-link to="/users">Utilisateurs</router-link></li>  
+        <li v-if="authUser"><router-link to="/profile">Profile</router-link></li>        
         <li v-if="!authUser"><router-link to="/register">Enregistrement</router-link></li>
         <li v-if="!authUser"><router-link to="/login">Connexion</router-link></li>
         <li  v-if="authUser">
@@ -67,7 +68,7 @@ export default {
 .navbar li {
   float: left;
   display: block;
-  padding-left: 20px;
+  padding: 0 20px;
   height: 80px;
   /* width: 200px; */
 }
@@ -90,6 +91,7 @@ export default {
 .navbar li:hover {
   background-color: #ddd;
   color: black;
+  padding: 0 20px; 
 }
 
 .navbar li.active {
