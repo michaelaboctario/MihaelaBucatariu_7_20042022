@@ -1,5 +1,6 @@
 const db = require('../models');
 const User = db.user;
+const Role = db.role;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 
@@ -56,4 +57,36 @@ exports.getAllUser = (req, res) => {
       .catch(error => {
         res.status(400).json({message: error.message});
       });
+  };
+
+exports.getOneUser = (req, res) => {
+    User.findByPk(req.params.id, 
+      { include: { model: Role},
+        attributes: {exclude: ['password']},
+    })   
+    .then(user => { res.status(200).json(user)})
+    .catch(error=> { res.status(404).json({ message: error.message })});
+};
+
+exports.updateUser = (req, res) => {
+    User.findByPk(req.params.id).then(user => {
+      if (!user) {
+        return res.status(404).json({ message: 'Utilisateur non trouvée !' });
+      }
+     /*  else if (req.body.userId && req.body.userId !== post.userId) {
+        res.status(401).json({ message: 'Modification non autorisée !' });
+      } */
+      else {
+        const userObject = { ...req.body};
+        User.update({
+            firstname : req.body.firstname,           
+            lastname : req.body.lastname,
+          },  
+          {
+            where: { id: req.params.id  }  
+          }) 
+        .then(() => res.status(200).json({ message: 'Utilisateur modifié !' }))
+        .catch(error => res.status(400).json({ message: error.message })); 
+      };   
+    })
   };
