@@ -3,6 +3,7 @@ const User = db.user;
 const Role = db.role;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
+const fs = require('fs'); 
 
 exports.signup = (req, res) => {
     User.create({
@@ -69,24 +70,33 @@ exports.getOneUser = (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-    User.findByPk(req.params.id).then(user => {
-      if (!user) {
-        return res.status(404).json({ message: 'Utilisateur non trouvée !' });
+  User.findByPk(req.params.id).then(user => {
+    if (!user) {
+      return res.status(404).json({ message: 'Utilisateur non trouvée !' });
+    }
+    else {
+      if(req.file) {
+        const filename = user.photourl?.split('/images/')[1];
+        if( filename) {
+          fs.unlink(`images/${filename}`, error => {
+            if (error) {
+              throw new Error(error);
+            }
+          });
+        }  
       }
-     /*  else if (req.body.userId && req.body.userId !== post.userId) {
-        res.status(401).json({ message: 'Modification non autorisée !' });
-      } */
-      else {
-        const userObject = { ...req.body};
-        User.update({
-            firstname : req.body.firstname,           
-            lastname : req.body.lastname,
-          },  
-          {
-            where: { id: req.params.id  }  
-          }) 
-        .then(() => res.status(200).json({ message: 'Utilisateur modifié !' }))
-        .catch(error => res.status(400).json({ message: error.message })); 
-      };   
-    })
-  };
+      const userObject = req.file ? {
+          ...JSON.parse(req.body.user),
+          photourl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+        } : { 
+          ...req.body 
+      };
+      User.update(userObject,  
+      {
+        where: { id: req.params.id  }  
+      })
+      .then(() => res.status(200).json({ message: 'Utilisateur modifié !' }))
+      .catch(error => res.status(400).json({ message: error.message })); 
+    };   
+  })
+};

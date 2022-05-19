@@ -15,6 +15,7 @@ backend/controllers/dist
 backend/models/dist
 backend/routes/dist
 backend/config/dist
+backend/images
 
 # local env files
 .env.local
