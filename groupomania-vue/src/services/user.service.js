@@ -13,11 +13,18 @@ class UserService {
       .get(`${API_URL}${id}`, { headers: authHeader() })
       .then(response => response.data);
   }
-  updateUser(user) {
-    return axios
-      .put(`${API_URL}${user.id}`, user, { headers: authHeader() })
+
+  // use fetch to send the request, found some problems with axios
+  updateUser(formData) {
+    const user = JSON.parse(formData.get('user'))
+    const url=`${API_URL}/${user.id}`
+    return fetch(url, {
+      method: "PUT",
+      body: formData,
+      headers: { ...authHeader(), 'accept': 'application/json'}})
       .then(response => response.data);
   }
+
   deleteUser(id) {
     return axios
       .delete(`${API_URL}${id}`, { headers: authHeader() })

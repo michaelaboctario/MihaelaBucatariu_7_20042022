@@ -46,18 +46,19 @@ export const users = {
         }
       );
     },
-    updateUser ({ commit }, {user}) {
+    updateUser ({ commit }, {formData}) {
       console.log("updateUser befor commit")
-      console.log(user)
+      console.log(formData.get('user'))
+      console.log(formData.get('image'))
       //console.log(id)
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
-      return UserService.updateUser(user).then(
-        response => {
-          commit('updateUser', {user})
+      return UserService.updateUser(formData).then(
+        () => {
+          commit('updateUser', {user: JSON.parse(formData.get('user'))})
           commit('setLoadingStatus', 'success')
-          commit('setMessage', response.message)
-          return Promise.resolve(user)
+          //commit('setMessage', response.message)
+          return Promise.resolve(formData.user)
         },
         error => {
           commit('setLoadingStatus', 'failure')

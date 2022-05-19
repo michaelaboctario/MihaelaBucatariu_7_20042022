@@ -155,11 +155,11 @@ textarea {
     display: block;
 }
 
-input:read-only, 
+/* input:read-only, 
 textarea:read-only {
     color: #b1999d;
     pointer-events: none;
-}
+} */
 
 form {
     margin: 0;

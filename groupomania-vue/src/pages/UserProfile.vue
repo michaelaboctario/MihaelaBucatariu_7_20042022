@@ -1,20 +1,23 @@
 <template>
-<div class="flex-container">
+<div class="flex-container">  
   <main class="post-card__container">
-      <SectionTitle title="Mon compte utilisateur"/>
-       
+      <SectionTitle title="Mon compte utilisateur"/>             
         <Form @submit="save" :validation-schema="schema"> 
             <div class="input-group__image">
                 <div class="profile__image">
-                <!-- <img :src="userProfile.imageUrl" alt="Photo de profil"> -->
-                    <img src="../assets/logos/user-profile.png" alt="Photo de profil"> 
+                    <img :src="profileImage" alt="Photo de profil"> 
                 </div>
-                                <!-- Modification de l'image -->
+
                 <div class="select__image">
                     <label for="choose-image">
                         <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'pen' }" class="profile-fa-icon"/>
                     </label>
-                    <input type="file" name="choose-image" id="choose-image" class="" accept=".png, .jpg, .jpeg" aria-label="Choisir une image de profil" @change="updateImage"/>
+                     <input
+                          type="file"
+                          accept="image/*"
+                          ref="file"
+                          @change="selectImage"
+                      />              
                 </div> 
             </div>      
 
@@ -82,6 +85,8 @@ export default {
         .max(40, 'Il doit contenir maximum 40 caractères!'),  
     });  
     return {
+      selectedImage: '',
+      currentImageFile: '',
       successful: false, 
       schema,
       form: {
@@ -99,18 +104,18 @@ export default {
         message: state => state.users.message,
         loadingStatus: state => state.users.loadingStatus,
     }),
-    connectedUser() { return this.authUser.id },     
+    connectedUser() { return this.authUser.id },  
+    profileImage() { return this.selectedImage === "" ? "user-profile.png" : this.selectedImage; }, 
   },
   mounted() {
-      console.log("mounted")
-      console.log(this.connectedUser)
       this.$store.dispatch('users/getOneUser', this.connectedUser).then(
       data => {
-        console.log("'users/getOneUser", data)
+        //console.log("'users/getOneUser", data)
         this.successful = true
         this.form.firstname = data.firstname
         this.form.lastname = data.lastname
         this.form.email = data.email
+        this.selectedImage = data.photourl
       },
       () => {
         this.successful = false
@@ -122,16 +127,24 @@ export default {
       this.successful = false
       const user = { ...this.currentUser, 
           firstname: this.form.firstname, 
-          lastname: this.form.lastname, 
+          lastname: this.form.lastname,
+          // l'url du photo, photourl, sera construite sur le backend 
       }
-      this.$store.dispatch('users/updateUser', {user}).then(
+      const formData = new FormData();
+      formData.append('user', JSON.stringify(user));
+      formData.append('image', this.currentImageFile);
+      this.$store.dispatch('users/updateUser', {formData}).then(
         () => {
           this.successful = true;
           this.$router.push('/users');
         }
       );
     },
-  },
+    selectImage() {
+      this.currentImageFile = this.$refs.file.files.item(0)
+      this.selectedImage = URL.createObjectURL(this.currentImageFile)
+    },
+   }
 }
 </script>
 
@@ -146,16 +159,12 @@ export default {
     .profile__image img {
         width: 110px;
         height: 110px;
-       /*  width: 110px;
-        height: 110px; */
     }
     .profile-fa-icon {
         display: inline-block;
         width: 28px;
         height: 28px;
         margin-right: 10px;
-       /*  width: 110px;
-        height: 110px; */
     }
 
 
