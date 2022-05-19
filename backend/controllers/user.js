@@ -12,7 +12,7 @@ exports.signup = (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         username: req.body.username,
-        roleId: 1,
+        roleId: 3,    // utilisateur normal, role 3
     })
     .then(user => {      
         res.send({ message: 'L\'utilisateur a été correctement crée!' });
@@ -46,6 +46,7 @@ exports.login = (req, res) => {
 
 exports.getAllUser = (req, res) => {
     User.findAll({
+        include: {model: Role},
         attributes: {exclude: ['password']},
         order: [
             ['lastname', 'ASC'],
@@ -99,4 +100,25 @@ exports.updateUser = (req, res) => {
       .catch(error => res.status(400).json({ message: error.message })); 
     };   
   })
+};
+
+exports.deleteUser = (req, res) => {
+  if(req.auth.userId !==1 )  // not admin role
+  {
+    res.status(401).json({ message: 'Suppression d\'utilisateur non autorisée !' });
+  }
+  else
+  {
+    User.findByPk(req.params.id).then(user => {
+      if (!user) {
+        return res.status(404).json({ message: 'Utilisateur non trouvée !' });
+      }
+      else {
+        User.destroy({ where: { id: req.params.id } })  
+              .then(() => res.status(200).json({ message: 'Utilisateur supprimé !'}))
+              .catch(error => res.status(400).json({ error }));
+      };   
+    })
+    .catch(error => res.status(500).json({ message: error.message }));
+  }
 };
