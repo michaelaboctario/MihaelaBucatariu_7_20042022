@@ -67,10 +67,10 @@ export const auth = {
       return state.user?.token;
     },
     isAdminUser(state) {
-      return state.user?.userData.userId===1;
+      return state.user?.userData.roleId===1;
     },
     isModeratorUser(state) {
-      return state.user?.userData.userId===2;
+      return state.user?.userData.roleId===2;
     },
   }
 };

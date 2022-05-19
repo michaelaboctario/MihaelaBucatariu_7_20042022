@@ -585,7 +585,7 @@ figure {
 }
 
 .post-item:hover.visual-hover,
-.user-list-item:hover.visual-hover {
+.user-list__item:hover.visual-hover {
     transform: scale(1.02);
     box-shadow: 1px 1px 20px rgba(58, 17, 17, 0.3);
 }
@@ -641,7 +641,7 @@ figure {
 }
 
 .comment-list-item,
-.user-list-item {
+.user-list__item {
     background: #fbf0f0;
     display: block;
     border-radius: 16px;

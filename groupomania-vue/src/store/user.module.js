@@ -47,10 +47,10 @@ export const users = {
       );
     },
     updateUser ({ commit }, {formData}) {
-      console.log("updateUser befor commit")
-      console.log(formData.get('user'))
-      console.log(formData.get('image'))
-      //console.log(id)
+      // console.log("updateUser befor commit")
+      // console.log(formData.get('user'))
+      // console.log(formData.get('image'))
+      // console.log(id)
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return UserService.updateUser(formData).then(
@@ -59,6 +59,27 @@ export const users = {
           commit('setLoadingStatus', 'success')
           //commit('setMessage', response.message)
           return Promise.resolve(formData.user)
+        },
+        error => {
+          commit('setLoadingStatus', 'failure')
+          commit('setMessage', error.message)
+          return Promise.reject(error);
+        }
+      );
+    },
+    deleteUser ({ commit }, id) {
+      console.log("deleteUser")
+      //console.log(id)
+      commit('setLoadingStatus', 'loading')
+      commit('setUserCurrentItem', {user: null})
+      commit('deleteUser', id)
+      commit('setMessage', '')
+      return UserService.deleteUser(id).then(
+        (data) => {
+          commit('setLoadingStatus', 'success')
+          commit('setMessage', data.message)
+          // ça n'existe pas de message de reponse 
+          return Promise.resolve(data.message)
         },
         error => {
           commit('setLoadingStatus', 'failure')
@@ -77,10 +98,15 @@ export const users = {
       state.userCurrentItem = user;
     },
     updateUser (state, {user}) {
-      console.log("updateUser")
-      console.log(state)
-      console.log(user)
+      // console.log("updateUser")
+      // console.log(state)
+      // console.log(user)
       state.userItems = state.userItems.map(elem => elem.id === user.id ? user : elem)
+    },
+    deleteUser (state, id) {
+      // console.log("deleteUser", id)
+      // console.log(state)
+      state.userItems = state.userItems.filter(elem => elem.id !== id)
     },
     setLoadingStatus (state, status) {
       state.loadingStatus = status
