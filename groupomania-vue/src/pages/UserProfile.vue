@@ -40,6 +40,7 @@
             </div>
             
             <div class="form-actions">
+                <button type="button" class="btn-normal" @click.once="cancelEdit">Annuler</button>
                 <button type="submit" class="btn-default btn-block">Enregistrer</button>
             </div>
 
@@ -140,6 +141,10 @@ export default {
         }
       );
     },
+    cancelEdit () {
+        console.log('cancel')
+        this.$router.push('/users');
+    },
     selectImage() {
       this.currentImageFile = this.$refs.file.files.item(0)
       this.selectedImage = URL.createObjectURL(this.currentImageFile)
@@ -166,6 +171,5 @@ export default {
         height: 28px;
         margin-right: 10px;
     }
-
-
+    
 </style>
