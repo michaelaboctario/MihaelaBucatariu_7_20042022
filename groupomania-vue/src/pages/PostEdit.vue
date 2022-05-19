@@ -5,7 +5,8 @@
       <section>
         <PostItem
             v-model:title="title"
-            v-model:content="content" 
+            v-model:content="content"
+            :canComment="true" 
             :isEditingPost="isEditingPost" 
             :isReadOnly="false" 
             @publish.once="save"

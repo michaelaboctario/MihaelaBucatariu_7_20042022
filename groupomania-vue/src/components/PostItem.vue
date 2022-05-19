@@ -28,12 +28,11 @@
           </textarea>
         </div>
         <div class="form-actions">
-          <template v-if="isEditingPost">
-            <button class="btn-normal" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
-            <button v-if="canDelete" class="btn-normal" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
-            <button class="btn-normal" type="button"  @click="$emit('toggleCreatingComment')" name="Commenter">Commenter</button>
-            <button class="btn-default" type="submit" name="Publier">Publier</button> 
-          </template>
+            <button v-if="isEditingPost" class="btn-normal" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
+            <button v-if="isEditingPost && canDelete" class="btn-normal" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
+            <button v-if="isEditingPost && canComment" :class="[isEditingPost ? 'btn-normal' : 'btn-default']" type="button"  @click="$emit('toggleCreatingComment')" name="Commenter">Commenter</button>
+            <button v-if="isEditingPost" class="btn-default" type="submit" name="Publier">Publier</button> 
+
           <!-- <template v-else >
             <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
             <button class="post-card__btn-comment" type="button"  @click="$emit('toggleEditingPost')" name="Modifier">Modifier</button>           
@@ -53,6 +52,10 @@ export default {
               default: true
           },
           'canDelete': {
+              type: Boolean,
+              default: true
+          },
+          'canComment': {
               type: Boolean,
               default: true
           },

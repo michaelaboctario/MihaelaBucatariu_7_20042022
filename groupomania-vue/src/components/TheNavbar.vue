@@ -68,9 +68,12 @@ export default {
 .navbar li {
   float: left;
   display: block;
-  padding: 0 20px;
   height: 80px;
   /* width: 200px; */
+}
+
+.navbar li:not(:first-child) {
+  padding: 0 20px;
 }
 
 .navbar a {
@@ -89,8 +92,10 @@ export default {
 }
 
 .navbar li:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: rgba(248, 200, 200, 0.3);
+}
+
+.navbar li:hover:not(:first-child) {
   padding: 0 20px; 
 }
 

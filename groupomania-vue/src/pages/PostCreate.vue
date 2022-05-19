@@ -7,7 +7,8 @@
             v-model:title="title"
             v-model:content="content" 
             :isReadOnly="false" 
-            :canDelete="false" 
+            :canDelete="false"
+            :canComment="false" 
             @publish.once="save"
             @cancel-edit.once="cancelEdit">
         </PostItem>
