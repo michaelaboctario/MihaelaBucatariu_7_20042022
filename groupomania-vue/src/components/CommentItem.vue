@@ -8,7 +8,7 @@
                   id="comment-item__content"
                   class="comment-item__content"
                   name="comment"
-                  rows="8"
+                  rows="6"
                   cols="140"
                   @input="$emit('update:comment', $event.target.value)"
                   :readonly="isReadOnly"

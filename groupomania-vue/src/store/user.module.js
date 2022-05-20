@@ -47,17 +47,12 @@ export const users = {
       );
     },
     updateUser ({ commit }, {formData}) {
-      // console.log("updateUser befor commit")
-      // console.log(formData.get('user'))
-      // console.log(formData.get('image'))
-      // console.log(id)
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return UserService.updateUser(formData).then(
         () => {
           commit('updateUser', {user: JSON.parse(formData.get('user'))})
           commit('setLoadingStatus', 'success')
-          //commit('setMessage', response.message)
           return Promise.resolve(formData.user)
         },
         error => {
@@ -68,17 +63,14 @@ export const users = {
       );
     },
     deleteUser ({ commit }, id) {
-      console.log("deleteUser")
-      //console.log(id)
       commit('setLoadingStatus', 'loading')
       commit('setUserCurrentItem', {user: null})
       commit('deleteUser', id)
       commit('setMessage', '')
       return UserService.deleteUser(id).then(
-        (data) => {
+        data => {
           commit('setLoadingStatus', 'success')
           commit('setMessage', data.message)
-          // ça n'existe pas de message de reponse 
           return Promise.resolve(data.message)
         },
         error => {
@@ -94,18 +86,12 @@ export const users = {
       state.userItems = user
     },
     setUserCurrentItem (state, {user}) {
-      console.log("setusercurrentitem", user);
       state.userCurrentItem = user;
     },
     updateUser (state, {user}) {
-      // console.log("updateUser")
-      // console.log(state)
-      // console.log(user)
       state.userItems = state.userItems.map(elem => elem.id === user.id ? user : elem)
     },
     deleteUser (state, id) {
-      // console.log("deleteUser", id)
-      // console.log(state)
       state.userItems = state.userItems.filter(elem => elem.id !== id)
     },
     setLoadingStatus (state, status) {

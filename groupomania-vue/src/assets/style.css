@@ -18,7 +18,6 @@ body {
     }
 }
 
-
 *,
 *:after,
 *:before {
@@ -45,23 +44,13 @@ body {
     /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-@media screen and (min-width: 1023px) {
-    html {
-        font-size: 18px;
-    }
-}
-
 @media screen and (max-width: 1023px) {
     html {
         font-size: 16px;
     }
 }
 
-
-
 img {
-    /* height: auto;
-    max-width: 100%; */
     object-fit: cover;
 }
 
@@ -99,8 +88,6 @@ img {
 .post-item__author,
 .comment-list-item__author {
     color: rgba(84, 84, 84, 0.781);
-  /*   width: 200px;
-    max-width: 240px; */
     margin-left: auto;
     padding-right: 20px;
     font-size: 16px;
@@ -285,34 +272,10 @@ form {
     display: block;
 }
 
-.form-label,
-.input-group>label
-.post-item__group>label {
-    margin-bottom: 5px;
-    display: block;
-    color: #767676;
-}
-
-.form-label-password,
-.input-group>label-password
-.post-item__group>label-password {
-    margin-bottom: 0px;
-}
-
-@media screen and (max-width: 768px) {
-    .form-btn {
-        width: 100%;
-    }
-}
-
 input[type="submit"],
 button {
     font-size: 18px;
     cursor: pointer;
-}
-
-button a {
-    color: white;
 }
 
 button {
@@ -362,7 +325,7 @@ button {
 }
 
 .form-actions>*:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 4px;
 }
 
 @media screen and (max-width: 768px) {
@@ -370,44 +333,6 @@ button {
         flex-wrap: wrap;
     }
 }
-
-.card {
-    background: white;
-    margin-top: 20px;
-}
-
-@media screen and (max-width: 768px) {
-    .card {
-        margin-bottom: 20px;
-    }
-}
-
-.card-form {
-    padding: 40px 60px;
-    position: relative;
-    z-index: 1;
-    margin-top: 40px;
-}
-
-@media screen and (min-width: 1024px) {
-    .card-form {
-        padding: 60px;
-    }
-}
-
-@media screen and (max-width: 1023px) {
-    .card-form {
-        padding: 40px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .card-form {
-        padding: 40px 20px;
-        margin-top: 10px;
-    }
-}
-
 
 h1,
 h2,
@@ -515,7 +440,7 @@ figure {
     margin: 0 1%;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .post-card__container {
         flex-basis: 98%;
         margin: 0 1%;
@@ -534,7 +459,7 @@ figure {
 
 .btn-default, 
 .btn-normal {
-    padding: 15px 30px;
+    padding: 10px 12px;
     border-radius: 20px;
     border: none;
     display: inline-block;
@@ -571,17 +496,27 @@ figure {
 .comment-item
  {
     display: flex;
-    width: 100%;
+   
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
     padding: 6px 16px;
-    box-shadow: 3px 3px 1px rgb(245 134 134 / 30%);
     margin-bottom: 20px;
     border-radius: 30px;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
+}
+
+.post-item {
+    width: 100%;
+    box-shadow: 3px 2px 5px 1px rgb(245 134 134 / 30%);
+}
+
+.comment-item {
+    width: 92%;
+    margin-left: auto;
+    box-shadow: 3px 2px 5px 1px rgba(194, 82, 82, 0.3);
 }
 
 .post-item:hover.visual-hover,

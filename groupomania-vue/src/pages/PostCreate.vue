@@ -13,9 +13,8 @@
             @cancel-edit.once="cancelEdit">
         </PostItem>
       </section>
-      <section
-        v-if="message"
-        :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+      <section v-if="message"
+        class="alert-error"
       >
         {{ message }}
       </section> 
@@ -38,7 +37,6 @@ export default {
 },
   data () {
     return {
-      successful: false,
       title: '',
       content: '',
     }
@@ -46,31 +44,23 @@ export default {
   computed: {
     ...mapGetters('auth', ['authUser']),
     ...mapState({
-        message: state => state.posts.message,
-        loadingStatus: state => state.posts.loadingStatus
+        message: state => state.posts.message,    //le message d'erreur est recupéré du store
     }), 
   },
   methods: {
     save ({title, content}) {
-      this.successful = false;
-      console.log('newPost', title, content)
       const post = {
           postTitle: title, 
           postContent: content, 
           postCreator: this.authUser.username, 
           userId: this.authUser.id
       }
-      console.log('post', post)
       this.$store.dispatch('posts/createPost', {post}).then(
-        () => {
-          this.successful = true;
-          this.$router.push('/posts');
-        },
+        () => this.$router.push('/posts'),
       );
     },
     cancelEdit () {
-        console.log('cancel')
-        this.$router.push('/posts');
+        this.$router.push('/posts')
     }
   },
 }

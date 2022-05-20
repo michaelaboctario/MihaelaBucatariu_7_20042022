@@ -2,14 +2,7 @@
   <div class="flex-container">
     <main class="post-card__container">     
     <SectionTitle title="Connexion utilisateur"/>
-
-        <!--  <div class="col-three"> -->
-          <!-- print form values -->
-          <!-- <Form @submit="register" :validation-schema="schema" v-slot="{ values }">               
-              <pre>{{ values }}</pre> -->
-          <!-- <h1 class="text-center">Groupomania</h1>     -->
         <Form @submit="handleLogin" :validation-schema="schema">               
-            <!-- <h2 class="text-center">Connexion</h2> -->
             <div class="input-group">
                 <label for="username">Nom d'utilisateur</label>
                 <Field v-model="form.username" id="username" name="username" type="text" class="form-input" />
@@ -27,8 +20,7 @@
             </div>
 
             <div
-              v-if="message"
-              :class="successful ? 'alert-success' : 'alert-error'"
+              v-if="message" class="alert-error"
             >
               {{ message }}
             </div>  
@@ -61,7 +53,6 @@ export default {
         .required('Le mot de passe est obligatoire!'),
     });
     return {
-      successful: false,
       message: '',  
       schema,
       form: {
@@ -72,28 +63,17 @@ export default {
   },
   methods: {
     handleLogin() {
-      this.loading = true
       this.$store.dispatch('auth/login', this.form).then(
         () => {
           this.$router.push('/');
         },
         error => {
-          this.loading = false;
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          this.message = error.response?.data?.message || error.toString()
+          setTimeout(() => this.message = '', 5000);
         }
-      );
+      )
     },
   },
 }
 
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

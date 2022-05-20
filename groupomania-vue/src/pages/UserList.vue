@@ -36,32 +36,20 @@ export default {
         ...mapGetters('auth', ['authUser', 'isAdminUser']),
         ...mapState({
             users: state => state.users.userItems,
-            userslength: state => state.users.userItems.length,
             message: state => state.users.message,
-            loadingStatus: state => state.users.loadingStatus,
         }), 
     },
     created () {
         this.$store.dispatch('users/getAllUser').then(
-        () => {
-          this.successful = true;
-        },
-        () => {
-          this.successful = false;
-        }
-      );
+            data => console.log("users/getAllUser", data)
+        );
     },
     methods: {
         canDeleteUser(user) { return this.isAdminUser && user.roleId === 3; },
         deleteUser (user) {
             this.successful = false
-            console.log("deleteUser", user)
             this.$store.dispatch('users/deleteUser',  user.id).then(
-                (data) => {
-                console.log("users/deleteUser", data)
-                this.successful = true;
-                //this.$router.push('/posts');
-                }
+                data => console.log("users/deleteUser", data)
             );
         },
     },

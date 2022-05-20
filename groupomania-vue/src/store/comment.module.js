@@ -13,7 +13,6 @@ export const comments = {
 
   actions: {  
     createComment ({ commit }, { comment, postId }) {
-      console.log("createComment befor commit", comment, postId)
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return CommentService.createComment({ comment, postId }).then(
@@ -51,7 +50,6 @@ export const comments = {
   },
   mutations: {
     setComment (state, {comment, postId}) {
-      console.log("setComment", comment, postId);
       if(state.postId === postId) {
         state.commentItems.push(comment)
       }

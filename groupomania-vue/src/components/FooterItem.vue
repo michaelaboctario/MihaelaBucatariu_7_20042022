@@ -37,39 +37,58 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped>
 
-.footer {
-    display: flex;
-    justify-content: center;
-    min-width: 480px;
-    margin-top: 30px;
-    & div {
+    .footer {
+        display: flex;
+        justify-content: center;
+        min-width: 480px;
+        margin-top: 20px;
+    }
+
+    .footer div {
         align-items: center;
     }
-    &-fa-icon {
-        width: 60px;
-        height: 60px;
-        &:hover {
-            cursor: pointer;
-        }
+
+    .footer-fa-icon {
+        width: 68px;
+        height: 68px;
     }
-    &-links {
+
+    .footer-fa-icon:hover {
+        cursor: pointer;
+    }
+        
+    .footer-links {
         display: flex;
         justify-content: space-between;
         list-style: none;
-        gap: 30px;
-        &-item {
-            & a.footer-fa-icon {
-                font-size: 30px;
-                color: white;
-                transition: all 400ms;
-                &:hover {
-                    transform: scale(1.2);
-                    text-shadow: 3px 3px 5px #122442;
-                }
-            }
+        gap: 18px;
+    }
+
+    .footer-fa-icon {
+        transition: all 200ms;
+    }
+
+    .footer-fa-icon:hover {
+        transform: scale(1.09);
+        text-shadow: 3px 3px 5px #122442;
+    }
+
+    @media screen and (max-width: 768px) {
+        .footer {
+            display: flex;
+            justify-content: center;
+            min-width: 420px;
+            margin-top: 10px;
+        }
+        .footer-fa-icon {
+            width: 48px;
+            height: 48px;
+        }
+        .footer-links {
+            gap: 12px;
         }
     }
-}
+
 </style>

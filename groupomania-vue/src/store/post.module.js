@@ -12,8 +12,6 @@ export const posts = {
 
   actions: {  
     createPost ({ commit }, {post}) {
-      //console.log("createPost befor commit")
-      //console.log(post)
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return PostService.createPost(post).then(
@@ -49,8 +47,6 @@ export const posts = {
       );
     },
     getOnePost ({ commit }, id) {
-      //console.log("getOnePost")
-      //console.log(id)
       commit('setLoadingStatus', 'loading')
       commit('setCurrentItem', {post: null})
       commit('setMessage', '')
@@ -69,13 +65,11 @@ export const posts = {
       );
     },
     deletePost ({ commit }, id) {
-      console.log("getOnePost")
-      //console.log(id)
       commit('setLoadingStatus', 'loading')
       commit('setCurrentItem', {post: null})
       commit('setMessage', '')
       return PostService.deletePost(id).then(
-        (data) => {
+        data => {
           commit('setLoadingStatus', 'success')
           commit('setMessage', data.message)
           // ça n'existe pas de message de reponse 
@@ -89,9 +83,6 @@ export const posts = {
       );
     },
     updatePost ({ commit }, {post}) {
-      // console.log("updatePost befor commit")
-      // console.log(post)
-      // console.log(id)
       commit('setLoadingStatus', 'loading')
       commit('setMessage', '')
       return PostService.updatePost(post).then(
@@ -111,23 +102,15 @@ export const posts = {
   },
   mutations: {
     setPost (state, {post}) {
-      //console.log("setpost", post);
       state.items.push(post)
     },
     setCurrentItem (state, {post}) {
-      //console.log("setcurrentitem", post);
       state.currentItem = post;
     },
     updatePost (state, {post}) {
-      // console.log("updatePost")
-      // console.log(state)
-      // console.log(post)
       state.items = state.items.map(elem => elem.id === post.id ? post : elem)
     },
     deletePost (state, id) {
-      // console.log("deletePost")
-      // console.log(state)
-      // console.log(id)
       state.items = state.items.filter(elem => elem.id !== id )
     },
     setPostItems (state, {post}) {

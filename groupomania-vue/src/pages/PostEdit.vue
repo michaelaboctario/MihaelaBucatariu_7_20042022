@@ -23,11 +23,9 @@
             @publishComment="publishComment"
             @cancel-creating-comment="cancelCreatingComment">
         </CommentItem>
-        <section
-          v-if="messageComments"
-          :class="loadingCommentsStatus !== 'failure' ? 'alert-success' : 'alert-error'"
+        <section v-if="message || messageComments" class="alert-error"
         >
-          {{ messageComments }}
+          {{ message }} {{ messageComments }}
         </section> 
       </section>
     </main>
@@ -55,7 +53,6 @@ export default {
     return {
       isEditingPost: false,
       isCreatingComment: false,
-      successful: false,
       title: '',
       content: '', 
       comment: '',
@@ -67,36 +64,32 @@ export default {
     ...mapGetters('auth', ['authUser', 'isAdminUser', 'isModeratorUser']),
     ...mapState({
         message: state => state.posts.message,
-        loadingStatus: state => state.posts.loadingStatus,
         currentItem: state => state.posts.currentItem,
         messageComments: state => state.comments.message,
-        loadingCommentsStatus: state => state.comments.loadingStatus,
     }),
     isHisOwnPost() { return this.authUser.id === this.userId },
     connectedUser() {return `${this.authUser.firstname} ${this.authUser.lastname}`},
     postAuthor () {return this.currentItem ? `${this.currentItem.user.firstname} ${this.currentItem.user.lastname}` : ''  },
     canUpdatePost() { return this.authUser.id === this.userId},
     canDeletePost() { return this.isAdminUser || this.isModeratorUser || this.canUpdatePost},
-    //postId() this.$route.params.id,
   },
   mounted() {
-      console.log("created")
-      console.log(this.$route.params.id)
       this.$store.dispatch('posts/getOnePost', this.$route.params.id).then(
       data => {
-        console.log("posts/getOnePost", data)
-        this.successful = true
         this.title = data.postTitle
         this.content = data.postContent
         this.userId = data.userId
         this.isEditingPost = this.canUpdatePost
-        //this.$router.push('/posts');
+        if(!this.isEditingPost) {
+           this.isCreatingComment = true
+        }
       },
-      () => {
-        this.successful = false
+      error => {
+        this.message = error.response?.data?.message || error.toString()
+        setTimeout(() => this.message = '', 5000);
       }
     );
-     this.getAllComment()
+      this.getAllComment()
   },
   methods: {
     toggleCreatingComment () { 
@@ -111,7 +104,6 @@ export default {
       }
     },
     save () {
-      this.successful = false
       const post = {
           postTitle: this.title, 
           postContent: this.content,
@@ -119,42 +111,29 @@ export default {
           id: this.$route.params.id,
       }
       this.$store.dispatch('posts/updatePost', {post}).then(
-        () => {
-          this.successful = true;
-          this.$router.push('/posts');
-        }
+        () => this.$router.push('/posts')
       );
     },
     deletePost () {
-      this.successful = false;
       this.$store.dispatch('posts/deletePost',  this.$route.params.id).then(
-        (data) => {
-          console.log("posts/deletePost", data)
-          this.successful = true;
-          this.$router.push('/posts');
-        }
+        () => this.$router.push('/posts')
       );
     },
     cancelEdit () {
         this.$router.push('/posts');
-        //this.isEditingPost = false
     },
     cancelCreatingComment () {
         this.toggleCreatingComment();
     },
     // for  comment form
     publishComment () {
-      this.successful = false;
       const comment = { 
           commentContent: this.comment, 
-          //postId: this.$route.params.id,
           userId: this.authUser.id,
       }
-      console.log('publishComment', comment)
-      this.comment=''
       this.$store.dispatch('comments/createComment', {comment, postId: this.$route.params.id}).then(
         () => {
-          this.successful = true
+          this.comment=''
           this.getAllComment()
           this.toggleCreatingComment()
           //this.$router.push('/posts');
@@ -162,16 +141,8 @@ export default {
       );
     },
     getAllComment () {
-        //getAllComment ({ commit }, {postId}) {
         this.$store.dispatch('comments/getAllComment', {postId: this.$route.params.id}).then(
-        (comments) => {
-          this.successful = true
-          this.allComments = comments
-          //this.$router.push('/posts');
-        },
-        () => {
-          this.successful = false;
-        }
+        comments => this.allComments = comments
       );
     },
   },

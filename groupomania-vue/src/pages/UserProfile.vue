@@ -41,7 +41,7 @@
             
             <div class="form-actions">
                 <button type="button" class="btn-normal" @click.once="cancelEdit">Annuler</button>
-                <button type="submit" class="btn-default btn-block">Enregistrer</button>
+                <button type="submit" class="btn-default">Enregistrer</button>
             </div>
 
             <div
@@ -171,5 +171,6 @@ export default {
         height: 28px;
         margin-right: 10px;
     }
-    
+
+
 </style>

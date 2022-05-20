@@ -18,7 +18,6 @@ const routes = [
    
   },
   {
-    //path: '/posts/:id',
     path: '/posts/:id',
     name: 'PostEdit',
     component: PostEdit,
