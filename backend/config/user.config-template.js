@@ -15,4 +15,12 @@ exports.moderatorUser = {
   password: "",
   roleId: 2
 }
-  
+ 
+exports.firstUser = {
+  firstname: "", 
+  lastname: "", 
+  username: "default-user", 
+  email: "default-user@gmail.com",
+  password: "",
+  roleId: 2
+}

@@ -6,13 +6,11 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
-const {adminUser, moderatorUser, firstUser} = require('./config/user.config');
+const {adminUser, moderatorUser} = require('./config/user.config');
 
 // express application
 const app = express();
 app.use(express.json());
-
-const {SYNC_DB}=process.env; 
 
 // helmet for securin the Express app by setting HTTP headers
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -36,23 +34,13 @@ app.use(limiter);
 
 // database
 const db = require('./models/index.js');
-const { exit } = require('process');
 const Role = db.role;
 const User = db.user;
 
 // db.sequelize.sync();  // création des tables
-// force: true will drop the table if it already exists
-const forcesync = SYNC_DB==='SYNC';
-console.log(forcesync);
-
-db.sequelize.sync({force: forcesync}).then(() => {
-  if(forcesync) {
-    console.log("Drop and resync in progress")
-    initial();
-  }
-  else {
+db.sequelize.sync().then(() => {
     console.log('Database connected, drop and Resync Database with { force: true }');
-  }})
+})
 .catch(error=>console.log(error.comment));
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
