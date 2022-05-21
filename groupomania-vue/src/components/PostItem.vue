@@ -32,12 +32,10 @@
           </textarea>
         </div>
         <div class="form-actions">
-          <template v-if="isEditingPost">
-              <button class="btn-normal" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
-              <button v-if="canDelete" class="btn-normal" type="button" @click="$emit('deletePost')" name="Supprimer">Supprimer</button>
-              <button v-if="canComment" :class="[isEditingPost ? 'btn-normal' : 'btn-default']" type="button"  @click="$emit('toggleCreatingComment')" name="Commenter">Commenter</button>
-              <button class="btn-default" type="submit" name="Publier">Publier</button> 
-          </template>
+            <button v-if="isEditingPost" class="btn-normal" type="button" @click="$emit('cancel-edit')" name="Cancel">Abandonner</button>
+            <button v-if="!isCreatingComment && canDelete" class="btn-normal" type="button" @click="$emit('delete-post')" name="Supprimer">Supprimer</button>
+            <button v-if="!isCreatingComment && canComment" :class="[isEditingPost ? 'btn-normal' : 'btn-default']" type="button"  @click="$emit('toggle-creating-comment')" name="Commenter">Commenter</button>
+            <button v-if="isEditingPost" class="btn-default" type="submit" name="Publier">Publier</button> 
           <!-- <template v-if="isCreatingComment">
               <button class="btn-normal" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
               <button class="btn-default" type="submit" name="Publier">Publier</button> 
@@ -69,7 +67,7 @@ export default {
               default: true
           },
           'hasHover': Boolean},
-  emits: ['update:title', 'update:content', 'publish', 'comment', 'toggleCreatingComment', 'deletePost', 'cancelEdit'],
+  emits: ['update:title', 'update:content', 'publish', 'comment', 'toggle-creating-comment', 'delete-post', 'cancel-edit'],
   name: 'PostItem'
 }
 </script>

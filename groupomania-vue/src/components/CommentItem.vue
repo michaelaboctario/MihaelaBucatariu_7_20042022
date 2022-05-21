@@ -1,6 +1,6 @@
   <template>
     <article class="comment-item">
-      <form class="comment-item__form" @submit.prevent="$emit('publishComment', {content})">
+      <form class="comment-item__form" @submit.prevent="$emit('publish-comment', {content})">
           <div class="comment-item__group">
               <label for="comment-item__content">Commenter:</label>
                 <textarea
@@ -18,7 +18,7 @@
                 </textarea>
           </div>
           <div class="form-actions">
-            <button class="btn-normal" type="button" @click="$emit('cancelCreatingComment')" name="Cancel">Abandonner</button>
+            <button class="btn-normal" type="button" @click="$emit('cancel-creating-comment')" name="Cancel">Abandonner</button>
             <button class="btn-default" type="submit" name="Publier">
               Publier
             </button>
@@ -36,7 +36,7 @@ export default {
               default: true
           },
   },
-  emits: ['update:comment', 'publishComment', 'cancelCreatingComment'],
+  emits: ['update:comment', 'publish-comment', 'cancel-creating-comment'],
   name: "CommentItem"
 }
 </script>

@@ -11,8 +11,8 @@
             :isCreatingComment="isCreatingComment" 
             :isReadOnly="false" 
             @publish.once="save"
-            @toggleCreatingComment="toggleCreatingComment"
-            @deletePost.once="deletePost"
+            @toggle-creating-comment="toggleCreatingComment"
+            @delete-post.once="deletePost"
             @cancel-edit="cancelEdit">
         </PostItem> 
         <CommentList :comments="allComments"></CommentList>
@@ -71,8 +71,7 @@ export default {
     isHisOwnPost() { return this.authUser.id === this.userId },
     connectedUser() {return `${this.authUser.firstname} ${this.authUser.lastname}`},
     postAuthor () {return this.currentItem ? `${this.currentItem.user.firstname} ${this.currentItem.user.lastname}` : ''  },
-    canUpdatePost() { return this.authUser.id === this.userId},
-    canDeletePost() { return this.isAdminUser || this.isModeratorUser || this.canUpdatePost},
+    //canDeletePost() { return this.isModeratorUser || this.isHisOwnPost},
   },
   mounted() {
       this.$store.dispatch('posts/getOnePost', this.$route.params.id).then(
@@ -80,8 +79,8 @@ export default {
         this.title = data.postTitle
         this.content = data.postContent
         this.userId = data.userId
-        this.isEditingPost = this.canUpdatePost
-        if(!this.isEditingPost) {
+        this.isEditingPost = this.isHisOwnPost
+        if(!this.isEditingPost && !this.isModeratorUser) {
            this.isCreatingComment = true
         }
       },
@@ -99,7 +98,7 @@ export default {
       {
         this.isEditingPost = false
       }
-      else if(this.canUpdatePost)
+      else if(this.isHisOwnPost)
       {
         this.isEditingPost = !this.isEditingPost
       }
