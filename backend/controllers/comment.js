@@ -44,7 +44,7 @@ exports.deleteComment = (req, res, ) => {
       else {
           User.findByPk(req.auth.userId)
             .then(user => {
-              if (user.roleId !==2 || req.auth.userId !== comment.userId) {
+              if (user.roleId !==2 && req.auth.userId !== comment.userId) {
                 return res.status(401).json({ message: "Suppression non autorisée !" });       
               }
               else {

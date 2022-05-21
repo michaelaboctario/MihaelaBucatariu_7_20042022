@@ -78,7 +78,7 @@ exports.deletePost = (req, res) => {
     //vérifier celui qui veut supprimer le post est bien l'auteur du post ou le moderateur
       User.findByPk(req.auth.userId)
         .then(user => {
-            if (user.roleId !== 2 || req.auth.userId !== post.userId) {
+            if (user.roleId !== 2 && req.auth.userId !== post.userId) {
               return res.status(401).json({ error: 'Suppression non autorisée !' });
             }
             else {
