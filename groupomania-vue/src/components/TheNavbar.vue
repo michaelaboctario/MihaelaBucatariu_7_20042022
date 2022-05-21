@@ -118,6 +118,7 @@ export default {
     height: 80px;
     width: 200px;
     object-fit: cover;
+    filter: opacity(0.9) saturate(8);
 }
 
 @media screen and (max-width: 768px) {

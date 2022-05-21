@@ -8,6 +8,7 @@
             v-model:content="content"
             :canComment="true" 
             :isEditingPost="isEditingPost" 
+            :isCreatingComment="isCreatingComment" 
             :isReadOnly="false" 
             @publish.once="save"
             @toggleCreatingComment="toggleCreatingComment"

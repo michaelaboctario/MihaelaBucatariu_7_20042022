@@ -1,7 +1,7 @@
 <template>
 <div class="flex-container">  
   <main class="post-card__container">
-      <SectionTitle title="Mon compte utilisateur"/>             
+      <SectionTitle title="Modification compte utilisateur"/>             
         <Form @submit="save" :validation-schema="schema"> 
             <div class="input-group__image">
                 <div class="profile__image">

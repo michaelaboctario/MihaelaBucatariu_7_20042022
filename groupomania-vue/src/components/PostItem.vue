@@ -34,13 +34,9 @@
               <button v-if="canComment" :class="[isEditingPost ? 'btn-normal' : 'btn-default']" type="button"  @click="$emit('toggleCreatingComment')" name="Commenter">Commenter</button>
               <button class="btn-default" type="submit" name="Publier">Publier</button> 
           </template>
-          <template v-if="isEditingComment">
+          <!-- <template v-if="isCreatingComment">
               <button class="btn-normal" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
               <button class="btn-default" type="submit" name="Publier">Publier</button> 
-          </template>
-          <!-- <template v-else >
-            <button class="post-card__btn-cancel" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
-            <button class="post-card__btn-comment" type="button"  @click="$emit('toggleEditingPost')" name="Modifier">Modifier</button>           
           </template> -->
         </div>
       </form>
@@ -55,6 +51,10 @@ export default {
           'isEditingPost': {
               type: Boolean,
               default: true
+          },
+          'isCreatingComment': {
+              type: Boolean,
+              default: false
           },
           'canDelete': {
               type: Boolean,

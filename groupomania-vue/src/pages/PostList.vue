@@ -45,15 +45,12 @@ export default {
 },
     computed: mapState({
         posts: state => state.posts.items,
-        postslength: state => state.posts.items.length,
         message: state => state.posts.message,
-        loadingStatus: state => state.posts.loadingStatus
     }), 
     created () {
         this.$store.dispatch('posts/getAllPost').then(
         () => {
           this.successful = true;
-          //this.$router.push('/posts');
         },
         () => {
           this.successful = false;
