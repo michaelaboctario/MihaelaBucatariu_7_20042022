@@ -39,13 +39,13 @@ exports.deleteComment = (req, res, ) => {
   Comment.findByPk(req.params.id )
     .then(comment => {
       if (!comment) {
-        return res.status(404).json({ error: 'Commentaire non trouvé !' });
+        return res.status(404).json({ message: 'Commentaire non trouvé !' });
       }
       else {
           User.findByPk(req.auth.userId)
             .then(user => {
-              if (!user.roleId !==2 || req.auth.userId !== comment.userId) {
-                return res.status(401).json({ error: "Suppression non autorisée !" });       
+              if (user.roleId !==2 || req.auth.userId !== comment.userId) {
+                return res.status(401).json({ message: "Suppression non autorisée !" });       
               }
               else {
                 Comment.destroy({ where: { id: req.params.id } })
