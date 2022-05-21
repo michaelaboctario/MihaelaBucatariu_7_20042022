@@ -51,22 +51,4 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 
-function initial() {
-  Role.create({
-    id: 1,
-    name: "admin"
-  });
-  Role.create({
-    id: 2,
-    name: "moderator"
-  });
-  Role.create({
-    id: 3,
-    name: "user"
-  });
-
-  User.create(Object.assign({...adminUser}, {password: bcrypt.hashSync(adminUser.password, 10)}));
-  User.create(Object.assign({...moderatorUser}, {password: bcrypt.hashSync(moderatorUser.password, 10)}));
-  User.create(Object.assign({...firstUser}, {password: bcrypt.hashSync(firstUser.password, 10)}));
-}
 module.exports = app;

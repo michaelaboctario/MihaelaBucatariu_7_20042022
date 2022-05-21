@@ -74,14 +74,20 @@ exports.deletePost = (req, res) => {
     if (!post) {
       return res.status(404).json({ message: 'Message non trouvée !' });
     }
-    else if (req.body.userId && (req.body.userId !== 1 || req.body.userId !== 2 || req.body.userId !== post.userId)) {
-      res.status(401).json({ message: 'Suppression non autorisée !' });
-    }
-    else {
-      Post.destroy({ where: { id: req.params.id } })  
-            .then(() => res.status(200).json({ message: 'Message supprimé !'}))
-            .catch(error => res.status(400).json({ error }));
-    };   
-  })
+    else {   
+    //vérifier celui qui veut supprimer le post est bien l'auteur du post ou le moderateur
+      User.findByPk(req.auth.userId)
+        .then(user => {
+            if (user.roleId !== 2 || req.auth.userId !== post.userId) {
+              return res.status(401).json({ error: 'Suppression non autorisée !' });
+            }
+            else {
+              Post.destroy({ where: { id: req.params.id } })  
+                .then(() => res.status(200).json({ message: 'Message supprimé !'}))
+                .catch(error => res.status(400).json({ message: error.message }));
+            }
+        })
+        .catch(error => res.status(400).json({ message: error.message })); 
+  }})
   .catch(error => res.status(500).json({ message: error.message }));
 }
