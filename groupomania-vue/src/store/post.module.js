@@ -67,11 +67,9 @@ export const posts = {
     deletePost ({ commit }, id) {
       commit('setLoadingStatus', 'loading')
       commit('setCurrentItem', {post: null})
-      commit('setMessage', '')
       return PostService.deletePost(id).then(
         data => {
           commit('setLoadingStatus', 'success')
-          commit('setMessage', data.message)
           // ça n'existe pas de message de reponse 
           return Promise.resolve(data.message)
         },

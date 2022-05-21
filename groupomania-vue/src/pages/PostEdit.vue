@@ -15,13 +15,13 @@
             @delete-post.once="deletePost"
             @cancel-edit="cancelEdit">
         </PostItem> 
-        <CommentList :comments="allComments"></CommentList>
+        <CommentList :comments="allComments" @delete-comment="(id) => deleteComment(id)"></CommentList>
             
         <CommentItem v-if="isCreatingComment"
             v-model:comment="comment" 
             :isReadOnly="false" 
             :isCreatingComment="isCreatingComment" 
-            @publishComment="publishComment"
+            @publish-comment="publishComment"
             @cancel-creating-comment="cancelCreatingComment">
         </CommentItem>
         <section v-if="message || messageComments" class="alert-error"
@@ -66,6 +66,7 @@ export default {
     ...mapState({
         message: state => state.posts.message,
         currentItem: state => state.posts.currentItem,
+        //currentItemComments: state => state.comments.commentItems,
         messageComments: state => state.comments.message,
     }),
     isHisOwnPost() { return this.authUser.id === this.userId },
@@ -140,11 +141,22 @@ export default {
         }
       );
     },
+    deleteComment (id) {
+          console.log("users/deleteComment", id)
+          this.$store.dispatch('comments/deleteComment', id).then(
+           (data) =>  {
+              console.log('users/deleteComment', data)
+              this.getAllComment()
+            }           
+      );
+    },
     getAllComment () {
         this.$store.dispatch('comments/getAllComment', {postId: this.$route.params.id}).then(
         comments => this.allComments = comments
+        //(data)=>console.log(data)
       );
     },
+    //canDeleteUser(user) { return this.isAdminUser && user.roleId === 3; },
   },
 }
 </script>

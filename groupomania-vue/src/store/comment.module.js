@@ -2,7 +2,6 @@ import CommentService from '../services/comment.service';
 const initialState = { 
   postId: null,
   commentItems: [],  //liste de comments
-  commentCurrentItem: null,  //currentComment
   loadingStatus: null,
   message: ''
 }
@@ -34,16 +33,34 @@ export const comments = {
       commit('setMessage', '')
       return CommentService.getAllComment({postId}).then(
         comment => {
-          commit('setCommentItems', {comment})
+          commit('setCommentItems', {comment, postId})
           commit('setLoadingStatus', 'success')
-          commit('setMessage', comment.message)
+          commit('setMessage', '')
           return Promise.resolve(comment)
         },
         error => {
-          commit('setCommentItems', { commentItems: initialState.commentItems} )
+          commit('setCommentItems', { comment: initialState.commentItems, postId: null} )
           commit('setLoadingStatus', 'failure')
           commit('setMessage', error.message)
           return Promise.reject(error)
+        }
+      );
+    },
+    deleteComment ({ commit }, id) {
+      console.log("deleteComment id", id)
+      commit('setLoadingStatus', 'loading')
+      commit('setMessage', '')
+      return CommentService.deleteComment(id).then(
+        data => {
+          commit('setLoadingStatus', 'success')
+          commit('deleteComment', id)
+          // ça n'existe pas de message de reponse 
+          return Promise.resolve(data.message)
+        },
+        error => {
+          commit('setLoadingStatus', 'failure')
+          commit('setMessage', error.message)
+          return Promise.reject(error);
         }
       );
     },
@@ -57,8 +74,12 @@ export const comments = {
         state.commentItems = [comment]
       }
     },
-    setCommentItems (state, {comment}) {
-      state.items = comment
+    setCommentItems (state, {comment, postId}) {
+      state.postId = postId
+      state.commentItems = comment
+    },
+    deleteComment (state, id) {
+      state.commentItems = state.commentItems.filter(elem => elem.id !== id )
     },
     setLoadingStatus (state, status) {
       state.loadingStatus = status

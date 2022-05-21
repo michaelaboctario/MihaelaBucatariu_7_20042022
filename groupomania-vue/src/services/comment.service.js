@@ -13,6 +13,11 @@ class CommentService {
       .get(`${API_URL}${postId}/comments`, { headers: authHeader() })
       .then(response => response.data);
   }
+  deleteComment(id) {
+    return axios
+      .delete(`${API_URL}comments/${id}`, { headers: authHeader() })
+      .then(response => response.data);
+  }
 }
 
 export default new CommentService();
