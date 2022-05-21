@@ -21,6 +21,7 @@
     "password-validator": "^5.2.1",
     "path": "^0.12.7",
     "sequelize": "^6.19.0",
+    "sql-sanitizer": "^1.0.0",
     "validator": "^13.7.0"
   }
 }

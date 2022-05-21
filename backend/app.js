@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const sqlSanitizer = require("sql-sanitizer");
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const userRoutes = require('./routes/user');
@@ -12,8 +13,10 @@ const {adminUser, moderatorUser} = require('./config/user.config');
 const app = express();
 app.use(express.json());
 
-// helmet for securin the Express app by setting HTTP headers
+// helmet for securing the Express app by setting HTTP headers
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+
+app.use(sqlSanitizer);
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
