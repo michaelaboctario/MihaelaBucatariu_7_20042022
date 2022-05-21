@@ -197,16 +197,6 @@ form {
     background-color: white;
 }
 
-.form-input:invalid,
-.post-item__title:invalid {
-    border-color: #C82543;
-}
-
-.form-input:invalid~.form-error,
-.post-item__title:invalid~.form-error {
-    display: block;
-}
-
 @media screen and (max-width: 768px) {
     .form-input,
     .post-item__title {

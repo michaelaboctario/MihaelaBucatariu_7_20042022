@@ -11,6 +11,8 @@
             name="title"
             @input="$emit('update:title', $event.target.value)"
             :readonly="!isEditingPost"
+            placeholder="Entrer un title ..." aria-label="texte du title"
+            required
           />
         </div>
         <div class="post-item__group">
@@ -24,6 +26,8 @@
             cols="140"
             @input="$emit('update:content', $event.target.value)"
             :readonly="!isEditingPost"
+            placeholder="Entrer un message ..." aria-label="texte du message"
+            required
           >
           </textarea>
         </div>

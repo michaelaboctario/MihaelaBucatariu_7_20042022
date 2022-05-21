@@ -17,25 +17,29 @@
                           accept="image/*"
                           ref="file"
                           @change="selectImage"
+                          placeholder="Choisir une photo" aria-label="photo d'utilisateur" required
                       />              
                 </div> 
             </div>      
 
             <div class="input-group">
                 <label for="firstname">Prénom</label>
-                <Field v-model="form.firstname" id="firstname" name="firstname" type="text" class="form-input" required/>
+                <Field v-model="form.firstname" id="firstname" name="firstname" type="text" class="form-input" 
+                      placeholder="Entrer le nom" aria-label="nom" required/>
                 <ErrorMessage name="firstname" class="form-error" />
             </div>
 
             <div class="input-group">
                 <label for="lastname">Nom</label>
-                <Field v-model="form.lastname" id="lastname" name="lastname" type="text" class="form-input" required/>
+                <Field v-model="form.lastname" id="lastname" name="lastname" type="text" class="form-input" 
+                      placeholder="Entrer le prénom" aria-label="prénom" required/>
                 <ErrorMessage name="lastname" class="form-error" />
             </div>
 
             <div class="input-group">
                 <label for="email">Email</label>
-                <Field v-model="form.email" id="email" name="email" type="email" class="form-input" readonly/>
+                <Field v-model="form.email" id="email" name="email" type="email" class="form-input" 
+                      placeholder="Entrer l'email" aria-label="email" readonly/>
                 <ErrorMessage name="email" class="form-error" />
             </div>
             
@@ -45,8 +49,7 @@
             </div>
 
             <div
-                v-if="message"
-                :class="successful ? 'alert-success' : 'alert-error'"
+                v-if="message" class="alert-error"
                 >
                 {{ message }}
             </div>  
@@ -88,7 +91,6 @@ export default {
     return {
       selectedImage: '',
       currentImageFile: '',
-      successful: false, 
       schema,
       form: {
         firstname: '',
@@ -112,20 +114,18 @@ export default {
       this.$store.dispatch('users/getOneUser', this.connectedUser).then(
       data => {
         //console.log("'users/getOneUser", data)
-        this.successful = true
         this.form.firstname = data.firstname
         this.form.lastname = data.lastname
         this.form.email = data.email
         this.selectedImage = data.photourl
       },
-      () => {
-        this.successful = false
+      (response) => {
+        console.log(response)
       }
     );
   },
   methods: {
     save () {
-      this.successful = false
       const user = { ...this.currentUser, 
           firstname: this.form.firstname, 
           lastname: this.form.lastname,
@@ -136,7 +136,6 @@ export default {
       formData.append('image', this.currentImageFile);
       this.$store.dispatch('users/updateUser', {formData}).then(
         () => {
-          this.successful = true;
           this.$router.push('/users');
         }
       );

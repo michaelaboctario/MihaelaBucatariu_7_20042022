@@ -12,6 +12,8 @@
                   cols="140"
                   @input="$emit('update:comment', $event.target.value)"
                   :readonly="isReadOnly"
+                  placeholder="Entrer un commentaire ..." aria-label="texte du commentaire"
+                  required
                 >
                 </textarea>
           </div>

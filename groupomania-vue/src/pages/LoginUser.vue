@@ -5,13 +5,15 @@
         <Form @submit="handleLogin" :validation-schema="schema">               
             <div class="input-group">
                 <label for="username">Nom d'utilisateur</label>
-                <Field v-model="form.username" id="username" name="username" type="text" class="form-input" />
+                <Field v-model="form.username" id="username" name="username" type="text" class="form-input" 
+                        placeholder="Entrer le nom d'utilisateur" aria-label="nom d'utilisateur" />
                 <ErrorMessage name="username" class="form-error" />
             </div>
 
             <div class="input-group">
                 <label for="password">Mot de passe</label>
-                <Field v-model="form.password" id="password" name="password" type="password" class="form-input" />
+                <Field v-model="form.password" id="password" name="password" type="password" class="form-input" 
+                        placeholder="Entrer le mot de passe" aria-label="mot de passe" />
                 <ErrorMessage name="password" class="form-error" />
             </div>
             
