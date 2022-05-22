@@ -22,8 +22,8 @@ backend/images
 .env.*.local
 backend/.env
 backend/config/db.config.js
-backend/config/user.config.js
-backend/config/post.config.js
+# backend/config/user.config.js
+# backend/config/post.config.js
 backend/config/post.config-template.js
 
 # Log files

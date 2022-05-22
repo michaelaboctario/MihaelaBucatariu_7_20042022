@@ -67,6 +67,15 @@ Pour l'initialisation de la base de données avec les rôles par default et les 
 
     node initdb.js
 
+Vous pouvez ensuite insérer des données par défaut, dans les tables "Posts" et "Comments", données qui seront utilisées pour faire un premier test avec l'application. Les données sont paramètres dans le fichier 
+
+    post.config.js
+
+Renommer le fichier post.config-template.js en post.config.js et remplir des informations par défaut pour créer des premiers messages et commentaires. Il faut ensuite exécuter le script
+
+    node initpostsdb.js
+    
+
 7. Lancer le serveur Node avec la commande  
 
     node server.js
