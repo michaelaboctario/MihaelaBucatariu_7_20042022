@@ -33,10 +33,6 @@ module.exports = (sequelize, Sequelize) => {
                     notEmpty: true
                 }, 
             },
-            postImageUrl: 
-            { 
-                type: Sequelize.STRING,
-            },
             createdAt: {
                 type: Sequelize.DATE,                
                 get() {
