@@ -159,6 +159,10 @@ export default {
         align-items: center;
         justify-content: center;
         gap: 10px;
+        margin: 30px 0;
+    }
+    .select__image {
+       padding-left: 30px;
     }
     .profile__image img {
         width: 110px;

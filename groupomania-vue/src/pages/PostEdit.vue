@@ -7,6 +7,7 @@
             v-model:title="title"
             v-model:content="content"
             :canComment="true" 
+            :canDelete="canDeletePost" 
             :isEditingPost="isEditingPost" 
             :isCreatingComment="isCreatingComment" 
             :isReadOnly="false" 
@@ -72,7 +73,7 @@ export default {
     isHisOwnPost() { return this.authUser.id === this.userId },
     connectedUser() {return `${this.authUser.firstname} ${this.authUser.lastname}`},
     postAuthor () {return this.currentItem ? `${this.currentItem.user.firstname} ${this.currentItem.user.lastname}` : ''  },
-    //canDeletePost() { return this.isModeratorUser || this.isHisOwnPost},
+    canDeletePost() { return this.isModeratorUser || this.isHisOwnPost},
   },
   mounted() {
       this.$store.dispatch('posts/getOnePost', this.$route.params.id).then(
@@ -81,12 +82,12 @@ export default {
         this.content = data.postContent
         this.userId = data.userId
         this.isEditingPost = this.isHisOwnPost
-        if(!this.isEditingPost && !this.isModeratorUser) {
+        /* if(!this.isEditingPost && !this.isModeratorUser) {
            this.isCreatingComment = true
-        }
+        } */
       },
       error => {
-        this.message = error.response?.data?.message || error.toString()
+        this.message = error.message || error.toString()
         setTimeout(() => this.message = '', 5000);
       }
     );
@@ -138,7 +139,7 @@ export default {
           this.getAllComment()
           this.toggleCreatingComment()
           //this.$router.push('/posts');
-        }
+        },
       );
     },
     deleteComment (id) {
