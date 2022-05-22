@@ -25,14 +25,6 @@ module.exports = (sequelize, Sequelize) => {
                     notEmpty: true
                 },  
             },
-            postCreator:                  
-            { 
-                type: Sequelize.STRING, 
-                allowNull: false,
-                validate: {
-                    notEmpty: true
-                }, 
-            },
             createdAt: {
                 type: Sequelize.DATE,                
                 get() {

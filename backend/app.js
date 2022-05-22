@@ -44,7 +44,7 @@ const User = db.user;
 db.sequelize.sync().then(() => {
     console.log('Database connected, drop and Resync Database with { force: true }');
 })
-.catch(error=>console.log(error.comment));
+.catch(error=>console.log(error.message));
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

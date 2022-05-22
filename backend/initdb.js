@@ -10,7 +10,7 @@ db.sequelize.sync({force: true}).then(() => {
     console.log("Drop and resync in progress")
     initial();
 })
-.catch(error=>console.log(error.comment));
+.catch(error=>console.log(error.message));
 
 function initial() {
   Role.create({
