@@ -8,7 +8,6 @@ exports.createPost  = (req, res) => {
     Post.create({
         postTitle : req.body.postTitle,           
         postContent : req.body.postContent,
-        postCreator : req.body.postCreator, 
         userId: req.body.userId
       })
       .then(() => res.status(201).json({message: 'Message enregistré !'})) 

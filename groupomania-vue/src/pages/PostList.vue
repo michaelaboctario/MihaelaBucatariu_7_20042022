@@ -14,7 +14,7 @@
               <p class="post-item__content">{{ post.postContent }}</p>
               <p class="post-item__author">
                 <!-- De {{ userById(post.userId).username }} -->
-                de {{ post.postCreator }}, le {{ post.updatedAt }} 
+                de {{ post.user.username }}, le {{ post.updatedAt }} 
               </p>
           </article>
         </template>    

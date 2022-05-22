@@ -52,7 +52,6 @@ export default {
       const post = {
           postTitle: title, 
           postContent: content, 
-          postCreator: this.authUser.username, 
           userId: this.authUser.id
       }
       this.$store.dispatch('posts/createPost', {post}).then(
