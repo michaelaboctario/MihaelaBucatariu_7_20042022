@@ -27,7 +27,7 @@ export default {
   },
   methods: {
       canDeleteComment (comment) {
-          return this.isModeratorUser || this.authUser.id === comment.userId
+          return this.isModeratorUser || this.authUser?.id === comment.userId
     },
   }
 }

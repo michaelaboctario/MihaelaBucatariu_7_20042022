@@ -70,8 +70,8 @@ export default {
         //currentItemComments: state => state.comments.commentItems,
         messageComments: state => state.comments.message,
     }),
-    isHisOwnPost() { return this.authUser.id === this.userId },
-    connectedUser() {return `${this.authUser.firstname} ${this.authUser.lastname}`},
+    isHisOwnPost() { return this.authUser?.id === this.userId },
+    connectedUser() {return `${this.authUser?.firstname} ${this.authUser?.lastname}`},
     postAuthor () {return this.currentItem ? `${this.currentItem.user.firstname} ${this.currentItem.user.lastname}` : ''  },
     canDeletePost() { return this.isModeratorUser || this.isHisOwnPost},
   },
@@ -109,7 +109,7 @@ export default {
       const post = {
           postTitle: this.title, 
           postContent: this.content,
-          userId: this.authUser.id,
+          userId: this.authUser?.id,
           id: this.$route.params.id,
       }
       this.$store.dispatch('posts/updatePost', {post}).then(
@@ -131,7 +131,7 @@ export default {
     publishComment () {
       const comment = { 
           commentContent: this.comment, 
-          userId: this.authUser.id,
+          userId: this.authUser?.id,
       }
       this.$store.dispatch('comments/createComment', {comment, postId: this.$route.params.id}).then(
         () => {
