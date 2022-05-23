@@ -13,7 +13,6 @@
               <h3 class="post-item__title">{{ post.postTitle }}</h3>
               <p class="post-item__content">{{ post.postContent }}</p>
               <p class="post-item__author">
-                <!-- De {{ userById(post.userId).username }} -->
                 de {{ post.user?.username }}, le {{ post.updatedAt }} 
               </p>
           </article>
@@ -59,13 +58,8 @@ export default {
     },
     methods: {
         clickPost(postid) {
-            //this.$router.push('/post');
-            console.log(postid)
             this.$router.push({ name: 'PostEdit', params: { id: postid } })
         }
     },
 }
 </script>
-<style scoped>
-
-</style>

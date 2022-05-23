@@ -4,7 +4,6 @@
         <SectionTitle />
         <section class="user-list__group">        
             <article v-for="user in users" :key="user.id" class="user-list__item visual-hover">
-                <!-- <p class="user-list__image"><img :src="user.imageUrl" alt="image de profil de l'utilisateur"></p> -->
                 <div class="user-list__item-details">
                     <p >{{ user.firstname}} {{ user.lastname}}</p>
                     <p class="text-xsmall">--{{ user.role.name}}-- </p>
@@ -93,7 +92,6 @@ export default {
 .btn-fa-normal {
     padding: 10px 4px 10px 10px;
     color: #8f1f28;
-    /* background-color: blue; */
     border-radius: 50px;
 }
 

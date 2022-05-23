@@ -67,7 +67,6 @@ export default {
     ...mapState({
         message: state => state.posts.message,
         currentItem: state => state.posts.currentItem,
-        //currentItemComments: state => state.comments.commentItems,
         messageComments: state => state.comments.message,
     }),
     isHisOwnPost() { return this.authUser?.id === this.userId },
@@ -82,9 +81,6 @@ export default {
         this.content = data.postContent
         this.userId = data.userId
         this.isEditingPost = this.isHisOwnPost
-        /* if(!this.isEditingPost && !this.isModeratorUser) {
-           this.isCreatingComment = true
-        } */
       },
       error => {
         this.message = error.message || error.toString()
@@ -145,7 +141,7 @@ export default {
     deleteComment (id) {
           console.log("users/deleteComment", id)
           this.$store.dispatch('comments/deleteComment', id).then(
-           (data) =>  {
+           data =>  {
               console.log('users/deleteComment', data)
               this.getAllComment()
             }           
@@ -154,10 +150,8 @@ export default {
     getAllComment () {
         this.$store.dispatch('comments/getAllComment', {postId: this.$route.params.id}).then(
         comments => this.allComments = comments
-        //(data)=>console.log(data)
       );
     },
-    //canDeleteUser(user) { return this.isAdminUser && user.roleId === 3; },
   },
 }
 </script>

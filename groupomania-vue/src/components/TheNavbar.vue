@@ -3,7 +3,6 @@
   <header class="header" id="header">
      <nav class="navbar" :class="{ responsive: isResponsive }" id="navbar">
       <ul>    
-        <!-- <li class="active"><router-link to="/" >Accueil</router-link></li> -->
         <li>
           <router-link :to="{name: 'HomePage'}" >
             <div class="img__logo-icon-left">
@@ -47,12 +46,10 @@ export default {
   },
   methods: {
     logout() {
-      //console.log("logout");
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
     toggleResponsive() {
-      //console.log("toggle responsive");
       this.isResponsive = !this.isResponsive;
     },
   },
@@ -69,7 +66,6 @@ export default {
   float: left;
   display: block;
   height: 80px;
-  /* width: 200px; */
 }
 
 .navbar li:not(:first-child) {
@@ -109,11 +105,10 @@ export default {
 }
 
 .img__logo-icon-left, .link__nav-fa-icon {
-  float: clear;
+  float: none;
 }
 
 .nav-bar__logo-icon-left {
-    /* float: left; */
     display: block;
     height: 80px;
     width: 200px;
@@ -129,7 +124,6 @@ export default {
     }
     .navbar li {
       height: 60px;
-     /*  width: 140px; */
     }
     .navbar a {
       line-height: 60px;

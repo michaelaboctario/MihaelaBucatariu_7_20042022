@@ -113,7 +113,6 @@ export default {
   mounted() {
       this.$store.dispatch('users/getOneUser', this.connectedUser).then(
       data => {
-        //console.log("'users/getOneUser", data)
         this.form.firstname = data.firstname
         this.form.lastname = data.lastname
         this.form.email = data.email
@@ -182,6 +181,5 @@ export default {
         height: 28px;
         margin-right: 10px;
     }
-
 
 </style>
