@@ -421,7 +421,7 @@ figure {
     text-align: left;
 }
 
-.post-card__container {
+.card__container {
     display: flex;
     width: 96%;
     align-items: center;
@@ -432,7 +432,7 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
-    .post-card__container {
+    .card__container {
         flex-basis: 98%;
         margin: 0 1%;
     }
@@ -579,21 +579,23 @@ figure {
     margin-top: 10px;
     width: 80%;
     margin-bottom: 20px; 
-    /* margin-left: auto; */
 }
 
 .comment-list-item {
     margin-left: auto;
     display: flex;
-    width: 80%;
     column-gap: 40px;
 }
 
 .comment-delete__button {
     display: flex;
     margin-left: auto;
+    visibility: hidden;
 }
 
+.comment-delete__button-visible {
+    visibility: visible;
+}
 
 .comment-list-item__details {
     display: flex;

@@ -1,6 +1,6 @@
 <template>  
   <div class="flex-container">
-    <main class="post-card__container">     
+    <main class="card__container">     
     <SectionTitle title="Connexion utilisateur"/>
         <Form @submit="handleLogin" :validation-schema="schema">               
             <div class="input-group">

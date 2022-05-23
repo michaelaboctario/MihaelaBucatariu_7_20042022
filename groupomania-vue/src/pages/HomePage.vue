@@ -1,7 +1,7 @@
 <template>  
    <div class="flex-container">
       <SectionTitle />
-      <main class="post-card__container"> 
+      <main class="card__container"> 
          <img src="../assets/logos/icon.png" class="logo-full" alt="le logo de Groupomania">
       </main>
       <FooterItem />

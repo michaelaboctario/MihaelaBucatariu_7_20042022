@@ -6,8 +6,8 @@
           de {{ comment?.user?.firstname }}  {{ comment?.user?.lastname}}, le {{ comment.updatedAt }} 
         </p>
       </div>
-      <div class="comment-delete__button">
-          <button type="button"  name="DeleteComment" @click="$emit('delete-comment', comment.id)">
+      <div class="comment-delete__button" :class="{'comment-delete__button-visible': canDeleteComment(comment)}">
+          <button type="button" name="DeleteComment" @click="$emit('delete-comment', comment.id)">
               <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'trash' }" class="comment-delete__fa-icon"/>
           </button>          
       </div> 
@@ -15,38 +15,22 @@
 </template>    
 
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default { 
   props: {'comments': Array},
   name: "CommentList",
   emits: ['delete-comment'],
- 
+  computed: {
+    ...mapGetters('auth', ['authUser', 'isModeratorUser']),
+  },
+  methods: {
+      canDeleteComment (comment) {
+          return this.isModeratorUser || this.authUser.id === comment.userId
+    },
+  }
 }
 </script>
 
-<style scoped>
 
-/* .comment-list__item {
-  display: flex;
-
-} */
-
-/* .comment-list__item-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 10px;
-} */
-
-/* .user-list__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.user-list__item p {
-    display: block;
-} */
-
-</style>

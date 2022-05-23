@@ -1,8 +1,8 @@
 <template>
 <div class="flex-container">  
-  <main class="post-card__container">
+  <main class="card__container">
       <SectionTitle title="Modification compte utilisateur"/>             
-        <Form @submit="save" :validation-schema="schema"> 
+        <Form @submit="save" :validation-schema="schema" class="form-group__image"> 
             <div class="input-group__image">
                 <div class="profile__image">
                     <img :src="profileImage" alt="Photo de profil"> 
@@ -10,7 +10,7 @@
 
                 <div class="select__image">
                     <label for="choose-image">
-                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'pen' }" class="profile-fa-icon"/>
+                        <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'pen' }" class="profile-fa-icon"/>      
                     </label>
                      <input
                           type="file"
@@ -18,7 +18,7 @@
                           ref="file"
                           @change="selectImage"
                           placeholder="Choisir une photo" aria-label="photo d'utilisateur" required
-                      />              
+                      />    
                 </div> 
             </div>      
 
@@ -153,6 +153,13 @@ export default {
 </script>
 
 <style scoped>
+    .form-group__image {
+        margin: 0;
+        width: 68%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .input-group__image, 
     .select__image {
         display: flex;
@@ -167,6 +174,7 @@ export default {
     .profile__image img {
         width: 110px;
         height: 110px;
+        border-radius: 50px;
     }
     .profile-fa-icon {
         display: inline-block;

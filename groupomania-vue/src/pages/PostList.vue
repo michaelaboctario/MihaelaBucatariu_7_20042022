@@ -1,6 +1,6 @@
 <template>
 <div class="flex-container">
-    <main class="post-card__container"> 
+    <main class="card__container"> 
       <SectionTitle />
       <section class="post-card__group">
         <template v-if="!posts || !posts.length">
