@@ -4,6 +4,7 @@ exports.adminUser = {
     username: "admin", 
     email: "admin@gmail.com",
     password: "1234Azer@",
+    photourl: "",
     roleId: 1,
 }
 
@@ -13,6 +14,7 @@ exports.moderatorUser = {
   username: "moderator", 
   email: "moderator@gmail.com",
   password: "1234Azer@",
+  photourl: "",
   roleId: 2,
 }
 
@@ -22,5 +24,6 @@ exports.firstUser = {
   username: "mihaela", 
   email: "mbucatariu@gmail.com",
   password: "1234Azer@",
+  photourl: "",
   roleId: 3,
 }

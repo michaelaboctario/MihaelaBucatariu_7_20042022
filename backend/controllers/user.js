@@ -12,6 +12,7 @@ exports.signup = (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         username: req.body.username,
+        photourl: '',
         roleId: 3,    // utilisateur normal, role 3
     })
     .then(user => {      

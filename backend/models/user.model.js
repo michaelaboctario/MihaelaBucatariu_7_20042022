@@ -44,10 +44,6 @@ module.exports = (sequelize, Sequelize) => {
                 notEmpty: true
             },  
         },
-        active: { 
-            type: Sequelize.BOOLEAN, 
-            defaultValue: true 
-        },
         photourl: { 
             type: Sequelize.STRING     
         }    

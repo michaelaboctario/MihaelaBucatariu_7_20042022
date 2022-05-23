@@ -71,7 +71,7 @@ Vous pouvez ensuite insérer des données par défaut, dans les tables "Posts" e
 
     post.config.js
 
-Renommer le fichier post.config-template.js en post.config.js et remplir des informations par défaut pour créer des premiers messages et commentaires. Il faut ensuite exécuter le script
+Remplir dans post.config.js des informations par défaut pour créer des premiers messages et commentaires. Il faut ensuite exécuter le script
 
     node initpostsdb.js
     
