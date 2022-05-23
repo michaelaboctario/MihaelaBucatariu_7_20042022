@@ -108,7 +108,7 @@ export default {
         loadingStatus: state => state.users.loadingStatus,
     }),
     connectedUser() { return this.authUser.id },  
-    profileImage() { return this.selectedImage === "" ? "user-profile.png" : this.selectedImage; }, 
+    profileImage() { return !this.selectedImage || this.selectedImage === "" ? "user-profile.png" : this.selectedImage; }, 
   },
   mounted() {
       this.$store.dispatch('users/getOneUser', this.connectedUser).then(
@@ -119,7 +119,7 @@ export default {
         this.form.email = data.email
         this.selectedImage = data.photourl
       },
-      (response) => {
+      response => {
         console.log(response)
       }
     );

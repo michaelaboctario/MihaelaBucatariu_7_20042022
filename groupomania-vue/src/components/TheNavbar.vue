@@ -14,7 +14,7 @@
         <li v-if="authUser"><router-link to="/posts">Messages</router-link></li>
         <li v-if="authUser"><router-link to="/posts/create">Publier</router-link></li>     
         <li v-if="authUser"><router-link to="/users">Utilisateurs</router-link></li>  
-        <li v-if="authUser"><router-link to="/profile">Profile</router-link></li>        
+        <li v-if="authUser"><router-link to="/profile">Profil</router-link></li>        
         <li v-if="!authUser"><router-link to="/register">Enregistrement</router-link></li>
         <li v-if="!authUser"><router-link to="/login">Connexion</router-link></li>
         <li  v-if="authUser">
@@ -47,12 +47,12 @@ export default {
   },
   methods: {
     logout() {
-      console.log("logout");
+      //console.log("logout");
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
     toggleResponsive() {
-      console.log("toggle responsive");
+      //console.log("toggle responsive");
       this.isResponsive = !this.isResponsive;
     },
   },
