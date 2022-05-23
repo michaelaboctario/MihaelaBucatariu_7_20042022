@@ -2,7 +2,7 @@
 <div class="flex-container">
     <main class="card__container">
       <SectionTitle title="Modification du message" />
-      <section>
+      <div>
         <PostItem
             v-model:title="title"
             v-model:content="content"
@@ -29,7 +29,7 @@
         >
           {{ message }} {{ messageComments }}
         </section> 
-      </section>
+      </div>
     </main>
     <FooterItem />
   </div> 

@@ -1,5 +1,5 @@
 <template>
-  <article class="post-item" v-bind:class="{visualHover: hasHover}">
+  <div class="post-item" v-bind:class="{visualHover: hasHover}">
       <form class="post-item__form" @submit.prevent="$emit('publish', {title, content})">
         <div class="post-item__group">
           <label for="post-item__title">Titre:</label>
@@ -36,13 +36,9 @@
             <button v-if="!isCreatingComment && canDelete" class="btn-normal" type="button" @click="$emit('delete-post')" name="Supprimer">Supprimer</button>
             <button v-if="canComment" :class="[isEditingPost ? 'btn-normal' : 'btn-default']" type="button"  @click="$emit('toggle-creating-comment')" name="Commenter">Commenter</button>
             <button v-if="isEditingPost" class="btn-default" type="submit" name="Publier">Publier</button> 
-          <!-- <template v-if="isCreatingComment">
-              <button class="btn-normal" type="button" @click="$emit('cancelEdit')" name="Cancel">Abandonner</button>
-              <button class="btn-default" type="submit" name="Publier">Publier</button> 
-          </template> -->
         </div>
       </form>
-  </article>
+  </div>
 </template>
 <script>
 

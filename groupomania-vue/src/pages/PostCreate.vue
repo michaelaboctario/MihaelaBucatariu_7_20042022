@@ -2,7 +2,7 @@
 <div class="flex-container">
   <main class="card__container">
       <SectionTitle />
-      <section>
+      <div>
         <PostItem
             v-model:title="title"
             v-model:content="content" 
@@ -12,12 +12,12 @@
             @publish.once="save"
             @cancel-edit.once="cancelEdit">
         </PostItem>
-      </section>
-      <section v-if="message"
+      </div>
+      <div v-if="message"
         class="alert-error"
       >
         {{ message }}
-      </section> 
+      </div> 
   </main>
   <FooterItem />
 </div>

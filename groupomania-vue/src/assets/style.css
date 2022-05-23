@@ -68,8 +68,8 @@ img {
 
 @media screen and (max-width: 768px) {
     .logo-full {
-        height: 400px;
-        width: 400px;
+        height: 200px;
+        width: 200px;
     }
 }
 
@@ -151,7 +151,8 @@ textarea:read-only {
 
 form {
     margin: 0;
-    width: 68%;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-input,
@@ -162,7 +163,6 @@ form {
     font: inherit;
     padding: 5px 10px;
     transition: all 0.3s ease;
-    width: 100%;
     color: #505050;
     background-color: #fdfdfd;
     min-height: 43px;
@@ -213,13 +213,11 @@ form {
     min-height: 110px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 100%;
     font: inherit;
     resize: none;
 }
 
 .comment-content {
-    width: 100%;
     min-height: 60px;
 }
 
@@ -259,7 +257,6 @@ form {
 .input-group,
 .post-item__group {
     margin-bottom: 12px;
-    width: 100%;
     display: block;
 }
 
@@ -309,7 +306,7 @@ button {
 
 .form-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     flex-basis: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -376,6 +373,12 @@ figure {
     }
 }
 
+@media screen and (max-width: 768px) {
+    .flex-column {
+        max-width: 400px;
+    }
+}
+
 .flex-container {
     display: flex;
     margin: 0 auto;
@@ -414,6 +417,7 @@ figure {
 @media screen and (max-width: 768px) {
     .container {
         width: 96%;
+        max-width: 700px;
     }
 }
 
@@ -423,12 +427,10 @@ figure {
 
 .card__container {
     display: flex;
-    width: 96%;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    flex-basis: 98%;
-    margin: 0 1%;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -487,7 +489,6 @@ figure {
 .comment-item
  {
     display: flex;
-   
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
@@ -500,7 +501,6 @@ figure {
 }
 
 .post-item {
-    width: 100%;
     box-shadow: 3px 2px 5px 1px rgb(245 134 134 / 30%);
 }
 
@@ -525,14 +525,13 @@ figure {
 .post-card__group,
 .post-card__group-title {
     display: flex;
-    width: 80%;
     flex-direction: column;;
     align-items: center;
     margin: auto;
 }
 
-.post-card__group {
-    width: 100%;
+.post-card__group-title {
+    width: 80%;
 }
 
 .post-card__group-headings {
@@ -557,10 +556,37 @@ figure {
     margin-bottom: 20px;
 }
 
+.form-input,
 .post-item__title,
 .post-item__content {
     text-align: left;
+    max-width: 800px;
+    width: 800px;
 }
+
+@media screen and (max-width: 768px) {
+    .form-input,
+    .post-item__title,
+    .post-item__content,
+    .comment-item__content {
+        max-width: 320px;
+        width: 320px;
+    }
+}
+
+.comment-item__content {
+    text-align: left;
+    max-width: 700px;
+    width: 700px;
+}
+
+@media screen and (max-width: 768px) {
+    .comment-item__content {
+        max-width: 276px;
+        width: 276px;
+    }
+}
+
 .post-item__title {
     font-weight : 700;
 }
@@ -603,7 +629,6 @@ figure {
     align-items: flex-start;
     justify-content: center;
     column-gap: 40px;
-    width: 100%;
 }
 
 .comment-list-item__details p {

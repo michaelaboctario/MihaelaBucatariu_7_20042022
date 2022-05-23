@@ -1,6 +1,6 @@
 <template v-if="comments && comments.length">
-  <section>
-    <article v-for="comment in comments" :key="comment.id" class="comment-list-item">
+  <div>
+    <div v-for="comment in comments" :key="comment.id" class="comment-list-item">
       <div class="comment-list-item__details">
         <p class="comment-list-item__content">{{ comment.commentContent }}</p>
         <p class="comment-list-item__author">
@@ -12,8 +12,8 @@
               <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'trash' }" class="comment-delete__fa-icon"/>
           </button>          
       </div> 
-    </article>
-  </section>     
+    </div>
+  </div>     
 </template>    
 
 <script>

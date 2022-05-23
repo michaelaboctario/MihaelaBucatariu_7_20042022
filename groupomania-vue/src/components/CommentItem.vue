@@ -1,5 +1,5 @@
   <template>
-    <article class="comment-item">
+    <div class="comment-item">
       <form class="comment-item__form" @submit.prevent="$emit('publish-comment', {content})">
           <div class="comment-item__group">
               <label for="comment-item__content">Commenter:</label>
@@ -24,7 +24,7 @@
             </button>
           </div>   
       </form>
-    </article>
+    </div>
   </template>
 <script>
 

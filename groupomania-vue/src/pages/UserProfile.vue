@@ -156,7 +156,8 @@ export default {
         margin: 0;
         width: 68%;
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
     }
 
     .input-group__image, 

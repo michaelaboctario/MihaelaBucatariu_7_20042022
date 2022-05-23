@@ -11,21 +11,21 @@
         <template v-else>
           <article v-for="post in posts" :key="post.id" @click="clickPost(post.id)" class="post-item visual-hover" >
               <h3 class="post-item__title">{{ post.postTitle }}</h3>
-              <p class="post-item__content">{{ post.postContent }}</p>
+              <h4 class="post-item__content">{{ post.postContent }}</h4>
               <p class="post-item__author">
                 de {{ post.user?.username }}, le {{ post.updatedAt }} 
               </p>
           </article>
         </template>    
       </section>
-      <section class="post-card__error-message">  
+      <div class="post-card__error-message">  
         <div
             v-if="message"
             :class="loadingStatus !== 'failure' ? 'alert-success' : 'alert-error'"
           >
             {{ message }}
           </div>  
-      </section>
+      </div>
   </main>
   <FooterItem />
 </div>

@@ -1,18 +1,27 @@
-<template>  
-  <div class="container">
-      <h1 class="text-center">Groupomania</h1>
-      <div class="flex-container justify-center">
-          <div class="col-three">                             
-            <h2 class="text-center">Cette page n'existe pas</h2>
+<template>
+<div class="flex-container">
+    <main class="card__container"> 
+      <SectionTitle />
+      <div class="post-card__group">
+          <div >
+              <p class="text-center">Cette page n&rsquo;existe pas</p>
           </div>
-      </div>
+        </div>
+      </main>
+      <FooterItem />  
   </div>
 </template>
 
 <script>
+import SectionTitle from '@/components/SectionTitle.vue'
+import FooterItem from '@/components/FooterItem.vue'
 
 export default {
-  name: 'NotFound',
+    name: 'NotFound',
+    components: {
+      SectionTitle,
+      FooterItem,
+  },
 }
 
 </script>

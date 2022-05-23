@@ -2,8 +2,8 @@
 <div class="flex-container">
     <main class="user-list__container">
         <SectionTitle />
-        <section class="user-list__group">        
-            <article v-for="user in users" :key="user.id" class="user-list__item visual-hover">
+        <div class="user-list__group">        
+            <div v-for="user in users" :key="user.id" class="user-list__item visual-hover">
                 <div class="user-list__item-details">
                     <p >{{ user.firstname}} {{ user.lastname}}</p>
                     <p class="text-xsmall">--{{ user.role.name}}-- </p>
@@ -13,8 +13,8 @@
                         <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'trash' }" class="user-delete__fa-icon"/>
                     </button>          
                 </div> 
-            </article>
-        </section>
+            </div>
+        </div>
     </main>
     <FooterItem />
 </div>

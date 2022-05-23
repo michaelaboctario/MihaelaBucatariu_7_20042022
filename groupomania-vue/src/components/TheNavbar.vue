@@ -17,13 +17,13 @@
         <li v-if="!authUser"><router-link to="/register">Enregistrement</router-link></li>
         <li v-if="!authUser"><router-link to="/login">Connexion</router-link></li>
         <li  v-if="authUser">
-          <a @click="logout">
+          <a href="#" @click="logout" aria-label="le lien de deconnexion">
             Déconnexion
           </a>
         </li>
         <li class="li-fa-icon">
           <div class="link__nav-fa-icon">
-              <a href="#" @click.prevent="toggleResponsive" class="nav-fa-icon">
+              <a href="#" @click.prevent="toggleResponsive" class="nav-fa-icon" aria-label="le logo de modification de l'apparence du menu">
                 <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'bars' }" />
               </a>
           </div>
