@@ -16,6 +16,16 @@ app.use(express.json());
 // helmet for securing the Express app by setting HTTP headers
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
+const apiLimiter = rateLimit({
+	windowMs: 1 * 60 * 1000, // 1 minutes
+	max: 10000, // Limit each IP to 10000 requests per `window` (here, per 1 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
+
+// Apply the rate limiting middleware to API calls only
+app.use('/api', apiLimiter)
+
 app.use(sqlSanitizer);
 
 app.use((req, res, next) => {
@@ -24,16 +34,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
-
-// Use to limit repeated requests to public APIs and/or endpoints such as password reset
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-})
-// Apply the rate limiting middleware to all requests
-app.use(limiter);
 
 // database
 const db = require('./models/index.js');
