@@ -8,12 +8,17 @@ const Post = db.post;
 const Comment = db.comment;
 
 db.sequelize.sync().then(() => {
-    console.log("Drop and resync in progress")
+    console.log("Drop et resync en progrès")
     initial();
 })
 .catch(error=>console.log(error.message));
 
-function initial() { 
-  Post.bulkCreate(posts).then(() => console.log("Posts data have been saved"));
-  Comment.bulkCreate(comments).then(() => console.log("Comments data have been saved"));
+async function initial() { 
+  try {
+      await Post.bulkCreate(posts).then(() => console.log("Les messages on été crées"));
+      await Comment.bulkCreate(comments).then(() => console.log("Les commentaires on été crées"));
+    //
+  } catch (err) {
+    console.log(err);
+  }
 }

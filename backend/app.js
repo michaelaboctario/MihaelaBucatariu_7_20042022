@@ -42,7 +42,7 @@ const User = db.user;
 
 // db.sequelize.sync();  // création des tables
 db.sequelize.sync().then(() => {
-    console.log('Database connected, drop and Resync Database with { force: true }');
+    console.log('Database connectée ...');
 })
 .catch(error=>console.log(error.message));
 
