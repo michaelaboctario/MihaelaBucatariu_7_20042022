@@ -26,6 +26,19 @@ exports.posts = [
         postContent: "Sur la chaîne américaine CNBC, le président Cyber & Intelligence de Mastercard a rassuré les troupes en expliquant que cette innovation découlait d’une demande des consommateurs.",
         userId: 2   
     },
+    // messages de user 4
+    // post 6
+    {
+        postTitle: "Prix de l’essence : Le gouvernement réfléchit à un dispositif d’aide pour les « gros rouleurs »", 
+        postContent: "Alors que les réductions de prix à la pompe prendront fin le 31 juillet, le gouvernement planche sur la suite des aides",
+        userId: 4,     
+    },
+    // post 7
+    {
+        postTitle: "Prix de l’essence : Le gouvernement réfléchit à un dispositif d’aide pour les « gros rouleurs »", 
+        postContent: " « Un dispositif plus fin pour accompagner tous ceux qu’on appelle les gros rouleurs, tous ceux qui ont besoin de carburant pour travailler et qui ont une consommation obligée », a indiqué mardi sur BFMTV la ministre de la Transition énergétique Agnès Pannier-Runacher. ",
+        userId: 4,     
+    },
 ];
 
 exports.comments = [
@@ -48,5 +61,15 @@ exports.comments = [
         commentContent: "Comme son nom l’indique, la carte magnétique repose sur l’écriture et la lecture d’une piste magnétique",
         userId: 2,
         postId: 2   
+    },
+    { 
+        commentContent: "« C’est encore à l’étude, donc je ne vais pas vous donner aujourd’hui des dispositifs, mais nous y travaillons »",
+        userId: 5,
+        postId: 7   
+    },
+    { 
+        commentContent: "Le dispositif viendrait compenser l’extinction programmée le 31 juillet des réductions de prix de 18 centimes",
+        userId: 5,
+        postId: 6   
     },
 ];
