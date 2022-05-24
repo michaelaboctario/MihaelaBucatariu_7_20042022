@@ -5,14 +5,14 @@
           <div class="input-group">
               <label for="firstname">Prénom</label>
               <Field v-model="form.firstname" id="firstname" name="firstname" type="text" class="form-input" 
-                  placeholder="Entrer le nom" aria-label="nom" />
+                  placeholder="Entrer le prénom" aria-label="nom" />
               <ErrorMessage name="firstname" class="form-error" />
           </div>
 
           <div class="input-group">
               <label for="lastname">Nom</label>
               <Field v-model="form.lastname" id="lastname" name="lastname" type="text" class="form-input" 
-                  placeholder="Entrer le prenom" aria-label="prénom" />
+                  placeholder="Entrer le nom" aria-label="prénom" />
               <ErrorMessage name="lastname" class="form-error" />
           </div>
 
