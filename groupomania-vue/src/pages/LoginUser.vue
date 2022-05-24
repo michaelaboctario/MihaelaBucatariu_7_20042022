@@ -1,6 +1,5 @@
 <template>  
-  <div class="flex-container">
-    <main class="card__container">     
+  <main class="flex-container"> 
     <SectionTitle title="Connexion utilisateur"/>
         <Form @submit="handleLogin" :validation-schema="schema">               
             <div class="input-group">
@@ -27,8 +26,7 @@
               {{ message }}
             </div>  
         </Form>
-      </main>
-   </div>
+   </main>
 </template>
 
 <script>

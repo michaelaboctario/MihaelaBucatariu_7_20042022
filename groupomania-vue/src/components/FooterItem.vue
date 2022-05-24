@@ -42,7 +42,6 @@ export default {
     .footer {
         display: flex;
         justify-content: center;
-        min-width: 480px;
         margin-top: 20px;
     }
 
@@ -79,7 +78,6 @@ export default {
         .footer {
             display: flex;
             justify-content: center;
-            min-width: 420px;
             margin-top: 10px;
         }
         .footer-fa-icon {

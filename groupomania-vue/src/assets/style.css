@@ -153,6 +153,7 @@ form {
     margin: 0;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .form-input,
@@ -307,13 +308,7 @@ button {
 .form-actions {
     display: flex;
     justify-content: center;
-    flex-basis: 100%;
-    margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.form-actions>*:not(:last-child) {
-    margin-right: 4px;
 }
 
 @media screen and (max-width: 768px) {
@@ -381,11 +376,10 @@ figure {
 
 .flex-container {
     display: flex;
-    margin: 0 auto;
+    margin: 0 20px;
     flex-direction: column;
+    width: 100%;
     max-width: 1200px;
-    flex-grow: 1;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -393,6 +387,13 @@ figure {
 @media screen and (min-width: 1024px) {
     .flex-container {
         max-width: 900px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .flex-container {
+        max-width: 700px;
+        margin: 0 16x;
     }
 }
 
@@ -407,8 +408,7 @@ figure {
 .container {
     display: flex;
     max-width: 1600px;
-    width: 80%;
-    margin: 0 auto;
+    margin: 0;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -416,7 +416,6 @@ figure {
 
 @media screen and (max-width: 768px) {
     .container {
-        width: 96%;
         max-width: 700px;
     }
 }
@@ -430,13 +429,7 @@ figure {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-@media screen and (max-width: 768px) {
-    .card__container {
-        flex-basis: 98%;
-        margin: 0 1%;
-    }
+    width: 100%;
 }
 
 .btn-default:hover,
@@ -477,6 +470,7 @@ figure {
     .btn-default,
     .btn-normal {
         padding: 10px 20px;
+        width: 100%;
     }
 }
 
@@ -501,6 +495,7 @@ figure {
 
 .post-item {
     box-shadow: 3px 2px 5px 1px rgb(245 134 134 / 30%);
+    width: 100%;
 }
 
 .comment-item {
@@ -515,22 +510,12 @@ figure {
     box-shadow: 1px 1px 20px rgba(58, 17, 17, 0.3);
 }
 
-.post-item__form,
-.comment-item__form 
-{
-    width: 98%;
-}
-
 .post-card__group,
 .post-card__group-title {
     display: flex;
     flex-direction: column;;
     align-items: center;
     margin: auto;
-}
-
-.post-card__group-title {
-    width: 80%;
 }
 
 .post-card__group-headings {
@@ -559,19 +544,8 @@ figure {
 .post-item__title,
 .post-item__content {
     text-align: left;
-    max-width: 800px;
-    width: 800px;
-}
-
-@media screen and (max-width: 768px) {
-    .form-input,
-    .post-item__title,
-    .post-item__content,
-    .comment-item__content {
-        max-width: 320px;
-        width: 320px;
-    }
-}
+    width: 100%;
+} 
 
 .comment-item__content {
     text-align: left;
@@ -612,6 +586,12 @@ figure {
     column-gap: 40px;
 }
 
+@media screen and (max-width: 768px) {
+    .comment-list-item {
+        column-gap: 10px;
+    }
+}
+
 .comment-delete__button {
     display: flex;
     margin-left: auto;
@@ -638,6 +618,5 @@ figure {
     display: inline-block;
     width: 28px;
     height: 28px;
-    margin-right: 10px;
     color:#8f1f28;
     }

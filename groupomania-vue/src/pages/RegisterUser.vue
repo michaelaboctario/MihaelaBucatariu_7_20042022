@@ -1,55 +1,52 @@
 <template>  
-  
-  <div class="container">
+  <main class="flex-container">
       <SectionTitle title="Enregistrement nouveau utilisateur"/>
-      <div class="flex-container ">
-        <Form @submit="register" :validation-schema="schema">               
-            <div class="input-group">
-                <label for="firstname">Prénom</label>
-                <Field v-model="form.firstname" id="firstname" name="firstname" type="text" class="form-input" 
-                    placeholder="Entrer le nom" aria-label="nom" />
-                <ErrorMessage name="firstname" class="form-error" />
-            </div>
+      <Form @submit="register" :validation-schema="schema">               
+          <div class="input-group">
+              <label for="firstname">Prénom</label>
+              <Field v-model="form.firstname" id="firstname" name="firstname" type="text" class="form-input" 
+                  placeholder="Entrer le nom" aria-label="nom" />
+              <ErrorMessage name="firstname" class="form-error" />
+          </div>
 
-            <div class="input-group">
-                <label for="lastname">Nom</label>
-                <Field v-model="form.lastname" id="lastname" name="lastname" type="text" class="form-input" 
-                    placeholder="Entrer le prenom" aria-label="prénom" />
-                <ErrorMessage name="lastname" class="form-error" />
-            </div>
+          <div class="input-group">
+              <label for="lastname">Nom</label>
+              <Field v-model="form.lastname" id="lastname" name="lastname" type="text" class="form-input" 
+                  placeholder="Entrer le prenom" aria-label="prénom" />
+              <ErrorMessage name="lastname" class="form-error" />
+          </div>
 
-            <div class="input-group">
-                <label for="username">Nom d'utilisateur</label>
-                <Field v-model="form.username" id="username" name="username" type="text" class="form-input" 
-                      placeholder="Entrer le nom d'utilisateur" aria-label="nom utilisateur" />
-                <ErrorMessage name="username" class="form-error" />
-            </div>
+          <div class="input-group">
+              <label for="username">Nom d'utilisateur</label>
+              <Field v-model="form.username" id="username" name="username" type="text" class="form-input" 
+                    placeholder="Entrer le nom d'utilisateur" aria-label="nom utilisateur" />
+              <ErrorMessage name="username" class="form-error" />
+          </div>
 
-            <div class="input-group">
-                <label for="email">Email</label>
-                <Field v-model="form.email" id="email" name="email" type="email" class="form-input" 
-                      placeholder="Entrer l'email" aria-label="email" />
-                <ErrorMessage name="email" class="form-error" />
-            </div>
+          <div class="input-group">
+              <label for="email">Email</label>
+              <Field v-model="form.email" id="email" name="email" type="email" class="form-input" 
+                    placeholder="Entrer l'email" aria-label="email" />
+              <ErrorMessage name="email" class="form-error" />
+          </div>
 
-            <div class="input-group">
-                <label for="password">Mot de passe</label>
-                <Field v-model="form.password" id="password" name="password" type="password" class="form-input" 
-                      placeholder="Entrer le mot de passe" aria-label="mot de passe"/>
-                <ErrorMessage name="password" class="form-error" />
-            </div>
-            
-            <div class="form-actions">
-                <button type="submit" class="btn-default btn-block">S'enregistrer</button>
-            </div>
+          <div class="input-group">
+              <label for="password">Mot de passe</label>
+              <Field v-model="form.password" id="password" name="password" type="password" class="form-input" 
+                    placeholder="Entrer le mot de passe" aria-label="mot de passe"/>
+              <ErrorMessage name="password" class="form-error" />
+          </div>
+          
+          <div class="form-actions">
+              <button type="submit" class="btn-default btn-block">S'enregistrer</button>
+          </div>
 
-            <div v-if="message" class="alert-error"
-            >
-              {{ message }}
-            </div>  
-        </Form>
-      </div>
-  </div>
+          <div v-if="message" class="alert-error"
+          >
+            {{ message }}
+          </div>  
+      </Form>
+  </main>
 </template>
 
 <script>
