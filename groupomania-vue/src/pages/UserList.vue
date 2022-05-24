@@ -102,4 +102,9 @@ export default {
     margin-right: 10px;
     }
 
+    @media screen and (max-width: 768px) {
+        .user-list__container {
+            padding: 10px 10px;
+        }
+    }
 </style>

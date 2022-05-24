@@ -153,6 +153,17 @@ form {
     margin: 0;
     display: flex;
     flex-direction: column;
+    width: 68%;
+}
+
+@media screen and (max-width: 768px) {
+    form {
+        width: 100%;
+    }
+}
+
+.post-item__form,
+.comment-item__form {
     width: 100%;
 }
 
@@ -259,6 +270,7 @@ form {
 .post-item__group {
     margin-bottom: 12px;
     display: block;
+    width: 100%;
 }
 
 input[type="submit"],
@@ -393,7 +405,7 @@ figure {
 @media screen and (max-width: 768px) {
     .flex-container {
         max-width: 700px;
-        margin: 0 16x;
+        margin: 0 16px;
     }
 }
 
@@ -429,6 +441,7 @@ figure {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 0 20px;
     width: 100%;
 }
 
@@ -549,16 +562,9 @@ figure {
 
 .comment-item__content {
     text-align: left;
-    max-width: 700px;
-    width: 700px;
+    width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-    .comment-item__content {
-        max-width: 276px;
-        width: 276px;
-    }
-}
 
 .post-item__title {
     font-weight : 700;
@@ -587,6 +593,9 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
+    .user-list__item {
+        width: 100%;
+    }
     .comment-list-item {
         column-gap: 10px;
     }

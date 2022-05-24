@@ -9,9 +9,9 @@
                 </div>
 
                 <div class="select__image">
-                    <label for="choose-image">
+                   <!--  <label for="choose-image">
                         <font-awesome-icon :icon="{ prefix: 'fas', iconName: 'pen' }" class="profile-fa-icon"/>      
-                    </label>
+                    </label> -->
                      <input
                           type="file"
                           accept="image/*"
@@ -157,6 +157,7 @@ export default {
         width: 68%;
         display: flex;
         align-items: center;
+        flex-direction: column;
         justify-content: center;
     }
 
@@ -167,9 +168,6 @@ export default {
         justify-content: center;
         gap: 10px;
         margin: 30px 0;
-    }
-    .select__image {
-       padding-left: 30px;
     }
     .profile__image img {
         width: 110px;
@@ -182,5 +180,11 @@ export default {
         height: 28px;
         margin-right: 10px;
     }
+
+  @media screen and (max-width: 768px) {
+    .form-group__image {
+          width: 100%;
+      }
+  }
 
 </style>
