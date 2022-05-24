@@ -5,7 +5,7 @@ exports.adminUser = {
     email: "admin@gmail.com",
     password: "",
     photourl: "",
-    roleId: 3
+    roleId: 1
 }
 
 exports.moderatorUser = {
@@ -18,12 +18,14 @@ exports.moderatorUser = {
   roleId: 2
 }
  
-exports.firstUser = {
-  firstname: "", 
-  lastname: "", 
-  username: "default-user", 
-  email: "default-user@gmail.com",
-  password: "",
-  photourl: "",
-  roleId: 2
-}
+exports.allUser = [
+  {
+    firstname: "", 
+    lastname: "", 
+    username: "default-user", 
+    email: "default-user@gmail.com",
+    password: "",
+    photourl: "",
+    roleId: 3
+  } 
+]
