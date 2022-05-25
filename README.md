@@ -42,7 +42,15 @@ Le projet frontend a été généré avec Vue-cli
  
     npm install
 
-3. Renommer le fichier .env-template en .env et ajouter le paramètre RANDOM_SECRET_TOKEN 
+3. Utiliser le fichier .env-template pour créer un fichier .env 
+
+    cp .env-template .env 
+
+    Editer le fichier .env, et mettre à jour le paramètre RANDOM_SECRET_TOKEN 
+
+    Par exemple, 
+
+    RANDOM_SECRET_TOKEN="MONTOKENSECRETGROUPOMANIA"  
 
 4. Il faut créer un dossier vide "images", à la racine du backend
 
